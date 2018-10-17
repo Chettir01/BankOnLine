@@ -11,39 +11,59 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 
 /**
  *
  * @author Julien
  */
 @Entity
-public class Bourse implements Serializable {
+public class Conseiller implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
-    	private String nom;
-/*
-    @JoinTable(
- name="OrdreBourse",
- joinColumns=@JoinColumn(name="id_Bourse"),
- inverseJoinColumns=@JoinColumn(name="id_Personne")
- )
- @ManyToMany*/
-   private Client personne;
-    
-        	public void setNom(String aNom) {
-		this.nom = aNom;
-	}
+    private String login;
+    @Column
+    private String mdp;
+    @Column
+    private String nom;
+    @Column
+    private String prenom;
 
-	public String getNom() {
-		return this.nom;
-	}
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getLogin() {
+        return this.login;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
+    public String getMdp() {
+        return this.mdp;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getNom() {
+        return this.nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getPrenom() {
+        return this.prenom;
+    }
+
     public Long getId() {
         return id;
     }
@@ -62,10 +82,10 @@ public class Bourse implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Bourse)) {
+        if (!(object instanceof Conseiller)) {
             return false;
         }
-        Bourse other = (Bourse) object;
+        Conseiller other = (Conseiller) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -74,7 +94,7 @@ public class Bourse implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Bourse[ id=" + id + " ]";
+        return "DAO.Conseiller[ id=" + id + " ]";
     }
-    
+
 }

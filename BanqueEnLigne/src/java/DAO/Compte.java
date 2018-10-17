@@ -17,7 +17,7 @@ import javax.persistence.Id;
  *
  * @author Julien
  */
-public abstract class Compte {
+public class Compte {
         
     @Id
     @GeneratedValue

@@ -6,16 +6,29 @@
 package DAO;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Julien
  */
 @Entity
-public class Professionel extends Personne {
+@Table(name="Professionel")
+public class Professionel extends Client {
 
+    @Column
+    private String nom;
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }
