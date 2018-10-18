@@ -22,19 +22,10 @@ and open the template in the editor.
     <body>
         <div class="col-xs-4">
         </div>
-        <div class="form-group col-xs-4">
-            <h1 >Bienvenue sur MaBanque</h1> <br/>
-            <h2 align="center">Connectez-vous</h2>
-            <div align="center">
-                <form action ="RedirectConnexionClient" method="GET">
-                    <input class="btn btn-primary btn-sm" Type=reset VALUE="Client" > 
-                </form>
-                <form action ="RedirectConnexionAdmin" method="GET">
-                    <input class="btn btn-primary btn-sm" Type=reset VALUE="Admin" > 
-                </form>     
-            </div>
+        <form action="auth" method="get">
+            <input type="submit"/>
             
-        </div>
+        </form>
     </body>
 </html>
 

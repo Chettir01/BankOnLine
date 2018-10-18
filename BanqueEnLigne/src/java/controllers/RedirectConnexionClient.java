@@ -17,13 +17,13 @@ import org.springframework.web.servlet.mvc.AbstractController;
  *
  * @author nada
  */
-@Controller
+@Controller("/clientCon")
 public class RedirectConnexionClient {
     
     public RedirectConnexionClient() {
     }
     
-   @RequestMapping(value= "clientCon", method = RequestMethod.GET)
+  // @RequestMapping(value= "clientCon", method = RequestMethod.GET)
     public String init(){
      return "clientCon";
     }

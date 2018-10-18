@@ -21,7 +21,14 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
     for the index controller we are using ParameterizableViewController, so we must
     define an explicit mapping for it.
     -->
-    
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="index.htm">indexController</prop>
+            </props>
+        </property>
+    </bean>
+
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
@@ -30,13 +37,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
     <!--
     The index controller.
     -->
-    <bean name="indexController"
+
+     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
     
-     <bean name="ClientController"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-          p:viewName="RedirectConnexionClient" />
     
     <!--Prise en charge des annotations -->
 <context:annotation-config/>
@@ -45,5 +50,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 <!--On laisse Spring interpréter les annotations pour faire le mapping -->
 <mvc:annotation-driven />
 <context:component-scan base-package="DAO"/>
+<context:component-scan base-package="Service"/>
+<tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>

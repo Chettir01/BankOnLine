@@ -22,11 +22,9 @@ public class connexionClient  {
     
     public connexionClient() {
     }
-    @RequestMapping(value= "clientCon", method = RequestMethod.GET)
     public String init(){
      return "clientCon";
     }
-    @RequestMapping(value="accueilClient", method=RequestMethod.GET)
      public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("accueilClient");
         String identifient = request.getParameter("identifient");

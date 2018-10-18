@@ -10,9 +10,11 @@ import java.sql.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Table;
 
 /**
@@ -20,8 +22,10 @@ import javax.persistence.Table;
  * @author Julien
  */
 @Entity
-@Table(name="Particulier")
+@Table(name = "Particulier")
 public class Particulier extends Client {
+
+  
 
     @Column
     private String nom;
@@ -34,6 +38,15 @@ public class Particulier extends Client {
 
     @Column
     private Date dateNaissance;
+    
+    public Particulier(){
+        
+    }
+    
+    public Particulier(String prenom,String nom){
+        this.prenom=prenom;
+        this.nom=nom;
+    }
 
     public void setNom(String nom) {
         this.nom = nom;

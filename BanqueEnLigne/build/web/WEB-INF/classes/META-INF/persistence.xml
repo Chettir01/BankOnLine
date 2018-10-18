@@ -3,8 +3,6 @@
   <persistence-unit name="BanqueEnLignePU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>DAO.Bourse</class>
-    <class>DAO.Client</class>
-    <class>DAO.Personne</class>
     <class>DAO.Professionel</class>
     <class>DAO.Compte</class>
     <class>DAO.CompteCourant</class>
@@ -16,6 +14,10 @@
     <class>DAO.Virement</class>
     <class>DAO.TypeCompte</class>
     <class>DAO.Civilite</class>
+    <class>DAO.Particulier</class>
+    <class>DAO.Client</class>
+    <class>DAO.Conseiller</class>
+    <class>DAO.TypeNotification</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/BanqueEnLigne"/>

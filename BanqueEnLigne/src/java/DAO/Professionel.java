@@ -24,6 +24,10 @@ public class Professionel extends Client {
     @Column
     private String nom;
 
+    public Professionel(String nom) {
+this.nom=nom;
+        }
+
     public String getNom() {
         return nom;
     }
