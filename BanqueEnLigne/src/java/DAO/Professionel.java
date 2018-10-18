@@ -27,6 +27,10 @@ public class Professionel extends Client {
     public Professionel(String nom) {
 this.nom=nom;
         }
+    
+      public Professionel() {
+
+        }
 
     public String getNom() {
         return nom;
