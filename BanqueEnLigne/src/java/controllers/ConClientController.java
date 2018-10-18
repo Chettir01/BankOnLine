@@ -17,19 +17,15 @@ import org.springframework.web.servlet.mvc.AbstractController;
  *
  * @author nada
  */
-@Controller("/clientCon")
-public class RedirectConnexionClient {
+@Controller
+public class ConClientController extends AbstractController {
     
-    public RedirectConnexionClient() {
+    public ConClientController() {
     }
     
-  // @RequestMapping(value= "clientCon", method = RequestMethod.GET)
-    public String init(){
-     return "clientCon";
-    }
-    @RequestMapping(value="clientCon", method=RequestMethod.GET)
+    @RequestMapping(value="conClient", method=RequestMethod.POST)
      public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("clientCon");
+        ModelAndView mv = new ModelAndView("conClient");
         return mv;
     } 
     

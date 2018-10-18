@@ -18,19 +18,14 @@ import org.springframework.web.servlet.mvc.AbstractController;
  * @author nada
  */
 @Controller
-public class connexionClient  {
+public class conAdminController extends AbstractController {
     
-    public connexionClient() {
+    public conAdminController() {
     }
-    public String init(){
-     return "clientCon";
-    }
+    
+    @RequestMapping(value="conAdmin", method=RequestMethod.POST)
      public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("accueilClient");
-        String identifient = request.getParameter("identifient");
-        String identif = "Bonjour " + identifient +", sur votre compte.";
-        mv.addObject(identif);
+        ModelAndView mv = new ModelAndView("conAdmin");
         return mv;
-    } 
-    
+    }
 }
