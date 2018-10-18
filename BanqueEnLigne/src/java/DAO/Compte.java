@@ -17,11 +17,15 @@ import javax.persistence.Id;
  *
  * @author Julien
  */
+@Entity
 public class Compte {
         
     @Id
     @GeneratedValue
 	private long ID_compte;
+
+    public Compte() {
+    }
     
     @Column
 	private int numcompte;

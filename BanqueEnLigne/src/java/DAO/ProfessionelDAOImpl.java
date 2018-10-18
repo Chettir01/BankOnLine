@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -29,28 +30,33 @@ public class ProfessionelDAOImpl implements ProfessionelDAO {
         this.em = em;
     }
 
+    @Transactional
     @Override
     public void save(Professionel h) {
         h = em.merge(h);
         em.persist(h);
     }
 
+    @Transactional
     @Override
     public void update(Professionel h) {
         em.merge(h);
     }
 
+    @Transactional
     @Override
     public void delete(Professionel h) {
         h = em.merge(h);
         em.remove(h);
     }
 
+    @Transactional
     @Override
     public Professionel find(long id) {
         return em.find(Professionel.class, id);
     }
 
+    @Transactional
     @Override
     public boolean authentification(String login, String mdp) {
         Query q = em.createQuery("SELECT * FROM Professionel WHERE login= ? AND mdp= ?").setParameter(1, login).setParameter(2, mdp);
@@ -61,11 +67,15 @@ public class ProfessionelDAOImpl implements ProfessionelDAO {
         }
     }
 
+    @Transactional(readOnly = true)
+
     @Override
     public List<Professionel> findAll() {
         Query q = em.createQuery("SELECT * FROM Professionel");
         return q.getResultList();
     }
+
+    @Transactional(readOnly = true)
 
     @Override
     public List<Professionel> findByName(String nom) {

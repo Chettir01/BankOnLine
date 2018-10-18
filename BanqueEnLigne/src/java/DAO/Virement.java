@@ -24,35 +24,40 @@ public class Virement implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
-    	private String iban;
-	    @Column
-private long person;
-	    @Column
-private String datecreation;
+    private String iban;
+    @Column
+    private long person;
+    @Column
+    private String datecreation;
 
-	public void setIban(String aIban) {
-		this.iban = aIban;
-	}
+    public Virement() {
 
-	public String getIban() {
-		return this.iban;
-	}
+    }
 
-	public void setPerson(long aPerson) {
-		this.person = aPerson;
-	}
+    public void setIban(String aIban) {
+        this.iban = aIban;
+    }
 
-	public long getPerson() {
-		return this.person;
-	}
+    public String getIban() {
+        return this.iban;
+    }
 
-	public void setDatecreation(String aDatecreation) {
-		this.datecreation = aDatecreation;
-	}
+    public void setPerson(long aPerson) {
+        this.person = aPerson;
+    }
 
-	public String getDatecreation() {
-		return this.datecreation;
-	}
+    public long getPerson() {
+        return this.person;
+    }
+
+    public void setDatecreation(String aDatecreation) {
+        this.datecreation = aDatecreation;
+    }
+
+    public String getDatecreation() {
+        return this.datecreation;
+    }
+
     public Long getId() {
         return id;
     }
@@ -85,5 +90,5 @@ private String datecreation;
     public String toString() {
         return "DAO.Virement[ id=" + id + " ]";
     }
-    
+
 }

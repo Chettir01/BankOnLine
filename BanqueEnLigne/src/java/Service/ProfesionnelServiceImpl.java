@@ -14,8 +14,9 @@ import javax.annotation.Resource;
  * @author Julien
  */
 public class ProfesionnelServiceImpl implements ProfessionelService {
-       @Resource
-    ProfessionelDAO DAO; 
+
+    @Resource
+    ProfessionelDAO DAO;
 
     @Override
     public void add(String nom) {
@@ -36,5 +37,5 @@ public class ProfesionnelServiceImpl implements ProfessionelService {
     public boolean auth(String login, String mdp) {
         return this.DAO.authentification(login, mdp);
     }
-    
+
 }

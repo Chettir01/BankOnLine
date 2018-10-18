@@ -20,12 +20,25 @@ and open the template in the editor.
         <title>Ma Banque</title>
     </head>
     <body>
+        <div >
+            <img class="d-block w-100" src="http://www.wexinc.com/wex-corporate/wp-content/uploads/sites/4/2017/04/WEX-Corporate-Bank-to-Bank-Large.jpg" alt="First slide" width="100%" height="300" >
+        </div>
+        
         <div class="col-xs-4">
         </div>
-        <form action="auth" method="get">
-            <input type="submit"/>
+        <div class="form-group col-xs-4">
+            <h1 >Bienvenue sur MaBanque</h1> <br/>
+            <h2 align="center">Connectez-vous</h2>
+            <div align="center" display="inline">
+                <form action ="conClient.htm" method="POST">
+                    <input class="btn btn-primary btn-sm" Type=submit VALUE="Client" > 
+                </form>
+                <form action ="conAdmin.htm" method="POST">
+                    <input class="btn btn-primary btn-sm" Type=submit VALUE="Admin" > 
+                </form>     
+            </div>
             
-        </form>
+        </div>
     </body>
 </html>
 
