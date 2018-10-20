@@ -20,9 +20,10 @@ import org.springframework.web.servlet.mvc.AbstractController;
 @Controller
 public class conAdminController extends AbstractController {
     
-    public conAdminController() {
+    @RequestMapping(value = "conAdmin", method = RequestMethod.GET)
+    public String init() {
+        return "conAdmin";
     }
-    
     @RequestMapping(value="conAdmin", method=RequestMethod.POST)
      public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("conAdmin");

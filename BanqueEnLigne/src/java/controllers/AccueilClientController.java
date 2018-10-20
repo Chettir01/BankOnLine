@@ -23,38 +23,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AccueilClientController {
 
-    @Autowired
-    ParticulierService p;
 
+    
     @RequestMapping(value = "accueilClient", method = RequestMethod.GET)
-    public String init() {
+    public String init(HttpServletRequest request, HttpServletResponse response) {
         return "accueilClient";
     }
-
-    @RequestMapping(value = "accueilClient", method = RequestMethod.POST)
-    public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv;
-        String identifient = request.getParameter("identifient");
-        String password = request.getParameter("password");
-        if (password.equals("") || identifient.equals("")) {
-            mv = new ModelAndView("conClient");
-        } else {
-            if (p.auth(identifient, password)==true) {
-                HttpSession session = request.getSession(true);
-                session.setAttribute("identifient", identifient);
-                session.setMaxInactiveInterval(3);
-                mv = new ModelAndView("accueilClient");
-            } else {
-                mv = new ModelAndView("conClient");
-            }
-        }
-
-        /*if(session!=null){
-                if (identifient!=null && identifient.length()>0)
-                    page ="accueilClient";
-                else
-                    page = "index";
-            }*/
+    
+    @RequestMapping(value="accueilClient", method=RequestMethod.POST)
+     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("accueilClient");
         return mv;
-    }
+    } 
 }

@@ -30,10 +30,10 @@ and open the template in the editor.
             <h1 >Bienvenue sur MaBanque</h1> <br/>
             <h2 align="center">Connectez-vous</h2>
             <div align="center" display="inline">
-                <form action ="conClient.htm" method="POST">
+                <form action ="conClient.htm" method="GET">
                     <input class="btn btn-primary btn-sm" Type=submit VALUE="Client" > 
                 </form>
-                <form action ="conAdmin.htm" method="POST">
+                <form action ="conAdmin.htm" method="GET">
                     <input class="btn btn-primary btn-sm" Type=submit VALUE="Admin" > 
                 </form>     
             </div>

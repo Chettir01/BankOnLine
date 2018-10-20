@@ -22,7 +22,7 @@
         </div>
         <div class="form-group col-xs-4">
 
-           <form action="accueilClient.htm" method ="POST">
+           <form action="conClient.htm" method ="POST">
                <div class="row">
                <div class="form-group col-xs-4">
                </div>
