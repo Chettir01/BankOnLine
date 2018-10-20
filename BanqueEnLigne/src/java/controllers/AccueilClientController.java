@@ -39,8 +39,10 @@ public class AccueilClientController {
         if (password.equals("") || identifient.equals("")) {
             mv = new ModelAndView("conClient");
         } else {
-            if (p.auth(identifient, password)) {
+            if (p.auth(identifient, password)==true) {
                 HttpSession session = request.getSession(true);
+                session.setAttribute("identifient", identifient);
+                session.setMaxInactiveInterval(3);
                 mv = new ModelAndView("accueilClient");
             } else {
                 mv = new ModelAndView("conClient");

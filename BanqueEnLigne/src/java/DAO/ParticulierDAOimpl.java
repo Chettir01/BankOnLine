@@ -76,8 +76,13 @@ public class ParticulierDAOimpl implements ParticulierDAO {
 
     @Override
     public boolean authentification(String login, String mdp) {
-              Query q = em.createQuery("SELECT p FROM PARTICULIER p WHERE p.LOGIN='"+login+"' AND p.MDP='"+login+"'");
+              //Query q = em.createNativeQuery("SELECT * FROM PARTICULIER p WHERE p.LOGIN = ? AND p.MDP = ?");
+              Query q = em.createQuery("SELECT p FROM Particulier p WHERE p.login = ?1 AND p.mdp = ?2");
+              q.setParameter(1,login);
+              q.setParameter(2,mdp);
+               System.err.println("true");
              if(!q.getResultList().isEmpty()){
+                
                   return true;
              }else{
                  return false;
