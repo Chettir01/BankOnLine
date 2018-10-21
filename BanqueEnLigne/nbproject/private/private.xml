@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/controllers/ConClientController.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/WEB-INF/jsp/conClient.jsp</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/WEB-INF/jsp/accueilClient.jsp</file>
             <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/controllers/AccueilClientController.java</file>
-            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/Service/ProfesionnelServiceImpl.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/controllers/conAdminController.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/VirementDAOImpl.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/WEB-INF/jsp/index.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -7,6 +7,7 @@ package DAO;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,24 +20,29 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Professionel")
+@DiscriminatorValue("PROFESSIONEL")
 public class Professionel extends Client {
 
     @Column
-    private String nom;
+    private String nomentreprise;
 
-    public Professionel(String nom) {
-this.nom=nom;
-        }
+    public Professionel(String nomentreprise) {
+        this.nomentreprise = nomentreprise;
+    }
+
+    public String getNomentreprise() {
+        return nomentreprise;
+    }
+
+    public void setNomentreprise(String nomentreprise) {
+        this.nomentreprise = nomentreprise;
+    }
+
+
     
       public Professionel() {
 
         }
 
-    public String getNom() {
-        return nom;
-    }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
 }

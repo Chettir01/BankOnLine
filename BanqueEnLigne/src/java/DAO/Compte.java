@@ -8,24 +8,32 @@ package DAO;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import static javax.persistence.DiscriminatorType.STRING;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  *
  * @author Julien
  */
 @Entity
+@DiscriminatorColumn(name="TYPE", discriminatorType=STRING,length=20)
+@DiscriminatorValue("COMPTE")
 public class Compte {
+    
+    public Compte(){
+        
+    }
         
     @Id
     @GeneratedValue
 	private long ID_compte;
-
-    public Compte() {
-    }
     
     @Column
 	private int numcompte;
@@ -36,8 +44,6 @@ public class Compte {
     @Column
 	private String iban;
     
-    @Column
-	private long typeCompte;
     
     @Column
 	private int IDPerson;
@@ -58,7 +64,6 @@ public class Compte {
         this.numcompte = numcompte;
         this.solde = solde;
         this.iban = iban;
-        this.typeCompte = typeCompte;
         this.IDPerson = IDPerson;
     }
 
@@ -80,14 +85,6 @@ public class Compte {
 
 	public String getIban() {
 		return this.iban;
-	}
-
-	public void setTypeCompte(int typeCompte) {
-		this.typeCompte = typeCompte;
-	}
-
-	public long getTypeCompte() {
-		return this.typeCompte;
 	}
 
 	public void setIDPerson(int IDPerson) {

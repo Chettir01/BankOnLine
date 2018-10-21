@@ -21,7 +21,7 @@ public class OrdreBourse implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_Person;
+    private long id_Compte;
 	private long id_Bourse;
 	private int date_creation;
 	private boolean achat;
@@ -30,13 +30,14 @@ public class OrdreBourse implements Serializable {
 	private long type;
 	private int prixVente;
 
-	public void setId_Person(long id_Person) {
-		this.id_Person = id_Person;
-	}
+    public long getId_Compte() {
+        return id_Compte;
+    }
 
-	public long getId_Person() {
-		return this.id_Person;
-	}
+    public void setId_Compte(long id_Compte) {
+        this.id_Compte = id_Compte;
+    }
+
 
 	public void setId_Bourse(long id_Bourse) {
 		this.id_Bourse = id_Bourse;

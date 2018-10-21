@@ -26,7 +26,7 @@ public class Virement implements Serializable {
     @Column
     private String iban;
     @Column
-    private long person;
+    private long compte;
     @Column
     private String datecreation;
 
@@ -42,14 +42,13 @@ public class Virement implements Serializable {
         return this.iban;
     }
 
-    public void setPerson(long aPerson) {
-        this.person = aPerson;
+    public long getCompte() {
+        return compte;
     }
 
-    public long getPerson() {
-        return this.person;
+    public void setCompte(long compte) {
+        this.compte = compte;
     }
-
     public void setDatecreation(String aDatecreation) {
         this.datecreation = aDatecreation;
     }
