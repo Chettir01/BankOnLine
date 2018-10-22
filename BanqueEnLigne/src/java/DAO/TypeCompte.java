@@ -6,11 +6,14 @@
 package DAO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,8 +29,19 @@ public class TypeCompte implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @OneToMany(mappedBy="type") 
+    List<Compte> liste = new ArrayList<Compte>();
+    
     @Column
     private String nom;
+
+    public List<Compte> getListe() {
+        return liste;
+    }
+
+    public void setListe(List<Compte> liste) {
+        this.liste = liste;
+    }
     
      @Column
     private int taux;

@@ -8,6 +8,7 @@ package DAO;
 import java.io.Serializable;
 import java.sql.Date;
 import static java.sql.JDBCType.BOOLEAN;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -19,6 +20,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -44,6 +46,9 @@ public class Client {
     public void setIDClient(long IDClient) {
         this.IDClient = IDClient;
     }
+    
+    @OneToMany(mappedBy = "client")
+    List<Compte> listecompte=new ArrayList<Compte>();
 
     @Column
     private String mdp;

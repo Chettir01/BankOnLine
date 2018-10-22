@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -29,6 +31,22 @@ public class OrdreBourse implements Serializable {
 	private int dateLimite;
 	private long type;
 	private int prixVente;
+        
+    @ManyToOne
+    @JoinColumn(name="compte")
+    private Compte compte;
+
+    @ManyToOne
+    @JoinColumn(name = "boure")
+    private Bourse bourse;
+    
+    public Compte getCompte() {
+        return compte;
+    }
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
 
     public long getId_Compte() {
         return id_Compte;

@@ -10,11 +10,13 @@ import DAO.ClientDAO;
 import DAO.Particulier;
 import DAO.ParticulierDAO;
 import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Julien
  */
+@Service
 public class ClientServiceimpl implements ClientService{
 
       @Resource

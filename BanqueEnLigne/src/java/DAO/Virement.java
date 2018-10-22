@@ -6,11 +6,15 @@
 package DAO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -26,9 +30,12 @@ public class Virement implements Serializable {
     @Column
     private String iban;
     @Column
-    private long compte;
-    @Column
     private String datecreation;
+    
+    @ManyToOne
+    @JoinColumn(name="Compte")
+    private Compte compte;
+    
 
     public Virement() {
 
@@ -42,13 +49,14 @@ public class Virement implements Serializable {
         return this.iban;
     }
 
-    public long getCompte() {
+    public Compte getCompte() {
         return compte;
     }
 
-    public void setCompte(long compte) {
+    public void setCompte(Compte compte) {
         this.compte = compte;
     }
+
     public void setDatecreation(String aDatecreation) {
         this.datecreation = aDatecreation;
     }
