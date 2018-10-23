@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientServiceimpl implements ClientService{
 
-      @Resource
+    @Resource
     ClientDAO DAO; 
 
     @Override

@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import Service.ClientServiceimpl;
 import Service.ParticulierService;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -22,17 +23,33 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class AccueilController {
-
-
-    
-    @RequestMapping(value = "accueil", method = RequestMethod.GET)
-    public String init(HttpServletRequest request, HttpServletResponse response) {
-        return "accueil";
+public AccueilController() {
     }
-    
-    @RequestMapping(value="accueil", method=RequestMethod.POST)
+   @Autowired
+   ClientServiceimpl clientService;
+   
+   
+     @RequestMapping(value = "accueil", method = RequestMethod.POST)
      public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("accueil");
-        return mv;
-    } 
+          String identifient = request.getParameter("identifient");
+          String password = request.getParameter("password");
+        
+        if (password.equals("") || identifient.equals("")) {
+            ModelAndView mv = new ModelAndView("index");
+            return mv;
+        } 
+        else {
+            if (clientService.auth(identifient, password)==true) {
+                HttpSession session = request.getSession(true);
+                session.setMaxInactiveInterval(5);
+                session.setAttribute("login", identifient);
+                ModelAndView mv = new ModelAndView("accueil");
+                //mv.addObject(identifient);
+                return mv;
+            } else {
+                ModelAndView mv = new ModelAndView("index");
+                return mv;
+            }
+        }
+     }
 }

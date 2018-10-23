@@ -77,7 +77,7 @@ public class ClientDAOImpl implements ClientDAO {
     @Override
     public boolean authentification(String login, String mdp) {
        // Query q = em.createNativeQuery("SELECT * FROM Client p WHERE p.login ='juju' AND p.mdp ='juju'");
-        Query q = em.createQuery("SELECT c "
+        /*Query q = em.createQuery("SELECT c "
                 + "FROM Client c "
                 + "WHERE c.login =?1 "
                 + "AND c.mdp =?2 "
@@ -96,5 +96,18 @@ public class ClientDAOImpl implements ClientDAO {
             return false;
         }
 
+    }*/
+        Query q = em.createQuery("SELECT p FROM Client p WHERE p.login = ?1 AND p.mdp = ?2");
+           q.setParameter(1,login);
+           q.setParameter(2,mdp);
+        //System.err.println("true");
+        if(!q.getResultList().isEmpty()){
+            System.out.println("personne trouvé");
+            return true;
+        }else{
+            System.out.println("personne nom trouvé!!!!!");
+            return false;
+        }
+       
     }
 }
