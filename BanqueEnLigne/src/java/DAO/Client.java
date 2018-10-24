@@ -38,14 +38,6 @@ public class Client {
 
     @Column
     private String login;
-
-    public long getIDClient() {
-        return IDClient;
-    }
-
-    public void setIDClient(long IDClient) {
-        this.IDClient = IDClient;
-    }
     
     @OneToMany(mappedBy = "client")
     List<Compte> listecompte=new ArrayList<Compte>();
@@ -61,6 +53,14 @@ public class Client {
     
     @Column
     private long conseiler;
+    
+    public long getIDClient() {
+        return IDClient;
+    }
+
+    public void setIDClient(long IDClient) {
+        this.IDClient = IDClient;
+    }
 
     public long getConseiler() {
         return conseiler;
