@@ -30,6 +30,23 @@ public class Bourse implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
+    private String nom;
+
+    @Column
+    private int prix;
+
+    public int getPrix() {
+        return prix;
+    }
+
+    public void setPrix(int prix) {
+        this.prix = prix;
+    }
+
+    @OneToMany(mappedBy = "bourse")
+    private List<OrdreBourse> listebourse = new ArrayList<OrdreBourse>();
+
     public List<OrdreBourse> getListebourse() {
         return listebourse;
     }
@@ -38,34 +55,21 @@ public class Bourse implements Serializable {
         this.listebourse = listebourse;
     }
 
-    public Client getPersonne() {
-        return personne;
-    }
-
-    public void setPersonne(Client personne) {
-        this.personne = personne;
-    }
-    @Column
-    	private String nom;
-    
-    @OneToMany(mappedBy = "bourse")
-    private List<OrdreBourse> listebourse=new ArrayList<OrdreBourse>();
-/*
+    /*
     @JoinTable(
  name="OrdreBourse",
  joinColumns=@JoinColumn(name="id_Bourse"),
  inverseJoinColumns=@JoinColumn(name="id_Personne")
  )
  @ManyToMany*/
-   private Client personne;
-    
-        	public void setNom(String aNom) {
-		this.nom = aNom;
-	}
+    public void setNom(String aNom) {
+        this.nom = aNom;
+    }
 
-	public String getNom() {
-		return this.nom;
-	}
+    public String getNom() {
+        return this.nom;
+    }
+
     public Long getId() {
         return id;
     }
@@ -98,5 +102,5 @@ public class Bourse implements Serializable {
     public String toString() {
         return "DAO.Bourse[ id=" + id + " ]";
     }
-    
+
 }

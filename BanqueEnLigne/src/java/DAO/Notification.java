@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -23,48 +25,55 @@ public class Notification implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Column
     private int dateCreation;
- @Column	
-    private long idPerson;
-  @Column
-	private String message;
-   @Column
-	private long typeNotification;
+    
+    @ManyToOne
+    @JoinColumn(name = "client")
+    private Client clientnotification;
+    
+    @ManyToOne
+    @JoinColumn(name="type")
+    private TypeNotification typenotification;
+    
+    @Column
+    private String message;
+    @Column
+    private long typeNotification;
+
+    public void setDateCreation(int aDateCreation) {
+        this.dateCreation = aDateCreation;
+    }
+
+    public int getDateCreation() {
+        return this.dateCreation;
+    }
+
+    public Client getClientnotification() {
+        return clientnotification;
+    }
+
+    public void setClientnotification(Client clientnotification) {
+        this.clientnotification = clientnotification;
+    }
 
 
-	public void setDateCreation(int aDateCreation) {
-		this.dateCreation = aDateCreation;
-	}
+    public void setMessage(String aMessage) {
+        this.message = aMessage;
+    }
 
-	public int getDateCreation() {
-		return this.dateCreation;
-	}
+    public String getMessage() {
+        return this.message;
+    }
 
-	public void setIdPerson(long aIdPerson) {
-		this.idPerson = aIdPerson;
-	}
+    public void setTypeNotification(long aTypeNotification) {
+        this.typeNotification = aTypeNotification;
+    }
 
-	public long getIdPerson() {
-		return this.idPerson;
-	}
-
-	public void setMessage(String aMessage) {
-		this.message = aMessage;
-	}
-
-	public String getMessage() {
-		return this.message;
-	}
-
-	public void setTypeNotification(long aTypeNotification) {
-		this.typeNotification = aTypeNotification;
-	}
-
-	public long getTypeNotification() {
-		return this.typeNotification;
-	}
+    public long getTypeNotification() {
+        return this.typeNotification;
+    }
 
     public Long getId() {
         return id;
@@ -98,5 +107,5 @@ public class Notification implements Serializable {
     public String toString() {
         return "DAO.Notification[ id=" + id + " ]";
     }
-    
+
 }

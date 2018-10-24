@@ -6,12 +6,13 @@
 package DAO;
 
 import java.io.Serializable;
-import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -24,39 +25,52 @@ public class Message implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "client")
+    private Client clientmessage;
+
+    @ManyToOne
+    @JoinColumn(name = "conseiller")
+    private Conseiller conseiller;
+
     @Column
-    private long createur;
-	    @Column
-private String contenu;
-	    @Column
-private Date datecreation;
-	    @Column
-private long idConversation;
+    private String message;
 
+    @Column
+    private boolean isclient;
 
-	public void setCreateur(long aCreateur) {
-		this.createur = aCreateur;
-	}
+    public Client getClient() {
+        return clientmessage;
+    }
 
-	public long getCreateur() {
-		return this.createur;
-	}
+    public void setClient(Client client) {
+        this.clientmessage = client;
+    }
 
-	public void setContenu(String aContenu) {
-		this.contenu = aContenu;
-	}
+    public Conseiller getConseiller() {
+        return conseiller;
+    }
 
-	public String getContenu() {
-		return this.contenu;
-	}
+    public void setConseiller(Conseiller conseiller) {
+        this.conseiller = conseiller;
+    }
 
-	public void setDatecreation(Date aDatecreation) {
-		this.datecreation = aDatecreation;
-	}
+    public String getMessage() {
+        return message;
+    }
 
-	public Date getDatecreation() {
-		return this.datecreation;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public boolean isIsclient() {
+        return isclient;
+    }
+
+    public void setIsclient(boolean isclient) {
+        this.isclient = isclient;
+    }
 
     public Long getId() {
         return id;
@@ -88,7 +102,7 @@ private long idConversation;
 
     @Override
     public String toString() {
-        return "DAO.Message[ id=" + id + " ]";
+        return "DAO.Conversation[ id=" + id + " ]";
     }
-    
+
 }

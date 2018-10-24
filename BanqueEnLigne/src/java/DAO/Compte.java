@@ -5,20 +5,13 @@
  */
 package DAO;
 
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import static javax.persistence.DiscriminatorType.STRING;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -34,16 +27,24 @@ public class Compte {
         
     }
     @ManyToOne
-    @JoinColumn(name="Type")
-    private TypeCompte type;
+    @JoinColumn(name="typecompte_id")
+    private TypeCompte typecompte;
+    
+        @ManyToOne
+    @JoinColumn(name="Client")
+    private Client client;
+    
+    @OneToMany(mappedBy = "compte")
+    private List<OrdreBourse> listeordre=new ArrayList<OrdreBourse>();
 
-    public TypeCompte getT() {
-        return type;
+    public TypeCompte getTypecompte() {
+        return typecompte;
     }
 
-    public void setT(TypeCompte t) {
-        this.type = t;
+    public void setTypecompte(TypeCompte typecompte) {
+        this.typecompte = typecompte;
     }
+
 
     public long getID_compte() {
         return ID_compte;
@@ -54,12 +55,6 @@ public class Compte {
     }
     
     
-    @ManyToOne
-    @JoinColumn(name="Client")
-    private Client client;
-    
-    @OneToMany(mappedBy = "compte")
-    private List<OrdreBourse> listeordre=new ArrayList<OrdreBourse>();
 
     public List<OrdreBourse> getListeordre() {
         return listeordre;
@@ -67,14 +62,6 @@ public class Compte {
 
     public void setListeordre(List<OrdreBourse> listeordre) {
         this.listeordre = listeordre;
-    }
-
-    public TypeCompte getType() {
-        return type;
-    }
-
-    public void setType(TypeCompte type) {
-        this.type = type;
     }
 
     public Client getClient() {

@@ -6,11 +6,14 @@
 package DAO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,49 +26,31 @@ public class TypeNotification implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
-    private String login;
-    @Column
-    private String mdp;
+    
     @Column
     private String nom;
-    @Column
-    private String prenom;
-
-    public void setLogin(String login) {
-        this.login = login;
+    
+    @OneToMany(mappedBy = "typenotification")
+    private List<Notification> listenotifications=new ArrayList<Notification>();
+  
+    public Long getId() {
+        return id;
     }
 
-    public String getLogin() {
-        return this.login;
-    }
-
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
-    }
-
-    public String getMdp() {
-        return this.mdp;
+    public String getNom() {
+        return nom;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public String getNom() {
-        return this.nom;
+    public List<Notification> getListenotifications() {
+        return listenotifications;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getPrenom() {
-        return this.prenom;
-    }
-
-    public Long getId() {
-        return id;
+    public void setListenotifications(List<Notification> listenotifications) {
+        this.listenotifications = listenotifications;
     }
 
     public void setId(Long id) {

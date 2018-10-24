@@ -29,7 +29,6 @@ public class OrdreBourse implements Serializable {
 	private boolean achat;
 	private int quantite;
 	private int dateLimite;
-	private long type;
 	private int prixVente;
         
     @ManyToOne
@@ -39,6 +38,10 @@ public class OrdreBourse implements Serializable {
     @ManyToOne
     @JoinColumn(name = "boure")
     private Bourse bourse;
+    
+    @ManyToOne
+    @JoinColumn(name="typeordre_id")
+    private TypeOrdre typeOrdre;
     
     public Compte getCompte() {
         return compte;
@@ -97,13 +100,6 @@ public class OrdreBourse implements Serializable {
 		return this.dateLimite;
 	}
 
-	public void setType(long type) {
-		this.type = type;
-	}
-
-	public long getType() {
-		return this.type;
-	}
 
 	public void setPrixVente(int prixVente) {
 		this.prixVente = prixVente;

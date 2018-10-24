@@ -20,6 +20,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -27,8 +29,8 @@ import javax.persistence.OneToMany;
  * @author Julien
  */
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="TYPE", discriminatorType=STRING,length = 20)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE", discriminatorType = STRING, length = 20)
 @DiscriminatorValue("CLIENT")
 public class Client {
 
@@ -39,17 +41,6 @@ public class Client {
     @Column
     private String login;
 
-    public long getIDClient() {
-        return IDClient;
-    }
-
-    public void setIDClient(long IDClient) {
-        this.IDClient = IDClient;
-    }
-    
-    @OneToMany(mappedBy = "client")
-    List<Compte> listecompte=new ArrayList<Compte>();
-
     @Column
     private String mdp;
 
@@ -59,15 +50,50 @@ public class Client {
     @Column
     private String tel;
     
-    @Column
-    private long conseiler;
+    @OneToMany(mappedBy = "clientnotification")
+    private List<Notification> listenotifications = new ArrayList<Notification>();
 
-    public long getConseiler() {
-        return conseiler;
+
+    @OneToMany(mappedBy = "client")
+    private List<Compte> listecompte = new ArrayList<Compte>();
+
+    @OneToMany(mappedBy = "clientmessage")
+    private List<Message> listemessage = new ArrayList<Message>();
+
+    @ManyToOne
+    @JoinColumn(name = "conseiller")
+    private Conseiller conseillerClient;
+
+    public Conseiller getConseillerClient() {
+        return conseillerClient;
     }
 
-    public void setConseiler(long conseiler) {
-        this.conseiler = conseiler;
+    public void setConseillerClient(Conseiller conseillerClient) {
+        this.conseillerClient = conseillerClient;
+    }
+
+    public long getIDClient() {
+        return IDClient;
+    }
+
+    public List<Compte> getListecompte() {
+        return listecompte;
+    }
+
+    public void setListecompte(List<Compte> listecompte) {
+        this.listecompte = listecompte;
+    }
+
+    public List<Message> getListemessage() {
+        return listemessage;
+    }
+
+    public void setListemessage(List<Message> listemessage) {
+        this.listemessage = listemessage;
+    }
+
+    public void setIDClient(long IDClient) {
+        this.IDClient = IDClient;
     }
 
     public void setLogin(String login) {

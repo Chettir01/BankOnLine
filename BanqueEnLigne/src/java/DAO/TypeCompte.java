@@ -29,7 +29,7 @@ public class TypeCompte implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @OneToMany(mappedBy="type") 
+    @OneToMany(mappedBy="typecompte") 
     List<Compte> liste = new ArrayList<Compte>();
     
     @Column

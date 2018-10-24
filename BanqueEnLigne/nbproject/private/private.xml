@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/Virement.java</file>
             <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/Client.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/Professionel.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/ClientDAOImpl.java</file>
             <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/Bourse.java</file>
-            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/Compte.java</file>
-            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/OrdreBourse.java</file>
-            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/TypeCompte.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/ProfessionelDAOImpl.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/Notification.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/TypeNotification.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/Particulier.java</file>
         </group>
     </open-files>
 </project-private>
