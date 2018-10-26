@@ -18,6 +18,10 @@
     <class>DAO.Client</class>
     <class>DAO.Conseiller</class>
     <class>DAO.TypeNotification</class>
+    <class>DAO.NewEntity</class>
+    <class>DAO.CompteProfessionel</class>
+    <class>DAO.CompteParticulier</class>
+    <class>DAO.LivretA</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/BanqueEnLigne"/>

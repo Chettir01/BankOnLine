@@ -6,11 +6,15 @@
 package DAO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -24,35 +28,43 @@ public class Virement implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
-    	private String iban;
-	    @Column
-private long person;
-	    @Column
-private String datecreation;
+    private String iban;
+    @Column
+    private String datecreation;
+    
+    @ManyToOne
+    @JoinColumn(name="Compte")
+    private Compte compte;
+    
 
-	public void setIban(String aIban) {
-		this.iban = aIban;
-	}
+    public Virement() {
 
-	public String getIban() {
-		return this.iban;
-	}
+    }
 
-	public void setPerson(long aPerson) {
-		this.person = aPerson;
-	}
+    public void setIban(String aIban) {
+        this.iban = aIban;
+    }
 
-	public long getPerson() {
-		return this.person;
-	}
+    public String getIban() {
+        return this.iban;
+    }
 
-	public void setDatecreation(String aDatecreation) {
-		this.datecreation = aDatecreation;
-	}
+    public Compte getCompte() {
+        return compte;
+    }
 
-	public String getDatecreation() {
-		return this.datecreation;
-	}
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
+
+    public void setDatecreation(String aDatecreation) {
+        this.datecreation = aDatecreation;
+    }
+
+    public String getDatecreation() {
+        return this.datecreation;
+    }
+
     public Long getId() {
         return id;
     }
@@ -85,5 +97,5 @@ private String datecreation;
     public String toString() {
         return "DAO.Virement[ id=" + id + " ]";
     }
-    
+
 }

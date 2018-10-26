@@ -1,17 +1,18 @@
 package DAO;
 
-import java.util.List;
+import DAO.Compte;
 import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-10-17T21:31:36")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-10-26T10:09:01")
 @StaticMetamodel(Client.class)
-public abstract class Client_ { 
+public class Client_ { 
 
     public static volatile SingularAttribute<Client, Long> conseiler;
+    public static volatile ListAttribute<Client, Compte> listecompte;
     public static volatile SingularAttribute<Client, Long> IDClient;
-    public static volatile SingularAttribute<Client, List> comptes;
     public static volatile SingularAttribute<Client, String> mdp;
     public static volatile SingularAttribute<Client, String> adresse;
     public static volatile SingularAttribute<Client, String> tel;

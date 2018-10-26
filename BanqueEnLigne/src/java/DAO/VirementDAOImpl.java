@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -27,40 +28,44 @@ public class VirementDAOImpl implements VirementDAO {
         this.em = em;
     }
 
+    @Transactional
     @Override
     public void save(Virement h) {
         h = em.merge(h);
         em.persist(h);
     }
 
+    @Transactional
     @Override
     public void update(Virement h) {
         em.merge(h);
     }
 
+    @Transactional
     @Override
     public void delete(Virement h) {
         h = em.merge(h);
         em.remove(h);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Virement find(long id) {
         return em.find(Virement.class, id);
     }
 
-
-
+    @Transactional(readOnly = true)
     @Override
     public List<Virement> findAll() {
         Query q = em.createQuery("SELECT * FROM Virement");
         return q.getResultList();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Virement> findByPerson(long id) {
-       Query q = em.createQuery("SELECT * FROM Virement");
-        return q.getResultList();    }
-
+        Query q = em.createQuery("SELECT * FROM Virement");
+        return q.getResultList();
+    }
 
 }
