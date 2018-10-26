@@ -23,7 +23,7 @@
             <div class="col-xs-4">
             </div>
             <div class="form-group col-xs-4">
-
+                
            <form action="accueil.htm" method ="POST">
                <div class="row">
                <div class="form-group col-xs-4">
@@ -44,6 +44,9 @@
                     <input class="form-control btn-danger btn-block" Type=reset VALUE="Annuler"> 
                 </div>
             </div>
+        </form>
+        <form action="inscriptionForm.htm" method ="POST">
+            <input class="form-control btn-danger btn-block" Type=submit VALUE="S'inscrire">
         </form>
          </div>
      

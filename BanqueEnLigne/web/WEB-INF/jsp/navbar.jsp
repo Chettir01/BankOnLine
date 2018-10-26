@@ -15,20 +15,39 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" >HIO Banque</a>
+                    <a href="inscription.jsp" class="navbar-brand" >MaBank</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a >Accueil</a></li>
-                        <li>
-                            <form action ="monCompte.htm" method="POST">
-                                <input Type=submit VALUE="Mon compte" > 
-                            </form>
-                        </li>
-                    <li><a class="navbar-brand" href="<c:url value='/monCompte.jsp'/>"> <strong> NousRejoindre </strong></a></li>
-                    <li><a >Mon ordre de bourse</a></li>
-                    <li><a >Virement</a></li>
-                    <li><a >Messagerie</a></li>
-                    <li><a >Notification</a></li>
+                    <li>
+                        <form action ="accueil.htm" method="POST">
+                            <button class="btn btn-secondary navbar-btn">Accueil</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form action ="mesComptes.htm" method="POST">
+                            <button class="btn btn-secondary navbar-btn">Mes comptes</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form action ="ordreBourse.htm" method="POST">
+                            <button class="btn btn-secondary navbar-btn">Ordre de bourse</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form action ="virementAction.htm" method="POST">
+                            <button class="btn btn-dark navbar-btn">Virement</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form action ="creerCompte.htm" method="POST">
+                            <button class="btn btn-dark navbar-btn">Créer un nouveau compte</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form action ="nousContacter.htm" method="POST">
+                            <button class="btn btn-secondary navbar-btn">Nous contacter</button>
+                        </form>
+                    </li>
                 </ul>
             <button class="btn btn-danger navbar-btn">Se deconnecter</button>
             </div>

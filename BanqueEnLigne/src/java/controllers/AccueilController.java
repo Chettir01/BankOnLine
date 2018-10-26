@@ -44,12 +44,14 @@ public AccueilController() {
                 session.setMaxInactiveInterval(5);
                 session.setAttribute("login", identifient);
                 ModelAndView mv = new ModelAndView("accueil");
-                //mv.addObject(identifient);
+                mv.addObject("login","Bonjour "+identifient);
                 return mv;
             } else {
                 ModelAndView mv = new ModelAndView("index");
                 return mv;
             }
+            /*ModelAndView mv = new ModelAndView("accueil");
+            return mv;*/
         }
      }
 }
