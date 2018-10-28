@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import DAO.Client;
 import Service.ClientService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,12 +39,12 @@ public class ConnexionController {
         if (password.equals("") || identifient.equals("")) {
             mv = new ModelAndView("connexion");
         } else {
-            if (p.auth(identifient, password)==true) {
+            Client c=p.auth(identifient, password);
+            if (c!=null) {
                 HttpSession session = request.getSession(true);
-                session.setMaxInactiveInterval(5);
-                session.setAttribute("login", identifient);
+                session.setMaxInactiveInterval(60);
+                session.setAttribute("client", c);
                 mv = new ModelAndView("accueil");
-                mv.addObject(identifient);
             } else {
                 mv = new ModelAndView("connexion");
             }

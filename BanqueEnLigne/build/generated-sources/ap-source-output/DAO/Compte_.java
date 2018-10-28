@@ -10,7 +10,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-10-24T20:10:41")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-10-28T02:12:44")
 @StaticMetamodel(Compte.class)
 public class Compte_ { 
 
@@ -19,8 +19,8 @@ public class Compte_ {
     public static volatile SingularAttribute<Compte, Date> dateCreation;
     public static volatile SingularAttribute<Compte, Long> ID_compte;
     public static volatile SingularAttribute<Compte, String> iban;
-    public static volatile SingularAttribute<Compte, Client> client;
     public static volatile SingularAttribute<Compte, Integer> solde;
+    public static volatile SingularAttribute<Compte, Client> clientcompte;
     public static volatile SingularAttribute<Compte, TypeCompte> typecompte;
     public static volatile ListAttribute<Compte, OrdreBourse> listeordre;
 

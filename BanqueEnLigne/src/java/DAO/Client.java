@@ -50,11 +50,24 @@ public class Client {
     @Column
     private String tel;
     
+    public Client(){
+       
+    }
+
+    public Client(long IDClient, String login, String mdp, String adresse, String tel) {
+        this.IDClient = IDClient;
+        this.login = login;
+        this.mdp = mdp;
+        this.adresse = adresse;
+        this.tel = tel;
+    }
+    
+ 
     @OneToMany(mappedBy = "clientnotification")
     private List<Notification> listenotifications = new ArrayList<Notification>();
 
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "clientcompte")
     private List<Compte> listecompte = new ArrayList<Compte>();
 
     @OneToMany(mappedBy = "clientmessage")

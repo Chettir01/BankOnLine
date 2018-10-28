@@ -14,6 +14,6 @@ import DAO.Client;
 public interface ClientService {
     public void add(Client c);
     public void remove(String nom);
-    public boolean auth(String login,String mdp);
+    public Client auth(String login,String mdp);
     public String getNomsMessages();
 }

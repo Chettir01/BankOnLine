@@ -36,6 +36,16 @@ public class Virement implements Serializable {
     @JoinColumn(name="Compte")
     private Compte compte;
     
+        @Column
+    private float somme;
+
+    public float getSomme() {
+        return somme;
+    }
+
+    public void setSomme(float somme) {
+        this.somme = somme;
+    }
 
     public Virement() {
 

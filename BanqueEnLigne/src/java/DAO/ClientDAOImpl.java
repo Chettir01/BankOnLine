@@ -5,10 +5,13 @@
  */
 package DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -74,26 +77,21 @@ public class ClientDAOImpl implements ClientDAO {
 
     }
 
+    @Transactional
     @Override
-    public boolean authentification(String login, String mdp) {
-       // Query q = em.createNativeQuery("SELECT * FROM Client p WHERE p.login ='juju' AND p.mdp ='juju'");
-        Query q = em.createQuery("SELECT c "
+    public Client authentification(String login, String mdp) {
+
+        Query q = em.createQuery("SELECT NEW DAO.Client(c.IDClient, c.login, c.mdp, c.adresse, c.tel) "
                 + "FROM Client c "
                 + "WHERE c.login =?1 "
                 + "AND c.mdp =?2 "
-                + "AND (TYPE(c) =Client OR TYPE(c) =Professionel OR TYPE(c) = Particulier)");
+                );
        q.setParameter(1, login);
         q.setParameter(2, mdp);
-
-        System.err.println(q.toString());
-         System.err.println(login);
-          System.err.println(mdp);
         if (!q.getResultList().isEmpty()) {
-        System.err.println("true");
-            return true;
+           return (Client) q.getResultList().get(0);
         } else {
-                    System.err.println("false");
-            return false;
+            return null;
         }
 
     }

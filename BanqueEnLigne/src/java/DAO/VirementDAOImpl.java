@@ -9,12 +9,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Julien
  */
+@Repository
 public class VirementDAOImpl implements VirementDAO {
 
     @PersistenceContext(unitName = "BanqueEnLignePU")
@@ -63,8 +65,11 @@ public class VirementDAOImpl implements VirementDAO {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Virement> findByPerson(long id) {
-        Query q = em.createQuery("SELECT * FROM Virement");
+    public List<Virement> findByClient(Client c) {
+        Query q = em.createQuery("SELECT v"
+                + " FROM Virement v"
+                + "WHERE"
+                + "");
         return q.getResultList();
     }
 

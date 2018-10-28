@@ -30,9 +30,9 @@ public class Compte {
     @JoinColumn(name="typecompte_id")
     private TypeCompte typecompte;
     
-        @ManyToOne
-    @JoinColumn(name="Client")
-    private Client client;
+    @ManyToOne
+    @JoinColumn(name="client")
+    private Client clientcompte;
     
     @OneToMany(mappedBy = "compte")
     private List<OrdreBourse> listeordre=new ArrayList<OrdreBourse>();
@@ -65,11 +65,11 @@ public class Compte {
     }
 
     public Client getClient() {
-        return client;
+        return clientcompte;
     }
 
     public void setClient(Client client) {
-        this.client = client;
+        this.clientcompte = client;
     }
 
     public List<Virement> getListevirement() {

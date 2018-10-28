@@ -38,7 +38,7 @@ public class ClientServiceimpl implements ClientService{
     }
 
     @Override
-    public boolean auth(String login, String mdp) {
+    public Client auth(String login, String mdp) {
         return this.DAO.authentification(login, mdp);
     }
     

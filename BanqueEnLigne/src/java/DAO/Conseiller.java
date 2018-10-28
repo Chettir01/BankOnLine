@@ -20,9 +20,8 @@ import javax.persistence.OneToMany;
  * @author Julien
  */
 @Entity
-public class Conseiller implements Serializable {
+public class Conseiller  {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
