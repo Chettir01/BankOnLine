@@ -42,7 +42,7 @@ public class ConnexionController {
             Client c=p.auth(identifient, password);
             if (c!=null) {
                 HttpSession session = request.getSession(true);
-                session.setMaxInactiveInterval(60);
+                session.setMaxInactiveInterval(60*30);
                 session.setAttribute("client", c);
                 mv = new ModelAndView("accueil");
             } else {

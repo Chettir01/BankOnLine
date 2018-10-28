@@ -50,7 +50,7 @@ public class OrdreBourseDAOImpl implements OrdreBourseDAO {
     @Override
     public List<OrdreBourse> findByCompte(Compte c) {
         Query q = em.createQuery("SELECT o"
-                + " FROM OrdreBourse o"
+                + " FROM OrdreBourse o "
                 + "WHERE o.compte=?1");
         q.setParameter(1, c);
         return q.getResultList();

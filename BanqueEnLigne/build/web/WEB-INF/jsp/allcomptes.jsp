@@ -36,7 +36,7 @@
                     out.print("<td>" + l.get(i).getNumcompte() + "</td>");
                     out.print("<td>" + l.get(i).getDateCreation() + "</td>");
                     out.print("<td>" + l.get(i).getSolde() + "</td>");
-                    out.print("<td>" + "<form action=\"detailscompte.htm\" method=\"post\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value="+l.get(i).getID_compte()+" />"+"<input class=\"form-control btn-success\" Type=\"submit\" VALUE=\"Details\"/>"+ "</form>" + "</td>");
+                    out.print("<td>" + "<form action=\"detailscompte.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value="+l.get(i).getID_compte()+" />"+"<input class=\"form-control btn-success\" Type=\"submit\" VALUE=\"Details\"/>"+ "</form>" + "</td>");
                     out.print("</tr>");
                 }
                 

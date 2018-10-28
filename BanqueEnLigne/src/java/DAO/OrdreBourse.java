@@ -23,12 +23,35 @@ public class OrdreBourse implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_Compte;
-	private long id_Bourse;
+    private long ordrenourse_id;
 	private int date_creation;
-	private boolean achat;
+	private int achat;
 	private int quantite;
 	private int dateLimite;
+
+    public long getOrdrenourse_id() {
+        return ordrenourse_id;
+    }
+
+    public void setOrdrenourse_id(long ordrenourse_id) {
+        this.ordrenourse_id = ordrenourse_id;
+    }
+
+    public Bourse getBourse() {
+        return bourse;
+    }
+
+    public void setBourse(Bourse bourse) {
+        this.bourse = bourse;
+    }
+
+    public TypeOrdre getTypeOrdre() {
+        return typeOrdre;
+    }
+
+    public void setTypeOrdre(TypeOrdre typeOrdre) {
+        this.typeOrdre = typeOrdre;
+    }
 	private int prixVente;
         
     @ManyToOne
@@ -36,7 +59,7 @@ public class OrdreBourse implements Serializable {
     private Compte compte;
 
     @ManyToOne
-    @JoinColumn(name = "boure")
+    @JoinColumn(name = "bourse")
     private Bourse bourse;
     
     @ManyToOne
@@ -51,23 +74,6 @@ public class OrdreBourse implements Serializable {
         this.compte = compte;
     }
 
-    public long getId_Compte() {
-        return id_Compte;
-    }
-
-    public void setId_Compte(long id_Compte) {
-        this.id_Compte = id_Compte;
-    }
-
-
-	public void setId_Bourse(long id_Bourse) {
-		this.id_Bourse = id_Bourse;
-	}
-
-	public long getId_Bourse() {
-		return this.id_Bourse;
-	}
-
 	public void setDate_creation(int date_creation) {
 		this.date_creation = date_creation;
 	}
@@ -76,11 +82,11 @@ public class OrdreBourse implements Serializable {
 		return this.date_creation;
 	}
 
-	public void setAchat(boolean achat) {
+	public void setAchat(int achat) {
 		this.achat = achat;
 	}
 
-	public boolean isAchat() {
+	public int Achat() {
 		return this.achat;
 	}
 

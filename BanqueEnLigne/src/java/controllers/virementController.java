@@ -5,7 +5,10 @@
  */
 package controllers;
 
+import DAO.Compte;
 import Service.ClientService;
+import Service.CompteService;
+import Service.VirementService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,9 +24,11 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class virementController {
-          
-      @Autowired
-    ClientService p;
+
+    @Autowired
+    VirementService v;
+    @Autowired
+    CompteService c;
 
     @RequestMapping(value = "virement", method = RequestMethod.GET)
     public String init() {
@@ -32,7 +37,14 @@ public class virementController {
 
     @RequestMapping(value = "virement", method = RequestMethod.POST)
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv=new ModelAndView();
+        ModelAndView mv;
+        HttpSession session=request.getSession();
+        if (!request.getParameter("IBAN").isEmpty() && !request.getParameter("Montant").isEmpty()) {
+            v.add(request.getParameter("IBAN"), (Compte) session.getAttribute("compte"), Float.parseFloat(request.getParameter("Montant")));
+            mv = new ModelAndView("redirect:/detailscompte.htm");
+        } else {
+            mv = new ModelAndView("virement");
+        }
         return mv;
     }
 }

@@ -6,6 +6,7 @@
 package controllers;
 
 import DAO.Client;
+import DAO.Compte;
 import Service.CompteService;
 import Service.OrdreBourseService;
 import Service.VirementService;
@@ -33,7 +34,7 @@ public class detailsCompteController {
     @Autowired
     CompteService c;
     
-        @RequestMapping(value = "detailscompte", method = RequestMethod.POST)
+        @RequestMapping(value = "detailscompte", method = RequestMethod.GET)
     public ModelAndView init(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv;
         HttpSession session = request.getSession();
@@ -41,10 +42,18 @@ public class detailsCompteController {
             mv = new ModelAndView("connexion");
         } else {
             mv = new ModelAndView("detailscompte");
-            long id=Long.parseLong(request.getParameter("compte"));
-
-            mv.addObject("listevirement", v.findByCompte(c.findById(id)));
-
+             long id;
+             Compte compte;
+            if(request.getParameter("compte")!=null){
+               id=Long.parseLong(request.getParameter("compte"));
+               compte=c.findById(id);
+            }else{
+                compte=(Compte)session.getAttribute("compte");
+            }
+            
+            mv.addObject("listevirement", v.findByCompte(compte));
+            mv.addObject("listeaction", o.findByCompte(compte));
+            session.setAttribute("compte", compte);
             //
             //Cherche liste compte
 

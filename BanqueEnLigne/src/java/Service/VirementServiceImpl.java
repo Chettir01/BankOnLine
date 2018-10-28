@@ -24,8 +24,8 @@ public class VirementServiceImpl implements VirementService {
     VirementDAO DAO;
 
     @Override
-    public void add(String nom) {
-        this.DAO.save(new Virement());
+    public void add(String iban,Compte compte,float somme) {
+        this.DAO.save(new Virement(iban, compte, somme));
     }
 
     @Override

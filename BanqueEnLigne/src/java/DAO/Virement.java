@@ -29,15 +29,22 @@ public class Virement implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
-    private String iban;
+    private String ibandestination;
     @Column
     private Date datecreation;
-    
+
     @ManyToOne
-    @JoinColumn(name="Compte")
+    @JoinColumn(name = "Compte")
     private Compte compte;
-    
-        @Column
+
+    public Virement(String ibandestination, Compte compte, float somme) {
+        this.ibandestination = ibandestination;
+        this.datecreation = new java.sql.Date(new java.util.Date().getTime());
+        this.compte = compte;
+        this.somme = somme;
+    }
+
+    @Column
     private float somme;
 
     public float getSomme() {
@@ -52,12 +59,12 @@ public class Virement implements Serializable {
 
     }
 
-    public void setIban(String aIban) {
-        this.iban = aIban;
+    public String getIbandestination() {
+        return ibandestination;
     }
 
-    public String getIban() {
-        return this.iban;
+    public void setIbandestination(String ibandestination) {
+        this.ibandestination = ibandestination;
     }
 
     public Compte getCompte() {
