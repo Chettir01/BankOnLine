@@ -62,5 +62,16 @@ public class CompteDAOImpl implements CompteDAO {
             return null;
         }
     }
+
+    @Transactional
+    @Override
+    public Compte findById(long id) {
+          Query q = em.createQuery("SELECT c "
+                + "FROM Compte c "
+                + "WHERE c.ID_compte =?1 "
+                );
+          q.setParameter(1, id);
+          return (Compte) q.getResultList().get(0);
+    }
     
 }

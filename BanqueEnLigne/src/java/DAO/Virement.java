@@ -6,6 +6,7 @@
 package DAO;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -30,7 +31,7 @@ public class Virement implements Serializable {
     @Column
     private String iban;
     @Column
-    private String datecreation;
+    private Date datecreation;
     
     @ManyToOne
     @JoinColumn(name="Compte")
@@ -67,11 +68,11 @@ public class Virement implements Serializable {
         this.compte = compte;
     }
 
-    public void setDatecreation(String aDatecreation) {
+    public void setDatecreation(Date aDatecreation) {
         this.datecreation = aDatecreation;
     }
 
-    public String getDatecreation() {
+    public Date getDatecreation() {
         return this.datecreation;
     }
 

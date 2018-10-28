@@ -18,4 +18,5 @@ public interface CompteDAO {
  public Compte find(long id);
  public List<Compte> findAll();
  public List<Compte> findByClient(Client client);
+  public Compte findById(long id);
 }

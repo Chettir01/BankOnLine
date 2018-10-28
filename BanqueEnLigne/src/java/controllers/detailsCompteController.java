@@ -6,7 +6,9 @@
 package controllers;
 
 import DAO.Client;
+import Service.CompteService;
 import Service.OrdreBourseService;
+import Service.VirementService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,8 +28,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class detailsCompteController {
     @Autowired
     OrdreBourseService o;
+    @Autowired
+    VirementService v;
+    @Autowired
+    CompteService c;
     
-        @RequestMapping(value = "detailscompte", method = RequestMethod.GET)
+        @RequestMapping(value = "detailscompte", method = RequestMethod.POST)
     public ModelAndView init(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv;
         HttpSession session = request.getSession();
@@ -35,6 +41,9 @@ public class detailsCompteController {
             mv = new ModelAndView("connexion");
         } else {
             mv = new ModelAndView("detailscompte");
+            long id=Long.parseLong(request.getParameter("compte"));
+
+            mv.addObject("listevirement", v.findByCompte(c.findById(id)));
 
             //
             //Cherche liste compte
@@ -42,10 +51,10 @@ public class detailsCompteController {
         }
         return mv;
     }
-
+/*
     @RequestMapping(value = "detailscompte", method = RequestMethod.POST)
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView();
         return mv;
-    }
+    }*/
 }

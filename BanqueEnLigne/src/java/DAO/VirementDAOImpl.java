@@ -65,11 +65,11 @@ public class VirementDAOImpl implements VirementDAO {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Virement> findByClient(Client c) {
+    public List<Virement> findByCompte(Compte c) {
         Query q = em.createQuery("SELECT v"
-                + " FROM Virement v"
-                + "WHERE"
-                + "");
+                + " FROM Virement v "
+                + "WHERE v.compte=?1");
+        q.setParameter(1, c);
         return q.getResultList();
     }
 

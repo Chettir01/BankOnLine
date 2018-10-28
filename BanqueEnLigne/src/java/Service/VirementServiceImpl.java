@@ -5,15 +5,19 @@
  */
 package Service;
 
+import DAO.Compte;
 import DAO.Professionel;
 import DAO.Virement;
 import DAO.VirementDAO;
+import java.util.List;
 import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Julien
  */
+@Service
 public class VirementServiceImpl implements VirementService {
 
     @Resource
@@ -37,6 +41,11 @@ public class VirementServiceImpl implements VirementService {
     @Override
     public String getNomsMessages() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Virement> findByCompte(Compte c) {
+        return DAO.findByCompte(c);
     }
 
 }

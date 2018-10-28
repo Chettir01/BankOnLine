@@ -17,5 +17,5 @@ public interface VirementDAO {
  public void delete(Virement h);
  public Virement find(long id);
  public List<Virement> findAll();
- public List<Virement> findByClient(Client c);
+ public List<Virement> findByCompte(Compte c);
 }

@@ -17,4 +17,5 @@ public interface CompteService {
         public void add(Compte c);
     public void remove(String nom);
  public List<Compte> findByClient(Client client);
+ public Compte findById(long id);
 }

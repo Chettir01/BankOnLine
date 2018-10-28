@@ -5,6 +5,10 @@
  */
 package Service;
 
+import DAO.Compte;
+import DAO.Virement;
+import java.util.List;
+
 /**
  *
  * @author Julien
@@ -18,4 +22,6 @@ public interface VirementService {
     public boolean auth(String login, String mdp);
 
     public String getNomsMessages();
+    
+     public List<Virement> findByCompte(Compte c);
 }

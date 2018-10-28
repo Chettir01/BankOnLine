@@ -36,5 +36,10 @@ public class CompteServiceImpl implements CompteService {
     public List<Compte> findByClient(Client client) {
         return this.DAO.findByClient(client);
     }
+
+    @Override
+    public Compte findById(long id) {
+        return DAO.findById(id);
+    }
     
 }
