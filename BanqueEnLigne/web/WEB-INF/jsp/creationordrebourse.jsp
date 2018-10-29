@@ -4,6 +4,10 @@
     Author     : Julien
 --%>
 
+<%@page import="DAO.TypeOrdre"%>
+<%@page import="DAO.TypeCompte"%>
+<%@page import="DAO.Bourse"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,10 +42,30 @@
                 <input class="form-control" type="number" min="0" value="0" id="quantite" name="quantite"> 
                 <br/>
                 <label for="bourse">Bourse : </label>
-                <input class="form-control" type="select" id="bourse" name="bourse"> 
+                <select class="form-control" name="bourse">
+                    <option value="">(Nom | Date Limite | Prix)</option>
+                    <%
+                        List<Bourse> l = (List<Bourse>) request.getAttribute("listebourse");
+                        if (l != null) {
+                            for (int i = 0; i < l.size(); i++) {
+                                out.print("<option value=\"" + l.get(i).getId().toString() + "\" >" + l.get(i).getNom() + " | " + l.get(i).getDatelimite().toString() + " | " + l.get(i).getPrix() + "</option>");
+                            }
+                        }
+
+                    %>
+                </select> 
                 <br/>
                 <label for="type">type : </label>
-                <input class="form-control" type="select"  id="type" name="type"> 
+                <select class="form-control" name="type">
+                    <option value="">(Nom du type)</option>
+                    <%                        List<TypeOrdre> lt = (List<TypeOrdre>) request.getAttribute("listetypecompte");
+                        if (lt != null) {
+                            for (int i = 0; i < lt.size(); i++) {
+                                out.print("<option value=" + lt.get(i).getId().toString() + " >" + lt.get(i).getNom() + "</option>");
+                            }
+                        }
+                    %>
+                </select> 
                 <br/>
                 <div class="row">
                     <div class=" form-group col-xs-4 ">

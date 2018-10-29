@@ -11,10 +11,15 @@ import java.util.List;
  *
  * @author Julien
  */
-public interface BourseDAO {
-                  public void save(Bourse h);
- public void update(Bourse h);
- public void delete(Bourse h);
- public Bourse findById(long id);
- public List<Bourse> findAll();
+public interface TypeOrdreDAO {
+
+    public void save(TypeOrdre h);
+
+    public void update(TypeOrdre h);
+
+    public void delete(TypeOrdre h);
+
+    public TypeOrdre findById(long id);
+
+    public List<TypeOrdre> findAll();
 }

@@ -19,11 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class OrdreBourseDAOImpl implements OrdreBourseDAO {
 
-        @PersistenceContext(unitName = "BanqueEnLignePU")
+    @PersistenceContext(unitName = "BanqueEnLignePU")
     private EntityManager em;
+
+    @Transactional
     @Override
     public void save(OrdreBourse h) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        h = em.merge(h);
+        em.persist(h);
     }
 
     @Override
@@ -55,5 +58,5 @@ public class OrdreBourseDAOImpl implements OrdreBourseDAO {
         q.setParameter(1, c);
         return q.getResultList();
     }
-    
+
 }

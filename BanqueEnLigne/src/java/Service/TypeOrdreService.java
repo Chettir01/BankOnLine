@@ -5,15 +5,15 @@
  */
 package Service;
 
-import DAO.Bourse;
 import DAO.Compte;
+import DAO.TypeOrdre;
 import java.util.List;
 
 /**
  *
  * @author Julien
  */
-public interface BourseService {
+public interface TypeOrdreService {
             public void add(String iban,Compte compte,float somme);
 
     public void remove(String nom);
@@ -21,7 +21,7 @@ public interface BourseService {
     public boolean auth(String login, String mdp);
 
     public String getNomsMessages();
-     public Bourse findById(long id);
+    public TypeOrdre findById(long Id);
     
-     public List<Bourse> findAll();
+     public List<TypeOrdre> findAll();
 }

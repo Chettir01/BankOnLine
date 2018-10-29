@@ -24,7 +24,7 @@ public class OrdreBourseServiceImpl implements OrdreBourseService {
 
     @Override
     public void add(OrdreBourse c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DAO.save(c);
     }
 
     @Override

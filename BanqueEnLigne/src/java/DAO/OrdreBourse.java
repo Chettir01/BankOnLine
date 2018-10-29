@@ -6,6 +6,7 @@
 package DAO;
 
 import java.io.Serializable;
+import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,18 +24,31 @@ public class OrdreBourse implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ordrenourse_id;
-	private int date_creation;
-	private int achat;
-	private int quantite;
-	private int dateLimite;
+    private long ordrebourse_id;
+    
+    public OrdreBourse(){
+        
+    }
+
+    public OrdreBourse(int quantite, Date dateLimite, int prixVente, Compte compte, Bourse bourse, TypeOrdre typeOrdre) {
+        this.date_creation = new java.sql.Date(new java.util.Date().getTime());
+        this.quantite = quantite;
+        this.dateLimite = dateLimite;
+        this.prixVente = prixVente;
+        this.compte = compte;
+        this.bourse = bourse;
+        this.typeOrdre = typeOrdre;
+    }
+    private Date date_creation;
+    private int quantite;
+    private Date dateLimite;
 
     public long getOrdrenourse_id() {
-        return ordrenourse_id;
+        return ordrebourse_id;
     }
 
     public void setOrdrenourse_id(long ordrenourse_id) {
-        this.ordrenourse_id = ordrenourse_id;
+        this.ordrebourse_id = ordrenourse_id;
     }
 
     public Bourse getBourse() {
@@ -52,20 +66,20 @@ public class OrdreBourse implements Serializable {
     public void setTypeOrdre(TypeOrdre typeOrdre) {
         this.typeOrdre = typeOrdre;
     }
-	private int prixVente;
-        
+    private int prixVente;
+
     @ManyToOne
-    @JoinColumn(name="compte")
+    @JoinColumn(name = "compte")
     private Compte compte;
 
     @ManyToOne
     @JoinColumn(name = "bourse")
     private Bourse bourse;
-    
+
     @ManyToOne
-    @JoinColumn(name="typeordre_id")
+    @JoinColumn(name = "typeordre_id")
     private TypeOrdre typeOrdre;
-    
+
     public Compte getCompte() {
         return compte;
     }
@@ -74,48 +88,36 @@ public class OrdreBourse implements Serializable {
         this.compte = compte;
     }
 
-	public void setDate_creation(int date_creation) {
-		this.date_creation = date_creation;
-	}
+    public void setDate_creation(Date date_creation) {
+        this.date_creation = date_creation;
+    }
 
-	public int getDate_creation() {
-		return this.date_creation;
-	}
+    public Date getDate_creation() {
+        return this.date_creation;
+    }
 
-	public void setAchat(int achat) {
-		this.achat = achat;
-	}
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
 
-	public int Achat() {
-		return this.achat;
-	}
+    public int getQuantite() {
+        return this.quantite;
+    }
 
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
-	}
+    public void setDateLimite(Date dateLimite) {
+        this.dateLimite = dateLimite;
+    }
 
-	public int getQuantite() {
-		return this.quantite;
-	}
+    public Date getDateLimite() {
+        return this.dateLimite;
+    }
 
-	public void setDateLimite(int dateLimite) {
-		this.dateLimite = dateLimite;
-	}
+    public void setPrixVente(int prixVente) {
+        this.prixVente = prixVente;
+    }
 
-	public int getDateLimite() {
-		return this.dateLimite;
-	}
+    public int getPrixVente() {
+        return this.prixVente;
+    }
 
-
-	public void setPrixVente(int prixVente) {
-		this.prixVente = prixVente;
-	}
-
-	public int getPrixVente() {
-		return this.prixVente;
-	}
-
-
-        
-    
 }

@@ -5,10 +5,14 @@
  */
 package controllers;
 
+import DAO.Bourse;
 import DAO.Compte;
+import DAO.OrdreBourse;
 import Service.BourseService;
 import Service.CompteService;
+import Service.OrdreBourseService;
 import Service.TypeCompteService;
+import Service.TypeOrdreService;
 import Service.VirementService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,28 +29,30 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class creationOrdreBourseController {
-       @Autowired
-    VirementService v;
+
     @Autowired
-    CompteService c;
+    OrdreBourseService o;
     @Autowired
-    TypeCompteService t;
+    TypeOrdreService t;
     @Autowired
     BourseService b;
 
     @RequestMapping(value = "ordrebourse", method = RequestMethod.GET)
     public ModelAndView init() {
-        ModelAndView mv=new ModelAndView("creationordrebourse");
+        ModelAndView mv = new ModelAndView("creationordrebourse");
         mv.addObject("listetypecompte", t.findAll());
+        mv.addObject("listebourse", b.findAll());
         return mv;
     }
 
     @RequestMapping(value = "ordrebourse", method = RequestMethod.POST)
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
-        HttpSession session=request.getSession();
-        if (!request.getParameter("IBAN").isEmpty() && !request.getParameter("Montant").isEmpty()) {
-            v.add(request.getParameter("IBAN"), (Compte) session.getAttribute("compte"), Float.parseFloat(request.getParameter("Montant")));
+        HttpSession session = request.getSession();
+        if (!request.getParameter("bourse").isEmpty() && !request.getParameter("type").isEmpty() && !request.getParameter("quantite").isEmpty()) {
+            Bourse bo = b.findById(Integer.parseInt(request.getParameter("bourse")));
+            this.o.add(new OrdreBourse(Integer.parseInt(request.getParameter("quantite")), bo.getDatelimite(), bo.getPrix(), (Compte) session.getAttribute("compte"), bo, t.findById(Long.parseLong(request.getParameter("type"))
+            )));
             mv = new ModelAndView("redirect:/detailscompte.htm");
         } else {
             mv = new ModelAndView("virement");

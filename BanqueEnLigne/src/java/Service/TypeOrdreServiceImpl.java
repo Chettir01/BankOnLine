@@ -5,10 +5,10 @@
  */
 package Service;
 
-import DAO.Bourse;
-import DAO.BourseDAO;
 import DAO.Compte;
-import DAO.TypeCompte;
+import DAO.TypeCompteDAO;
+import DAO.TypeOrdre;
+import DAO.TypeOrdreDAO;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,10 @@ import org.springframework.stereotype.Service;
  * @author Julien
  */
 @Service
-public class BourseServiceImpl implements BourseService {
+public class TypeOrdreServiceImpl implements TypeOrdreService {
 
     @Resource
-    BourseDAO DAO;
+    TypeOrdreDAO DAO;
     
     @Override
     public void add(String iban, Compte compte, float somme) {
@@ -42,14 +42,15 @@ public class BourseServiceImpl implements BourseService {
     public String getNomsMessages() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     @Override
-    public List<Bourse> findAll() {
+    public List<TypeOrdre> findAll() {
         return DAO.findAll();
     }
 
     @Override
-    public Bourse findById(long id) {
-        return DAO.findById(id);
+    public TypeOrdre findById(long Id) {
+        return DAO.findById(Id);
     }
     
 }

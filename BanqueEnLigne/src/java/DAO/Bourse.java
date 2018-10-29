@@ -33,6 +33,16 @@ public class Bourse implements Serializable {
 
     @Column
     private String nom;
+    
+    public Bourse(){
+        
+    }
+
+    public Bourse(String nom, int prix) {
+        this.nom = nom;
+        this.prix = prix;
+        this.datelimite = new java.sql.Date(new java.util.Date().getTime());
+    }
 
     @Column
     private int prix;
@@ -114,5 +124,7 @@ public class Bourse implements Serializable {
     public String toString() {
         return "DAO.Bourse[ id=" + id + " ]";
     }
+
+  
 
 }
