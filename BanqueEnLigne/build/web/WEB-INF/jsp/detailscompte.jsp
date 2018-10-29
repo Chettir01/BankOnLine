@@ -69,7 +69,7 @@
                 }
             %>
         </table>
-        <form method='' action=''>
+        <form method='get' action='ordrebourse.htm'>
             <input class="form-control btn-success" Type="submit" VALUE="Acheter une action">
         </form>
     </body>

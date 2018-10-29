@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>web/WEB-INF/jsp/detailscompte.jsp</url>
+            <bookmark id="1">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/WEB-INF/jsp/detailscompte.jsp</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/WEB-INF/jsp/virement.jsp</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/Service/VirementServiceImpl.java</file>
             <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/controllers/detailsCompteController.java</file>
             <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/controllers/ConnexionController.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/VirementDAOImpl.java</file>
             <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/controllers/allcomptesController.java</file>
             <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/WEB-INF/jsp/connexion.jsp</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/controllers/virementController.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/VirementDAO.java</file>
             <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/WEB-INF/jsp/allcomptes.jsp</file>
         </group>
     </open-files>

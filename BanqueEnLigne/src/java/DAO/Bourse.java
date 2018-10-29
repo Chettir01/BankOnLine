@@ -6,6 +6,7 @@
 package DAO;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -35,6 +36,17 @@ public class Bourse implements Serializable {
 
     @Column
     private int prix;
+    
+    @Column
+    private Date datelimite;
+
+    public Date getDatelimite() {
+        return datelimite;
+    }
+
+    public void setDatelimite(Date datelimite) {
+        this.datelimite = datelimite;
+    }
 
     public int getPrix() {
         return prix;
