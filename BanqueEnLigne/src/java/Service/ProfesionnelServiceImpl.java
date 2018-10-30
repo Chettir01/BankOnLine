@@ -8,11 +8,13 @@ package Service;
 import DAO.Professionel;
 import DAO.ProfessionelDAO;
 import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Julien
  */
+@Service
 public class ProfesionnelServiceImpl implements ProfessionelService {
 
     @Resource
@@ -36,6 +38,16 @@ public class ProfesionnelServiceImpl implements ProfessionelService {
     @Override
     public boolean auth(String login, String mdp) {
         return this.DAO.authentification(login, mdp);
+    }
+
+    @Override
+    public Professionel find(long id) {
+        return DAO.find(id);
+    }
+
+    @Override
+    public void update(Professionel h) {
+        DAO.update(h);
     }
 
 }

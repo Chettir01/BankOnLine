@@ -81,7 +81,7 @@ public class ClientDAOImpl implements ClientDAO {
     @Override
     public Client authentification(String login, String mdp) {
 
-        Query q = em.createQuery("SELECT NEW DAO.Client(c.IDClient, c.login, c.mdp, c.adresse, c.tel) "
+        Query q = em.createQuery("SELECT c "
                 + "FROM Client c "
                 + "WHERE c.login =?1 "
                 + "AND c.mdp =?2 "

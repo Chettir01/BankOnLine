@@ -54,12 +54,19 @@ public class Client {
        
     }
 
-    public Client(long IDClient, String login, String mdp, String adresse, String tel) {
-        this.IDClient = IDClient;
+    public Client(String login, String mdp, String adresse, String tel) {
         this.login = login;
         this.mdp = mdp;
         this.adresse = adresse;
         this.tel = tel;
+    }
+    
+    public Client(long id,String login, String mdp, String adresse, String tel) {
+        this.login = login;
+        this.mdp = mdp;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.IDClient=id;
     }
     
  

@@ -32,11 +32,20 @@ public class Particulier extends Client {
     @Column
     private String nom;
 
+    public Particulier(long id,String nom, String prenom, String civilite, Date dateNaissance, String login, String mdp, String adresse, String tel) {
+        super(id, login, mdp, adresse, tel);
+        this.nom = nom;
+        this.prenom = prenom;
+        this.civilite = civilite;
+        this.dateNaissance = dateNaissance;
+       
+    }
+
     @Column
     private String prenom;
 
     @Column
-    private long civilite;
+    private String civilite;
 
     @Column
     private Date dateNaissance;
@@ -74,11 +83,11 @@ public class Particulier extends Client {
         return this.dateNaissance;
     }
 
-    public void setCivilite(Long civilite) {
+    public void setCivilite(String civilite) {
         this.civilite = civilite;
     }
 
-    public long getCivilite() {
+    public String getCivilite() {
         return this.civilite;
     }
 

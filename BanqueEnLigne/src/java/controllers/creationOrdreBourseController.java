@@ -55,7 +55,7 @@ public class creationOrdreBourseController {
             )));
             mv = new ModelAndView("redirect:/detailscompte.htm");
         } else {
-            mv = new ModelAndView("virement");
+            mv = new ModelAndView("redirect:/ordrebourse.htm");
         }
         return mv;
     }

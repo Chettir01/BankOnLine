@@ -7,6 +7,7 @@ package Service;
 
 import DAO.Particulier;
 import DAO.ParticulierDAO;
+import DAO.Professionel;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,16 @@ public class ParticulierServiceImpl implements ParticulierService {
     @Override
     public boolean auth(String login, String mdp) {
         return this.DAO.authentification(login, mdp);
+    }
+
+    @Override
+    public Particulier findById(long id) {
+       return DAO.find(id);
+    }
+
+    @Override
+    public void update(Particulier h) {
+        DAO.update(h);
     }
     
 }

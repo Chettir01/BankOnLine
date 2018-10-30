@@ -28,7 +28,11 @@
                     <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes comptes" > 
                     </form>
                 </menuitem>
-                <menuitem> Nous contacter </menuitem>
+                <menuitem>
+                <form action ="detailsclient.htm" method="GET">
+                    <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes informations" > 
+                    </form>
+                </menuitem>
             </menu>
         </div>
     </body>

@@ -5,6 +5,8 @@
  */
 package Service;
 
+import DAO.Professionel;
+
 /**
  *
  * @author Julien
@@ -13,9 +15,13 @@ public interface ProfessionelService {
 
     public void add(String nom);
 
+    public void update(Professionel h);
+
     public void remove(String nom);
 
     public boolean auth(String login, String mdp);
 
     public String getNomsMessages();
+
+    public Professionel find(long id);
 }

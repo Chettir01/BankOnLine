@@ -30,6 +30,12 @@ public class Professionel extends Client {
         this.nomentreprise = nomentreprise;
     }
 
+    public Professionel(String nomentreprise, long id, String login, String mdp, String adresse, String tel) {
+        super(id, login, mdp, adresse, tel);
+        this.nomentreprise = nomentreprise;
+    }
+    
+
     public String getNomentreprise() {
         return nomentreprise;
     }
