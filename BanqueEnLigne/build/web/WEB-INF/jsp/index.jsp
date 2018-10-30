@@ -33,6 +33,9 @@ and open the template in the editor.
                 <form action ="connexion.htm" method="GET">
                     <input class="btn btn-primary btn-sm" Type=submit VALUE="Client" > 
                 </form>
+                <form action ="connexionconseiller.htm" method="GET">
+                    <input class="btn btn-primary btn-sm" Type=submit VALUE="Conseiller" > 
+                </form>
             </div>
             
         </div>
