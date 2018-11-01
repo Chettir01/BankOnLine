@@ -38,7 +38,7 @@ public class virementController {
     @RequestMapping(value = "virement", method = RequestMethod.POST)
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         if (!request.getParameter("IBAN").isEmpty() && !request.getParameter("Montant").isEmpty() && session != null) {
             Compte encaisseur = c.findByIBAN(request.getParameter("IBAN"));
             int montant = Integer.parseInt(request.getParameter("Montant"));
@@ -59,7 +59,7 @@ public class virementController {
             }
 
         } else {
-            mv = new ModelAndView("virement");
+            mv = new ModelAndView("connexion");
         }
         return mv;
     }

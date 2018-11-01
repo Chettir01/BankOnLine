@@ -6,44 +6,36 @@
 package DAO;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  *
  * @author Julien
  */
 @Entity
-@Table(name = "TypeCompte")
 public class TypeCompte implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     
-    @OneToMany(mappedBy="typecompte") 
-    List<Compte> liste = new ArrayList<Compte>();
+    @Column(unique = true)
+    private String nom;
     
     @Column
-    private String nom;
-
-    public List<Compte> getListe() {
-        return liste;
-    }
-
-    public void setListe(List<Compte> liste) {
-        this.liste = liste;
-    }
-    
-     @Column
     private int taux;
 
     public String getNom() {
@@ -60,25 +52,6 @@ public class TypeCompte implements Serializable {
 
     public void setTaux(int taux) {
         this.taux = taux;
-    }
-
-    public boolean isTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(boolean transaction) {
-        this.transaction = transaction;
-    }
-     
-      @Column
-    private boolean transaction;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override

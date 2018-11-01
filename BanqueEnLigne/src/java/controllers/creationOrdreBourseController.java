@@ -48,8 +48,8 @@ public class creationOrdreBourseController {
     @RequestMapping(value = "ordrebourse", method = RequestMethod.POST)
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
-        HttpSession session = request.getSession();
-        if (!request.getParameter("bourse").isEmpty() && !request.getParameter("type").isEmpty() && !request.getParameter("quantite").isEmpty()) {
+        HttpSession session = request.getSession(false);
+        if (!request.getParameter("bourse").isEmpty() && !request.getParameter("type").isEmpty() && !request.getParameter("quantite").isEmpty() && session!=null ){
             Bourse bo = b.findById(Integer.parseInt(request.getParameter("bourse")));
             this.o.add(new OrdreBourse(Integer.parseInt(request.getParameter("quantite")), bo.getDatelimite(), bo.getPrix(), (Compte) session.getAttribute("compte"), bo, t.findById(Long.parseLong(request.getParameter("type"))
             )));

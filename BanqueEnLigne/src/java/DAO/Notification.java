@@ -34,7 +34,7 @@ public class Notification implements Serializable {
     private Client clientnotification;
     
     @ManyToOne
-    @JoinColumn(name="type")
+    @JoinColumn(name="typenotif")
     private TypeNotification typenotification;
     
     @Column

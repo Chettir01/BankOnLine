@@ -25,7 +25,7 @@
             </div>
             <div class="form-group col-xs-4">
                 <form method="post" action="detailsclient.htm">
-                    <h1>Détails</h1>
+                    <h1>Mes informations</h1>
 
                     <label >Login</label>
                     <input class="form-control" type="text" value="${login}"  name="login"> 

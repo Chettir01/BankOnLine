@@ -39,7 +39,7 @@ public class Client {
     @GeneratedValue
     private long IDClient;
 
-    @Column
+    @Column(unique = true)
     private String login;
 
     @Column

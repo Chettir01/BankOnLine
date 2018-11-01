@@ -26,7 +26,11 @@
         <h1>${client.IDClient}</h1>
         <div>
             <menu type="context" id="popup-menu">
-                <menuitem >Deconnexion </menuitem>
+                <menuitem >
+                <form action ="deconnexionconseiller.htm" method="GET">
+                    <input class="btn btn-success btn-sm" Type=submit VALUE="Déconnection" > 
+                </form> 
+                </menuitem>
                 <menuitem> 
                 <form action ="allcomptes.htm" method="GET">
                     <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes comptes" > 

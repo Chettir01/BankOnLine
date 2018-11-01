@@ -36,29 +36,34 @@ public class detailsClientController {
 
     @RequestMapping(value = "detailsclient", method = RequestMethod.GET)
     public ModelAndView init(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
-        ModelAndView mv = new ModelAndView("detailsclient");
-        long id = ((Client) session.getAttribute("client")).getIDClient();
-        Particulier p = ps.findById(id);
-        if (p != null) {
-            mv.addObject("login", p.getLogin());
-            mv.addObject("mdp", p.getMdp());
-            mv.addObject("adresse", p.getAdresse());
-            mv.addObject("tel", p.getTel());
-            mv.addObject("date", p.getDateNaissance());
-            mv.addObject("prenom", p.getPrenom());
-            mv.addObject("nom", p.getNom());
-            mv.addObject("civilite", p.getCivilite());
-            mv.addObject("type", "PARTICULIER");
+        HttpSession session = request.getSession(false);
+        ModelAndView mv;
+        if (session != null) {
+            mv = new ModelAndView("detailsclient");
+            long id = ((Client) session.getAttribute("client")).getIDClient();
+            Particulier p = ps.findById(id);
+            if (p != null) {
+                mv.addObject("login", p.getLogin());
+                mv.addObject("mdp", p.getMdp());
+                mv.addObject("adresse", p.getAdresse());
+                mv.addObject("tel", p.getTel());
+                mv.addObject("date", p.getDateNaissance());
+                mv.addObject("prenom", p.getPrenom());
+                mv.addObject("nom", p.getNom());
+                mv.addObject("civilite", p.getCivilite());
+                mv.addObject("type", "PARTICULIER");
 
+            } else {
+                Professionel pfs = pf.find(id);
+                mv.addObject("login", pfs.getLogin());
+                mv.addObject("mdp", pfs.getMdp());
+                mv.addObject("adresse", pfs.getAdresse());
+                mv.addObject("tel", pfs.getTel());
+                mv.addObject("entreprise", pfs.getNomentreprise());
+                mv.addObject("type", "PROFESSIONEL");
+            }
         } else {
-            Professionel pfs = pf.find(id);
-            mv.addObject("login", pfs.getLogin());
-            mv.addObject("mdp", pfs.getMdp());
-            mv.addObject("adresse", pfs.getAdresse());
-            mv.addObject("tel", pfs.getTel());
-            mv.addObject("entreprise", pfs.getNomentreprise());
-            mv.addObject("type", "PROFESSIONEL");
+            mv = new ModelAndView("connexion");
         }
 
         return mv;

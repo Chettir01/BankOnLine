@@ -22,16 +22,20 @@
         <h1>${client.IDClient}</h1>
         <div>
             <menu type="context" id="popup-menu">
-                <menuitem >Deconnexion </menuitem>
+                <menuitem >
+                <form action ="deconnexion.htm" method="GET">
+                    <input class="btn btn-success btn-sm" Type=submit VALUE="Déconnection" > 
+                </form> 
+                </menuitem>
                 <menuitem> 
-                   <form action ="allcomptes.htm" method="GET">
+                <form action ="allcomptes.htm" method="GET">
                     <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes comptes" > 
-                    </form>
+                </form>
                 </menuitem>
                 <menuitem>
                 <form action ="detailsclient.htm" method="GET">
                     <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes informations" > 
-                    </form>
+                </form>
                 </menuitem>
             </menu>
         </div>

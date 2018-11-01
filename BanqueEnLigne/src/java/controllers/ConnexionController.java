@@ -22,8 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class ConnexionController {
-      
-      @Autowired
+
+    @Autowired
     ClientService p;
 
     @RequestMapping(value = "connexion", method = RequestMethod.GET)
@@ -39,10 +39,10 @@ public class ConnexionController {
         if (password.equals("") || identifient.equals("")) {
             mv = new ModelAndView("connexion");
         } else {
-            Client c=p.auth(identifient, password);
-            if (c!=null) {
+            Client c = p.auth(identifient, password);
+            if (c != null) {
                 HttpSession session = request.getSession(true);
-                session.setMaxInactiveInterval(60*30);
+                session.setMaxInactiveInterval(60 * 30);
                 session.setAttribute("client", c);
                 mv = new ModelAndView("accueil");
             } else {
@@ -56,6 +56,19 @@ public class ConnexionController {
                 else
                     page = "index";
             }*/
+        return mv;
+    }
+
+    @RequestMapping(value = "deconnexion", method = RequestMethod.GET)
+    public ModelAndView deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ModelAndView mv;
+
+        HttpSession session = request.getSession(false);
+        if(session!=null){
+            session.invalidate();
+        }
+        mv = new ModelAndView("connexion");
+
         return mv;
     }
 }

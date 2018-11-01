@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="DAO.TypeCompte"%>
 <%@page import="java.util.List"%>
 <%@page import="DAO.Compte"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,20 +27,33 @@
                 <th>Numéro de compte</th>
                 <th>Date de création</th> 
                 <th>Solde</th>
+                <th>Type de compte</th>
                 <th>Détails</th>
             </tr>
             <%
 
                 List<Compte> l = (List<Compte>) request.getAttribute("listecompte");
-                if (l != null) {
+                List<TypeCompte> lt = (List<TypeCompte>) request.getAttribute("listetypecompte");
+                String typecompte = null;
+                if (l != null && lt != null) {
                     System.out.println(l.size());
                     for (int i = 0; i < l.size(); i++) {
                         out.print("<tr>");
                         out.print("<td>" + l.get(i).getNumcompte() + "</td>");
                         out.print("<td>" + l.get(i).getDateCreation() + "</td>");
                         out.print("<td>" + l.get(i).getSolde() + "</td>");
+                        for (int j = 0; j < lt.size() && typecompte == null; j++) {
+                            if (lt.get(j).getId() == l.get(i).getTypecompte().getId()) {
+                                typecompte = lt.get(j).getNom();
+                            }
+                        }
+                        if(typecompte == null){
+                            typecompte="Pas de type";
+                        }
+                        out.print("<td>" + typecompte + "</td>");
                         out.print("<td>" + "<form action=\"detailscompte.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-success\" Type=\"submit\" VALUE=\"Details\"/>" + "</form>" + "</td>");
                         out.print("</tr>");
+                        typecompte=null;
                     }
                 }
             %>

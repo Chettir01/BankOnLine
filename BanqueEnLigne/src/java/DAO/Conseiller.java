@@ -42,7 +42,7 @@ public class Conseiller  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
+    @Column(unique = true)
     private String login;
     @Column
     private String mdp;

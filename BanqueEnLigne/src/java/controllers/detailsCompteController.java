@@ -37,7 +37,7 @@ public class detailsCompteController {
         @RequestMapping(value = "detailscompte", method = RequestMethod.GET)
     public ModelAndView init(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv;
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         if (session == null) {
             mv = new ModelAndView("connexion");
         } else {

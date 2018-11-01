@@ -56,4 +56,16 @@ public class connexionConseillerController {
         }
         return mv;
     }
+     @RequestMapping(value = "deconnexionconseiller", method = RequestMethod.GET)
+    public ModelAndView deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ModelAndView mv;
+
+        HttpSession session = request.getSession(false);
+        if(session!=null){
+            session.invalidate();
+        }
+        mv = new ModelAndView("connexionconseiller");
+
+        return mv;
+    }
 }

@@ -9,6 +9,7 @@ import DAO.Client;
 import DAO.Compte;
 import Service.ClientService;
 import Service.CompteService;
+import Service.TypeCompteService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -29,16 +30,20 @@ public class allcomptesController {
 
     @Autowired
     CompteService c;
+    @Autowired
+    TypeCompteService ts;
 
     @RequestMapping(value = "allcomptes", method = RequestMethod.GET)
     public ModelAndView init(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv;
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         if (session == null) {
             mv = new ModelAndView("connexion");
         } else {
             mv = new ModelAndView("allcomptes");
-            mv.addObject("listecompte", c.findByClient((Client) session.getAttribute("client")));
+           // mv.addObject("listecompte", c.findByClient((Client) session.getAttribute("client")));
+            mv.addObject("listecompte",((Client) session.getAttribute("client")).getListecompte());
+            mv.addObject("listetypecompte",ts.findAll());
             //
             //Cherche liste compte
 
