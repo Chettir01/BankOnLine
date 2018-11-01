@@ -16,7 +16,7 @@ import java.util.List;
 public interface VirementService {
 
     public void add(String iban,Compte compte,float somme);
-
+    
     public void remove(String nom);
 
     public boolean auth(String login, String mdp);

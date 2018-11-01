@@ -5,7 +5,12 @@
  */
 package Service;
 
+import DAO.Client;
+import DAO.Compte;
 import DAO.Conseiller;
+import DAO.ConseillerDAO;
+import java.util.List;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,6 +19,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ConseillerServiceImpl implements ConseillerService {
+    @Resource
+    ConseillerDAO DAO;
 
     @Override
     public void add(Conseiller c) {
@@ -27,12 +34,11 @@ public class ConseillerServiceImpl implements ConseillerService {
 
     @Override
     public Conseiller auth(String login, String mdp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return DAO.authentification(login, mdp);
     }
 
     @Override
     public String getNomsMessages() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }   
 }

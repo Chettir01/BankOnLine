@@ -27,9 +27,10 @@ public class CompteDAOImpl implements CompteDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Transactional
     @Override
     public void update(Compte h) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.merge(h);
     }
 
     @Override
@@ -50,9 +51,8 @@ public class CompteDAOImpl implements CompteDAO {
     @Transactional
     @Override
     public List<Compte> findByClient(Client client) {
-           Query q = em.createQuery("SELECT c "
-                + "FROM Compte c "
-                + "WHERE c.clientcompte =?1 "
+           Query q = em.createQuery("SELECT  l FROM Client c LEFT JOIN c.listecompte l " +
+"WHERE c = ?1"
                 );
        q.setParameter(1, client);
         System.out.println(q.getResultList().size());
@@ -72,6 +72,37 @@ public class CompteDAOImpl implements CompteDAO {
                 );
           q.setParameter(1, id);
           return (Compte) q.getResultList().get(0);
+    }
+    
+     @Transactional(readOnly = true)
+    @Override
+    public List<Compte> findByConseiller(Conseiller c) {
+        Query q = em.createQuery("SELECT c "
+                + "FROM Compte c "
+                + "WHERE c.conseillercompte =?1 "
+        );
+         q.setParameter(1, c);
+        if (!q.getResultList().isEmpty()) {
+            System.out.println("trouver");
+            return (List<Compte>) q.getResultList();
+        } else {
+            System.out.println("pas trouver");
+            return null;
+        }
+    }
+    @Transactional(readOnly = true)
+    @Override
+    public Compte findByIBAN(String IBAN) {
+        Query q = em.createQuery("SELECT c "
+                + "FROM Compte c "
+                + "WHERE c.iban =?1 "
+        );
+         q.setParameter(1, IBAN);
+        if (!q.getResultList().isEmpty()) {
+            return (Compte) q.getResultList().get(0);
+        } else {
+            return null;
+        }
     }
     
 }

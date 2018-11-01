@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,9 +33,26 @@ public class Compte {
     @JoinColumn(name="typecompte_id")
     private TypeCompte typecompte;
     
+    @JoinTable(
+            name="Compte_client",
+            joinColumns=@JoinColumn(name="id_compte"),
+            inverseJoinColumns = @JoinColumn(name="id_client")
+    )
+    @ManyToMany
+    private List<Client> listeclientcompte=new ArrayList<Client>();
+
+
+    public Conseiller getConseiller() {
+        return conseillercompte;
+    }
+
+    public void setConseiller(Conseiller conseiller) {
+        this.conseillercompte = conseiller;
+    }
+    
     @ManyToOne
-    @JoinColumn(name="client")
-    private Client clientcompte;
+    @JoinColumn(name="conseillercompte")
+    private Conseiller conseillercompte;
     
     @OneToMany(mappedBy = "compte")
     private List<OrdreBourse> listeordre=new ArrayList<OrdreBourse>();
@@ -62,14 +82,6 @@ public class Compte {
 
     public void setListeordre(List<OrdreBourse> listeordre) {
         this.listeordre = listeordre;
-    }
-
-    public Client getClient() {
-        return clientcompte;
-    }
-
-    public void setClient(Client client) {
-        this.clientcompte = client;
     }
 
     public List<Virement> getListevirement() {

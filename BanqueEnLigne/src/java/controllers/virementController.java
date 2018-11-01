@@ -38,10 +38,26 @@ public class virementController {
     @RequestMapping(value = "virement", method = RequestMethod.POST)
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
-        HttpSession session=request.getSession();
-        if (!request.getParameter("IBAN").isEmpty() && !request.getParameter("Montant").isEmpty()) {
-            v.add(request.getParameter("IBAN"), (Compte) session.getAttribute("compte"), Float.parseFloat(request.getParameter("Montant")));
-            mv = new ModelAndView("redirect:/detailscompte.htm");
+        HttpSession session = request.getSession();
+        if (!request.getParameter("IBAN").isEmpty() && !request.getParameter("Montant").isEmpty() && session != null) {
+            Compte encaisseur = c.findByIBAN(request.getParameter("IBAN"));
+            int montant = Integer.parseInt(request.getParameter("Montant"));
+            Compte debiteur = (Compte) session.getAttribute("compte");
+            if (encaisseur != null && montant > 0) {
+                if (debiteur.getSolde() >= montant) {
+                    encaisseur.setSolde(encaisseur.getSolde() + montant);
+                    debiteur.setSolde(debiteur.getSolde() - montant);
+                    c.update(debiteur);
+                    c.update(encaisseur);
+                    v.add(request.getParameter("IBAN"), (Compte) session.getAttribute("compte"), Float.parseFloat(request.getParameter("Montant")));
+                    mv = new ModelAndView("redirect:/detailscompte.htm");
+                } else {
+                    mv = new ModelAndView("virement");
+                }
+            } else {
+                mv = new ModelAndView("virement");
+            }
+
         } else {
             mv = new ModelAndView("virement");
         }

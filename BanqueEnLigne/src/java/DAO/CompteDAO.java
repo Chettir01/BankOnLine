@@ -19,4 +19,6 @@ public interface CompteDAO {
  public List<Compte> findAll();
  public List<Compte> findByClient(Client client);
   public Compte findById(long id);
+    public Compte findByIBAN(String IBAN);
+  public List<Compte> findByConseiller(Conseiller c);
 }

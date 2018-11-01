@@ -22,6 +22,23 @@ import javax.persistence.OneToMany;
 @Entity
 public class Conseiller  {
 
+    public List<Message> getListemessage() {
+        return listemessage;
+    }
+
+    public void setListemessage(List<Message> listemessage) {
+        this.listemessage = listemessage;
+    }
+
+    public List<Compte> getListecompte() {
+        return listecompte;
+    }
+
+    public void setListecompte(List<Compte> listecompte) {
+        this.listecompte = listecompte;
+    }
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -37,8 +54,8 @@ public class Conseiller  {
     @OneToMany(mappedBy = "conseiller")
     private List<Message> listemessage=new ArrayList<Message>();
     
-    @OneToMany(mappedBy = "conseillerClient")
-    private List<Client> listeclients=new ArrayList<Client>();
+    @OneToMany(mappedBy = "conseillercompte")
+    private List<Compte> listecompte=new ArrayList<Compte>();
 
     public void setLogin(String login) {
         this.login = login;

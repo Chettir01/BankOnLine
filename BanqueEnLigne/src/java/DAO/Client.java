@@ -21,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -74,23 +75,13 @@ public class Client {
     private List<Notification> listenotifications = new ArrayList<Notification>();
 
 
-    @OneToMany(mappedBy = "clientcompte")
+    @ManyToMany(mappedBy = "listeclientcompte")
     private List<Compte> listecompte = new ArrayList<Compte>();
 
     @OneToMany(mappedBy = "clientmessage")
     private List<Message> listemessage = new ArrayList<Message>();
 
-    @ManyToOne
-    @JoinColumn(name = "conseiller")
-    private Conseiller conseillerClient;
-
-    public Conseiller getConseillerClient() {
-        return conseillerClient;
-    }
-
-    public void setConseillerClient(Conseiller conseillerClient) {
-        this.conseillerClient = conseillerClient;
-    }
+ 
 
     public long getIDClient() {
         return IDClient;

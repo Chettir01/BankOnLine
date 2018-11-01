@@ -68,7 +68,7 @@ public class ParticulierDAOimpl implements ParticulierDAO {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Particulier> findByName( String nom,String prenom) {
+    public List<Particulier> findByName(String nom, String prenom) {
         Query q = em.createQuery("SELECT * FROM particulier WHERE nom= ? AND prenom= ?").setParameter(1, nom).setParameter(2, prenom);
         return q.getResultList();
 
@@ -76,18 +76,18 @@ public class ParticulierDAOimpl implements ParticulierDAO {
 
     @Override
     public boolean authentification(String login, String mdp) {
-              //Query q = em.createNativeQuery("SELECT * FROM PARTICULIER p WHERE p.LOGIN = ? AND p.MDP = ?");
-              Query q = em.createQuery("SELECT p FROM Particulier p WHERE p.login = ?1 AND p.mdp = ?2");
-              q.setParameter(1,login);
-              q.setParameter(2,mdp);
-               System.err.println("true");
-             if(!q.getResultList().isEmpty()){
-                
-                  return true;
-             }else{
-                 return false;
-             }
-       
+        //Query q = em.createNativeQuery("SELECT * FROM PARTICULIER p WHERE p.LOGIN = ? AND p.MDP = ?");
+        Query q = em.createQuery("SELECT p FROM Particulier p WHERE p.login = ?1 AND p.mdp = ?2");
+        q.setParameter(1, login);
+        q.setParameter(2, mdp);
+        System.err.println("true");
+        if (!q.getResultList().isEmpty()) {
+
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }

@@ -6,6 +6,8 @@
 package controllers;
 
 import DAO.Client;
+import DAO.Conseiller;
+import Service.CompteService;
 import Service.ConseillerService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,10 +24,12 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class connexionConseillerController {
-    
+
     @Autowired
     ConseillerService cs;
-    
+    @Autowired
+    CompteService cps;
+
     @RequestMapping(value = "connexionconseiller", method = RequestMethod.GET)
     public String init() {
         return "connexionconseiller";
@@ -33,31 +37,23 @@ public class connexionConseillerController {
 
     @RequestMapping(value = "authconseiller", method = RequestMethod.GET)
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv=new ModelAndView("connexionconseiller");
-        
-      /*  String identifient = request.getParameter("identifient");
-        String password = request.getParameter("password");
-        if (password.equals("") || identifient.equals("")) {
-            mv = new ModelAndView("connexion");
+        ModelAndView mv;
+
+        if (request.getParameter("identifient").equals("") && request.getParameter("password").equals("")) {
+            mv = new ModelAndView("connexionconseiller");
         } else {
-            Client cs=p.auth(identifient, password);
-            if (c!=null) {
+            Conseiller c = cs.auth(request.getParameter("identifient"), request.getParameter("password"));
+            if (c != null) {
                 HttpSession session = request.getSession(true);
-                session.setMaxInactiveInterval(60*30);
-                session.setAttribute("client", c);
-                mv = new ModelAndView("accueil");
+                session.setMaxInactiveInterval(60 * 30);
+                c.setListecompte(cps.findByConseiller(c));
+                session.setAttribute("conseiller", c);
+                mv = new ModelAndView("accueilconseiller");
+                mv.addObject("listecompte", c.getListecompte());
             } else {
-                mv = new ModelAndView("connexion");
+                mv = new ModelAndView("connexionconseiller");
             }
         }
-
-        /*if(session!=null){
-                if (identifient!=null && identifient.length()>0)
-                    page ="accueilClient";
-                else
-                    page = "index";
-            }*/
-      
         return mv;
     }
 }

@@ -6,7 +6,9 @@
 package Service;
 
 import DAO.Client;
+import DAO.Compte;
 import DAO.Conseiller;
+import java.util.List;
 
 /**
  *

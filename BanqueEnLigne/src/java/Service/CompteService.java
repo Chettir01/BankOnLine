@@ -7,6 +7,7 @@ package Service;
 
 import DAO.Client;
 import DAO.Compte;
+import DAO.Conseiller;
 import java.util.List;
 
 /**
@@ -16,6 +17,10 @@ import java.util.List;
 public interface CompteService {
         public void add(Compte c);
     public void remove(String nom);
+     public void update(Compte h);
  public List<Compte> findByClient(Client client);
  public Compte findById(long id);
+     public Compte findByIBAN(String IBAN);
+   public List<Compte> findByConseiller(Conseiller c);
+
 }

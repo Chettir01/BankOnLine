@@ -8,9 +8,12 @@ package Service;
 import DAO.Client;
 import DAO.Compte;
 import DAO.CompteDAO;
+import DAO.Conseiller;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.persistence.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -41,5 +44,24 @@ public class CompteServiceImpl implements CompteService {
     public Compte findById(long id) {
         return DAO.findById(id);
     }
+
+    @Override
+    public List<Compte> findByConseiller(Conseiller c) {
+      return DAO.findByConseiller(c);
+    }
+
+    @Override
+    public Compte findByIBAN(String IBAN) {
+        return DAO.findByIBAN(IBAN);
+    }
+
+    @Override
+    public void update(Compte h) {
+        DAO.update(h);
+    }
+    
+     
+    
+        
     
 }
