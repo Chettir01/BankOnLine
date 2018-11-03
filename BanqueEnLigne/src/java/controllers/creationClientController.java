@@ -31,7 +31,7 @@ public class creationClientController {
     @Autowired
     ParticulierService ps;
     @Autowired
-    ProfessionelService pf;
+    ProfessionelService pfs;
     @Autowired
     ClientService cs;
 
@@ -56,15 +56,21 @@ public class creationClientController {
         ModelAndView mv;
         if (!request.getParameter("login").equals("") && !request.getParameter("mdp").equals("")) {
             if (!cs.findByLogin(request.getParameter("login"))) {
-                SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
-                java.util.Date date = formatter2.parse(request.getParameter("date"));
-                java.sql.Date datesql = new java.sql.Date(date.getTime());
-                Particulier p = new Particulier(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("civilite"), datesql, request.getParameter("login"), request.getParameter("mdp"), request.getParameter("adresse"), request.getParameter("tel"));
-                ps.add(p);
+                if (request.getParameter("type").equals("PARTICULIER")) {
+                    SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
+                    java.util.Date date = formatter2.parse(request.getParameter("date"));
+                    java.sql.Date datesql = new java.sql.Date(date.getTime());
+                    Particulier p = new Particulier(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("civilite"), datesql, request.getParameter("login"), request.getParameter("mdp"), request.getParameter("adresse"), request.getParameter("tel"));
+                    ps.add(p);
+                } else {
+                    Professionel pf = new Professionel(request.getParameter("entreprise"), request.getParameter("login"), request.getParameter("mdp"), request.getParameter("adresse"), request.getParameter("tel"));
+                    pfs.add(pf);
+                }
                 mv = new ModelAndView("accueil");
                 HttpSession session = request.getSession(true);
                 session.setMaxInactiveInterval(60 * 30);
-                session.setAttribute("client", p);
+                session.setAttribute("client", cs.auth(request.getParameter("login"), request.getParameter("mdp")));
+
                 return mv;
             }
         }

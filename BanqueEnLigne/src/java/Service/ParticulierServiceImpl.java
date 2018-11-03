@@ -55,5 +55,10 @@ public class ParticulierServiceImpl implements ParticulierService {
     public void add(Particulier p) {
         DAO.save(p);
     }
+
+    @Override
+    public Particulier findBylogin(String login) {
+        return DAO.findBylogin(login);
+    }
     
 }

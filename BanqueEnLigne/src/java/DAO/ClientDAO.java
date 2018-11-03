@@ -17,6 +17,7 @@ public interface ClientDAO {
  public void delete(Client h);
  public Client find(long id);
  public boolean findByLogin(String login);
+ public Client findByLoginobject(String login);
  public Client authentification(String login,String mdp);
  public List<Client> findAll();
  public List<Client> findByName( String nom,String prenom);

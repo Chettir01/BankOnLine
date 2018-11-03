@@ -83,4 +83,16 @@ public class ProfessionelDAOImpl implements ProfessionelDAO {
         return q.getResultList();
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public Professionel findByLogin(String login) {
+        Query q = em.createQuery("SELECT p FROM Professionel p WHERE p.login = ?1");
+        q.setParameter(1, login);
+        if (!q.getResultList().isEmpty()) {
+            return (Professionel) q.getResultList().get(0);
+        } else {
+            return null;
+        }
+    }
+
 }

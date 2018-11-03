@@ -67,9 +67,11 @@ public class connexionConseillerController {
         if (session != null) {
             Compte c = cps.findById(Integer.parseInt(request.getParameter("id")));
             c.setValide(true);
+            Conseiller cl=(Conseiller)session.getAttribute("conseiller");
+            c.setConseillercompte(cl);
             cps.update(c);
             mv = new ModelAndView("accueilconseiller");
-            mv.addObject("listecompte", ((Conseiller) session.getAttribute("conseiller")).getListecompte());
+            mv.addObject("listecompte", cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
             mv.addObject("listecomptenonvalide", cps.findNonvalide());
         } else {
             mv = new ModelAndView("connexionconseiller");
@@ -86,7 +88,7 @@ public class connexionConseillerController {
         if (session != null) {
             session.invalidate();
         }
-        mv = new ModelAndView("connexionconseiller");
+        mv = new ModelAndView("index");
 
         return mv;
     }

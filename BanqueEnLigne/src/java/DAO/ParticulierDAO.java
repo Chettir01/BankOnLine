@@ -19,4 +19,5 @@ public interface ParticulierDAO {
  public boolean authentification(String login,String mdp);
  public List<Particulier> findAll();
  public List<Particulier> findByName( String nom,String prenom);
+ public Particulier findBylogin(String login);
 }

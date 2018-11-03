@@ -17,5 +17,7 @@ public interface ClientService {
     public Client auth(String login,String mdp);
     public String getNomsMessages();
     public Boolean findByLogin(String login);
+    public Client find(String login);
+    public void update(Client c);
     
 }

@@ -90,4 +90,17 @@ public class ParticulierDAOimpl implements ParticulierDAO {
 
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public Particulier findBylogin(String login) {
+        Query q = em.createQuery("SELECT p FROM Particulier p WHERE p.login = ?1");
+        q.setParameter(1, login);
+        if (!q.getResultList().isEmpty()) {
+
+            return (Particulier) q.getResultList().get(0);
+        } else {
+            return null;
+        }
+    }
+
 }

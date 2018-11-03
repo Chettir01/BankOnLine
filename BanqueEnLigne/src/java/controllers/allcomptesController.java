@@ -38,7 +38,7 @@ public class allcomptesController {
         ModelAndView mv;
         HttpSession session = request.getSession(false);
         if (session == null) {
-            mv = new ModelAndView("connexion");
+            mv = new ModelAndView("index");
         } else {
             mv = new ModelAndView("allcomptes");
            // mv.addObject("listecompte", c.findByClient((Client) session.getAttribute("client")));

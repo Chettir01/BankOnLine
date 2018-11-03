@@ -13,7 +13,7 @@ import DAO.Professionel;
  */
 public interface ProfessionelService {
 
-    public void add(String nom);
+    public void add(Professionel p);
 
     public void update(Professionel h);
 
@@ -24,4 +24,6 @@ public interface ProfessionelService {
     public String getNomsMessages();
 
     public Professionel find(long id);
+    
+    public Professionel findByLogin(String login);
 }

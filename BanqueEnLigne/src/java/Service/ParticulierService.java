@@ -13,11 +13,20 @@ import DAO.Professionel;
  * @author Julien
  */
 public interface ParticulierService {
+
     public void add(String nom, String prenom);
+
     public void add(Particulier p);
+
     public void remove(String nom);
+
     public void update(Particulier h);
+
     public Particulier findById(long id);
-    public boolean auth(String login,String mdp);
+
+    public boolean auth(String login, String mdp);
+
     public String getNomsMessages();
+
+    public Particulier findBylogin(String login);
 }

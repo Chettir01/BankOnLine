@@ -46,5 +46,15 @@ public class ClientServiceimpl implements ClientService{
     public Boolean findByLogin(String login) {
         return DAO.findByLogin(login);
     }
+
+    @Override
+    public void update(Client c) {
+        DAO.update(c);
+    }
+
+    @Override
+    public Client find(String login) {
+        return DAO.findByLoginobject(login);
+    }
     
 }

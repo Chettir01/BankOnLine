@@ -25,10 +25,12 @@
         <table>
             <tr>
                 <th>Numéro de compte</th>
-                <th>Date de création</th> 
+                <th>Date de création</th>
+                <th>IBAN</th>
                 <th>Solde</th>
                 <th>Type de compte</th>
                 <th>Détails</th>
+                <th>Partage</th>
             </tr>
             <%
 
@@ -38,11 +40,13 @@
                     System.out.println(l.size());
                     for (int i = 0; i < l.size(); i++) {
                         out.print("<tr>");
-                        out.print("<td>" + l.get(i).getID_compte()+ "</td>");
+                        out.print("<td>" + l.get(i).getID_compte() + "</td>");
                         out.print("<td>" + l.get(i).getDateCreation() + "</td>");
+                        out.print("<td>" + l.get(i).getIban() + "</td>");
                         out.print("<td>" + l.get(i).getSolde() + "</td>");
                         out.print("<td>" + l.get(i).getType().getNom() + "</td>");
                         out.print("<td>" + "<form action=\"detailscompte.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-success\" Type=\"submit\" VALUE=\"Details\"/>" + "</form>" + "</td>");
+                        out.print("<td>" + "<form action=\"ajoutcompteclient.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-info\" Type=\"submit\" VALUE=\"Partager\"/>" + "</form>" + "</td>");
                         out.print("</tr>");
                     }
                 }

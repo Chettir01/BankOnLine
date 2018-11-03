@@ -19,4 +19,5 @@ public interface ProfessionelDAO {
  public boolean authentification(String login,String mdp);
  public List<Professionel> findAll();
  public List<Professionel> findByName( String nom);
+ public Professionel findByLogin(String login);
 }

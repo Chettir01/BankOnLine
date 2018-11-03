@@ -21,8 +21,8 @@ public class ProfesionnelServiceImpl implements ProfessionelService {
     ProfessionelDAO DAO;
 
     @Override
-    public void add(String nom) {
-        this.DAO.save(new Professionel(nom));
+    public void add(Professionel p) {
+        this.DAO.save(p);
     }
 
     @Override
@@ -48,6 +48,11 @@ public class ProfesionnelServiceImpl implements ProfessionelService {
     @Override
     public void update(Professionel h) {
         DAO.update(h);
+    }
+
+    @Override
+    public Professionel findByLogin(String login) {
+        return DAO.findByLogin(login);
     }
 
 }

@@ -26,12 +26,17 @@ public class Professionel extends Client {
     @Column
     private String nomentreprise;
 
+    public Professionel(String nomentreprise, long id, String login, String mdp, String adresse, String tel) {
+        super(id, login, mdp, adresse, tel);
+        this.nomentreprise = nomentreprise;
+    }
+
     public Professionel(String nomentreprise) {
         this.nomentreprise = nomentreprise;
     }
 
-    public Professionel(String nomentreprise, long id, String login, String mdp, String adresse, String tel) {
-        super(id, login, mdp, adresse, tel);
+    public Professionel(String nomentreprise,  String login, String mdp, String adresse, String tel) {
+        super( login, mdp, adresse, tel);
         this.nomentreprise = nomentreprise;
     }
     
