@@ -47,7 +47,7 @@
             </div>
             <div class=" form-group col-xs-4 ">
                 <form method="GET" action="choixclient.htm">
-                    <input class="form-control btn-primary" Type="submit" VALUE="Créer un compte">
+                    <input class="form-control btn-link" Type="submit" VALUE="Créer un compte">
                 </form>
             </div>
         </div>

@@ -24,7 +24,7 @@
             <div class="col-xs-4">
             </div>
             <div class="form-group col-xs-4">
-                <form method="post" action="detailsclient.htm">
+                <form method="post" action="creationclient.htm">
                     
                     <h1>Inscriptions</h1>
 
@@ -46,8 +46,10 @@
                     <%
                         if (request.getAttribute("type") != null) {
                             if (request.getAttribute("type").equals("PARTICULIER")) {
+                                out.print("<fieldset>");
                                 out.print("<label>Date de naissance</label>");
-                                out.print("<input class=\"form-control\" type=\"date\"  name=\"date\">");
+                                out.print("<input class=\"form-control\" type=\"date\"  value=\"2018-07-22\" min=\"2018-01-01\" max=\"2018-12-31\"   name=\"date\">");
+                                out.print("</fieldset>");
                                 out.print("<label >prenom</label><input class=\"form-control\" type=\"text\"   name=\"prenom\"> ");
                                 out.print("<label >Nom</label><input class=\"form-control\" type=\"text\"  name=\"nom\"> ");
                                 out.print("<label >Civilite</label><input class=\"form-control\" type=\"text\"   name=\"civilite\"> ");
@@ -62,7 +64,7 @@
 
 
                     <br/>                  
-                    <input class="form-control btn-success" Type="submit" VALUE="Modifier">
+                    <input class="form-control btn-success" Type="submit" VALUE="Ajouter">
 
                 </form>
 

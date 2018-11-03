@@ -14,13 +14,16 @@ import java.util.List;
  * @author Julien
  */
 public interface TypeCompteService {
-        public void add(String iban,Compte compte,float somme);
+
+    public void add(String iban, Compte compte, float somme);
 
     public void remove(String nom);
+
+    public TypeCompte find(long id);
 
     public boolean auth(String login, String mdp);
 
     public String getNomsMessages();
-    
-     public List<TypeCompte> findAll();
+
+    public List<TypeCompte> findAll();
 }

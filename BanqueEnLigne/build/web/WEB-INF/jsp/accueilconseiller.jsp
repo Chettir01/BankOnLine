@@ -43,6 +43,31 @@
                 </menuitem>
             </menu>
         </div>
+        <h1>Comptes en attentes de validation</h1>
+        <%
+            if (request.getAttribute("listecomptenonvalide") != null) {
+                List<Compte> lt = (List<Compte>) request.getAttribute("listecomptenonvalide");
+                out.print("<table class=\"table\">");
+                out.print("<thead>");
+                out.print("<th>Id compte</th>");
+                out.print("<th>Iban</th>");
+                out.print("<th>Solde</th>");
+                out.print("<th>Validation</th>");
+                out.print("</thead>");
+                out.print("<tbody>");
+                for (int i = 0; i < lt.size(); i++) {
+                    out.print("<tr>");
+                    out.print("<td>" + lt.get(i).getID_compte() + "</td>");
+                    out.print("<td>" + lt.get(i).getIban() + "</td>");
+                    out.print("<td>" + lt.get(i).getSolde()  + "</td>");
+                    out.print("<td> <form action=\"validationcompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\""+lt.get(i).getID_compte()+"\" > <input class=\"btn btn-success\" type=\"submit\" value=\"Valider\"></form></td>");
+                    out.print("</tr>");
+                }
+                out.print("</tbody>");
+                out.print("</table>");
+            }
+
+        %>
         <h1>Mes comptes</h1>
         <%
             if (request.getAttribute("listecompte") != null) {

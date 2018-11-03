@@ -27,12 +27,12 @@ public class CompteServiceImpl implements CompteService {
     
     @Override
     public void add(Compte c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DAO.save(c);
     }
 
     @Override
-    public void remove(String nom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void remove(Compte c) {
+        DAO.delete(c);
     }
 
     @Override
@@ -58,6 +58,12 @@ public class CompteServiceImpl implements CompteService {
     @Override
     public void update(Compte h) {
         DAO.update(h);
+    }
+
+    @Override
+    public List<Compte> findNonvalide() {
+        return DAO.findNonvalide();
+                
     }
     
      

@@ -40,6 +40,9 @@ public class Compte {
     )
     @ManyToMany
     private List<Client> listeclientcompte = new ArrayList<Client>();
+    
+    @Column
+    boolean valide;
 
     public Conseiller getConseiller() {
         return conseillercompte;
@@ -66,6 +69,38 @@ public class Compte {
 
     public long getID_compte() {
         return ID_compte;
+    }
+
+    public TypeCompte getType() {
+        return type;
+    }
+
+    public void setType(TypeCompte type) {
+        this.type = type;
+    }
+
+    public List<Client> getListeclientcompte() {
+        return listeclientcompte;
+    }
+
+    public void setListeclientcompte(List<Client> listeclientcompte) {
+        this.listeclientcompte = listeclientcompte;
+    }
+
+    public boolean isValide() {
+        return valide;
+    }
+
+    public void setValide(boolean valide) {
+        this.valide = valide;
+    }
+
+    public Conseiller getConseillercompte() {
+        return conseillercompte;
+    }
+
+    public void setConseillercompte(Conseiller conseillercompte) {
+        this.conseillercompte = conseillercompte;
     }
 
     public void setID_compte(long ID_compte) {
@@ -95,8 +130,6 @@ public class Compte {
     @GeneratedValue
     private long ID_compte;
 
-    @Column
-    private int numcompte;
 
     @Column
     private int solde;
@@ -115,15 +148,11 @@ public class Compte {
     @Column
     private Date dateCreation;
 
-    public Compte(long ID_compte, int numcompte, int solde, String iban, int typeCompte) {
-        this.ID_compte = ID_compte;
-        this.numcompte = numcompte;
+    public Compte( int solde, String iban, TypeCompte typeCompte) {
         this.solde = solde;
         this.iban = iban;
-    }
-
-    public int getNumcompte() {
-        return this.numcompte;
+        this.type=typeCompte;
+        this.valide=false;
     }
 
     public void setSolde(int solde) {

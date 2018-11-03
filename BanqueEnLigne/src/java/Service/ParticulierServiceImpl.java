@@ -50,5 +50,10 @@ public class ParticulierServiceImpl implements ParticulierService {
     public void update(Particulier h) {
         DAO.update(h);
     }
+
+    @Override
+    public void add(Particulier p) {
+        DAO.save(p);
+    }
     
 }

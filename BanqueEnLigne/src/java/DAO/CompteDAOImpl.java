@@ -19,12 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class CompteDAOImpl implements CompteDAO {
 
-        @PersistenceContext(unitName = "BanqueEnLignePU")
+    @PersistenceContext(unitName = "BanqueEnLignePU")
     private EntityManager em;
-    
+
+    @Transactional
     @Override
     public void save(Compte h) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        h = em.merge(h);
+        em.persist(h);
     }
 
     @Transactional
@@ -33,9 +35,11 @@ public class CompteDAOImpl implements CompteDAO {
         em.merge(h);
     }
 
+    @Transactional
     @Override
     public void delete(Compte h) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        h = em.merge(h);
+        em.remove(h);
     }
 
     @Override
@@ -51,13 +55,27 @@ public class CompteDAOImpl implements CompteDAO {
     @Transactional
     @Override
     public List<Compte> findByClient(Client client) {
-           Query q = em.createQuery("SELECT  l FROM Client c LEFT JOIN c.listecompte l " +
-"WHERE c = ?1"
-                );
-       q.setParameter(1, client);
+        Query q = em.createQuery("SELECT  l FROM Client c LEFT JOIN c.listecompte l "
+                + "WHERE c = ?1"
+        );
+        q.setParameter(1, client);
         System.out.println(q.getResultList().size());
         if (!q.getResultList().isEmpty()) {
-           return  q.getResultList();
+            return q.getResultList();
+        } else {
+            return null;
+        }
+    }
+
+    @Transactional
+    @Override
+    public List<Compte> findNonvalide() {
+        Query q = em.createQuery("SELECT  c FROM Compte c "
+                + "WHERE c.valide = ?1"
+        );
+        q.setParameter(1, false);
+        if (!q.getResultList().isEmpty()) {
+            return q.getResultList();
         } else {
             return null;
         }
@@ -66,22 +84,22 @@ public class CompteDAOImpl implements CompteDAO {
     @Transactional
     @Override
     public Compte findById(long id) {
-          Query q = em.createQuery("SELECT c "
+        Query q = em.createQuery("SELECT c "
                 + "FROM Compte c "
                 + "WHERE c.ID_compte =?1 "
-                );
-          q.setParameter(1, id);
-          return (Compte) q.getResultList().get(0);
+        );
+        q.setParameter(1, id);
+        return (Compte) q.getResultList().get(0);
     }
-    
-     @Transactional(readOnly = true)
+
+    @Transactional(readOnly = true)
     @Override
     public List<Compte> findByConseiller(Conseiller c) {
         Query q = em.createQuery("SELECT c "
                 + "FROM Compte c "
                 + "WHERE c.conseillercompte =?1 "
         );
-         q.setParameter(1, c);
+        q.setParameter(1, c);
         if (!q.getResultList().isEmpty()) {
             System.out.println("trouver");
             return (List<Compte>) q.getResultList();
@@ -90,6 +108,7 @@ public class CompteDAOImpl implements CompteDAO {
             return null;
         }
     }
+
     @Transactional(readOnly = true)
     @Override
     public Compte findByIBAN(String IBAN) {
@@ -97,12 +116,12 @@ public class CompteDAOImpl implements CompteDAO {
                 + "FROM Compte c "
                 + "WHERE c.iban =?1 "
         );
-         q.setParameter(1, IBAN);
+        q.setParameter(1, IBAN);
         if (!q.getResultList().isEmpty()) {
             return (Compte) q.getResultList().get(0);
         } else {
             return null;
         }
     }
-    
+
 }

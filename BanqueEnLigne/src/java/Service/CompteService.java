@@ -15,12 +15,21 @@ import java.util.List;
  * @author Julien
  */
 public interface CompteService {
-        public void add(Compte c);
-    public void remove(String nom);
-     public void update(Compte h);
- public List<Compte> findByClient(Client client);
- public Compte findById(long id);
-     public Compte findByIBAN(String IBAN);
-   public List<Compte> findByConseiller(Conseiller c);
+
+    public void add(Compte c);
+
+    public void remove(Compte c);
+
+    public void update(Compte h);
+
+    public List<Compte> findByClient(Client client);
+
+    public Compte findById(long id);
+
+    public Compte findByIBAN(String IBAN);
+
+    public List<Compte> findByConseiller(Conseiller c);
+
+    public List<Compte> findNonvalide();
 
 }

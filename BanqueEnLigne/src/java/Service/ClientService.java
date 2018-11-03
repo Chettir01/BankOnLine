@@ -16,4 +16,6 @@ public interface ClientService {
     public void remove(String nom);
     public Client auth(String login,String mdp);
     public String getNomsMessages();
+    public Boolean findByLogin(String login);
+    
 }

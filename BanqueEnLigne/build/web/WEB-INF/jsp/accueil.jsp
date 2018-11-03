@@ -37,6 +37,11 @@
                     <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes informations" > 
                 </form>
                 </menuitem>
+                <menuitem>
+                <form action ="creationcompte.htm" method="GET">
+                    <input class="btn btn-primary btn-sm" Type=submit VALUE="Créer un nouveau compte" > 
+                </form>
+                </menuitem>
             </menu>
         </div>
     </body>

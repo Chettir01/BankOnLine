@@ -6,6 +6,7 @@
 package controllers;
 
 import DAO.Client;
+import DAO.Compte;
 import DAO.Conseiller;
 import Service.CompteService;
 import Service.ConseillerService;
@@ -50,18 +51,39 @@ public class connexionConseillerController {
                 session.setAttribute("conseiller", c);
                 mv = new ModelAndView("accueilconseiller");
                 mv.addObject("listecompte", c.getListecompte());
+                mv.addObject("listecomptenonvalide", cps.findNonvalide());
             } else {
                 mv = new ModelAndView("connexionconseiller");
             }
         }
         return mv;
     }
-     @RequestMapping(value = "deconnexionconseiller", method = RequestMethod.GET)
+
+    @RequestMapping(value = "validationcompte", method = RequestMethod.POST)
+    public ModelAndView validationcompte(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ModelAndView mv;
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            Compte c = cps.findById(Integer.parseInt(request.getParameter("id")));
+            c.setValide(true);
+            cps.update(c);
+            mv = new ModelAndView("accueilconseiller");
+            mv.addObject("listecompte", ((Conseiller) session.getAttribute("conseiller")).getListecompte());
+            mv.addObject("listecomptenonvalide", cps.findNonvalide());
+        } else {
+            mv = new ModelAndView("connexionconseiller");
+        }
+
+        return mv;
+    }
+
+    @RequestMapping(value = "deconnexionconseiller", method = RequestMethod.GET)
     public ModelAndView deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
 
         HttpSession session = request.getSession(false);
-        if(session!=null){
+        if (session != null) {
             session.invalidate();
         }
         mv = new ModelAndView("connexionconseiller");

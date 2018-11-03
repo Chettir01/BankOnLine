@@ -38,10 +38,10 @@ public class TypeCompteDAOImpl implements TypeCompteDAO {
     public void delete(TypeCompte h) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    @Transactional(readOnly = true)
     @Override
     public TypeCompte find(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return em.find(TypeCompte.class, id);
     }
 
     @Override

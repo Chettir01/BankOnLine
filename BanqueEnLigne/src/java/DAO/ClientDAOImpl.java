@@ -95,4 +95,17 @@ public class ClientDAOImpl implements ClientDAO {
         }
 
     }
+
+    @Override
+    public boolean findByLogin(String login) {
+        Query q = em.createQuery("SELECT c "
+                + "FROM Client c "
+                + "WHERE c.login =?1 ");
+       q.setParameter(1, login);
+        if (!q.getResultList().isEmpty()) {
+           return true;
+        } else {
+            return false;
+        }
+    }
 }

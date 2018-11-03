@@ -41,5 +41,10 @@ public class ClientServiceimpl implements ClientService{
     public Client auth(String login, String mdp) {
         return this.DAO.authentification(login, mdp);
     }
+
+    @Override
+    public Boolean findByLogin(String login) {
+        return DAO.findByLogin(login);
+    }
     
 }

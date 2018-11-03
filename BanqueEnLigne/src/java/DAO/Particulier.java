@@ -59,6 +59,14 @@ public class Particulier extends Client {
         this.nom=nom;
     }
 
+    public Particulier(String nom, String prenom, String civilite, Date dateNaissance, String login, String mdp, String adresse, String tel) {
+        super(login, mdp, adresse, tel);
+        this.nom = nom;
+        this.prenom = prenom;
+        this.civilite = civilite;
+        this.dateNaissance = dateNaissance;
+    }
+
     public void setNom(String nom) {
         this.nom = nom;
     }

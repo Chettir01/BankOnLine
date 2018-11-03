@@ -47,5 +47,10 @@ public class TypeCompteServiceImpl implements TypeCompteService {
     public List<TypeCompte> findAll() {
         return DAO.findAll();
     }
+
+    @Override
+    public TypeCompte find(long id) {
+        return DAO.find(id);
+    }
     
 }
