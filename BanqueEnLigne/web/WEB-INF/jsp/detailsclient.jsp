@@ -20,7 +20,7 @@
         <title>Détails</title>
     </head>
     <body>
-        <form action="allcompte.htm" method="GET">
+        <form action="accueil.htm" method="GET">
             <input class="form-control btn-info" Type=submit  VALUE="Retour"> 
                  </form>
         <div class=" form-group">
