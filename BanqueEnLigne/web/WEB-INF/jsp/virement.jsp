@@ -22,8 +22,8 @@
     <body>
          <div class="col-xs-4">
              <div class=" form-group col-xs-4 ">
-                 <form action="accueille.jsp">
-            <input class="form-control btn-info" Type=submit  VALUE="Retour menu"> 
+                 <form action="detailscompte.htm" method="GET">
+            <input class="form-control btn-info" Type=submit  VALUE="Retour"> 
                  </form>
              </div>
         </div>

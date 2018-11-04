@@ -21,6 +21,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <form action="allcomptes.htm" method="GET">
+            <input class="form-control btn-info" Type=submit  VALUE="Retour"> 
+                 </form>
         <h1>Mes virements</h1>
         <table>
             <tr>

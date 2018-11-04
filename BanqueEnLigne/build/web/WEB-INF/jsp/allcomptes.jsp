@@ -21,6 +21,9 @@
         <title>Compte</title>
     </head>
     <body>
+        <form action="accueil.htm" method="GET">
+            <input class="form-control btn-info" Type=submit  VALUE="Retour"> 
+                 </form>
         <h1>Mes comptes</h1>
         <table>
             <tr>

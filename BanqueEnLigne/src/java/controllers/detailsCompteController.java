@@ -27,14 +27,15 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class detailsCompteController {
+
     @Autowired
     OrdreBourseService o;
     @Autowired
     VirementService v;
     @Autowired
     CompteService c;
-    
-        @RequestMapping(value = "detailscompte", method = RequestMethod.GET)
+
+    @RequestMapping(value = "detailscompte", method = RequestMethod.GET)
     public ModelAndView init(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv;
         HttpSession session = request.getSession(false);
@@ -42,26 +43,29 @@ public class detailsCompteController {
             mv = new ModelAndView("connexion");
         } else {
             mv = new ModelAndView("detailscompte");
-             long id;
-             Compte compte;
-            if(request.getParameter("compte")!=null){
-               id=Long.parseLong(request.getParameter("compte"));
-               compte=c.findById(id);
-            }else{
-                compte=(Compte)session.getAttribute("compte");
+            long id;
+            Compte compte;
+            if (request.getParameter("compte") != null) {
+                id = Long.parseLong(request.getParameter("compte"));
+                compte = c.findById(id);
+            } else {
+                compte = (Compte) session.getAttribute("compte");
             }
-            
+
             mv.addObject("listevirement", v.findByCompte(compte));
             mv.addObject("listeaction", o.findByCompte(compte));
             session.setAttribute("compte", compte);
-            mv.addObject("compte",compte );
+            mv.addObject("compte", compte);
+            response.setHeader("Pragma", "No-cache");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setDateHeader("Expires", 0);
             //
             //Cherche liste compte
 
         }
         return mv;
     }
-/*
+    /*
     @RequestMapping(value = "detailscompte", method = RequestMethod.POST)
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView();

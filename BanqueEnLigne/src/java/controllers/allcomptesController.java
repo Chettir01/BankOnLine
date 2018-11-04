@@ -44,6 +44,9 @@ public class allcomptesController {
            // mv.addObject("listecompte", c.findByClient((Client) session.getAttribute("client")));
             mv.addObject("listecompte",c.findByClient((Client) session.getAttribute("client")));
             mv.addObject("listetypecompte",ts.findAll());
+            response.setHeader("Pragma", "No-cache");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setDateHeader("Expires", 0);
             //
             //Cherche liste compte
 

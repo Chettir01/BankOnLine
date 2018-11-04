@@ -61,6 +61,9 @@ public class virementController {
         } else {
             mv = new ModelAndView("connexion");
         }
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
         return mv;
     }
 }
