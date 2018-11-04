@@ -19,29 +19,34 @@
         <div >
             <img class="d-block w-100" src="http://www.wexinc.com/wex-corporate/wp-content/uploads/sites/4/2017/04/WEX-Corporate-Bank-to-Bank-Large.jpg" alt="First slide" width="100%" height="300" >
         </div>
-        <div>
-            <menu type="context" id="popup-menu">
-                <menuitem >
-                <form action ="deconnexion.htm" method="GET">
-                    <input class="btn btn-success btn-sm" Type=submit VALUE="Déconnection" > 
-                </form> 
-                </menuitem>
-                <menuitem> 
-                <form action ="allcomptes.htm" method="GET">
-                    <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes comptes" > 
-                </form>
-                </menuitem>
-                <menuitem>
-                <form action ="detailsclient.htm" method="GET">
-                    <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes informations" > 
-                </form>
-                </menuitem>
-                <menuitem>
-                <form action ="creationcompte.htm" method="GET">
-                    <input class="btn btn-primary btn-sm" Type=submit VALUE="Créer un nouveau compte" > 
-                </form>
-                </menuitem>
-            </menu>
+        <div><br/>
+            <nav class="navbar ">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li >
+                            <form action ="deconnexion.htm" method="GET">
+                                <input class="btn btn-success btn-sm" Type=submit VALUE="Déconnection" > 
+                            </form> 
+                        </li>
+                        <li> 
+                            <form action ="allcomptes.htm" method="GET">
+                                <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes comptes" > 
+                            </form>
+                        </li>
+                        <li>
+                            <form action ="detailsclient.htm" method="GET">
+                                <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes informations" > 
+                            </form>
+                        </li>
+                        <li>
+                            <form action ="creationcompte.htm" method="GET">
+                                <input class="btn btn-primary btn-sm" Type=submit VALUE="Créer un nouveau compte" > 
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
         </div>
     </body>
 </html>

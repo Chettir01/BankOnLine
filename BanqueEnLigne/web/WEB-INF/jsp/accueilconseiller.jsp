@@ -24,117 +24,142 @@
             <img class="d-block w-100" src="http://www.wexinc.com/wex-corporate/wp-content/uploads/sites/4/2017/04/WEX-Corporate-Bank-to-Bank-Large.jpg" alt="First slide" width="100%" height="300" >
         </div>
         <div>
-            <menu type="context" id="popup-menu">
-                <menuitem >
-                <form action ="deconnexionconseiller.htm" method="GET">
-                    <input class="btn btn-success btn-sm" Type=submit VALUE="Déconnection" > 
-                </form> 
-                </menuitem>
-                <menuitem> 
-                <form action ="allcomptes.htm" method="GET">
-                    <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes comptes" > 
-                </form>
-                </menuitem>
-                <menuitem>
-                <form action ="detailsclient.htm" method="GET">
-                    <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes informations" > 
-                </form>
-                </menuitem>
-                <menuitem>
-                <form action ="agios.htm" method="POST">
-                    <input class="btn btn-danger btn-sm" Type=submit VALUE="AGIOS" > 
-                </form>
-                </menuitem>
-            </menu>
-        </div>
-        <h1>Comptes en attentes de validation</h1>
-        <%
-            if (request.getAttribute("listecomptenonvalide") != null) {
-                List<Compte> lt = (List<Compte>) request.getAttribute("listecomptenonvalide");
-                out.print("<table class=\"table\">");
-                out.print("<thead>");
-                out.print("<th>Id compte</th>");
-                out.print("<th>Iban</th>");
-                out.print("<th>Solde</th>");
-                out.print("<th>Type compte</th>");
-                out.print("<th>Taux %</th>");
-                out.print("<th>Validation</th>");
-                out.print("</thead>");
-                out.print("<tbody>");
-                for (int i = 0; i < lt.size(); i++) {
-                    out.print("<tr>");
-                    out.print("<td>" + lt.get(i).getID_compte() + "</td>");
-                    out.print("<td>" + lt.get(i).getIban() + "</td>");
-                    out.print("<td>" + lt.get(i).getSolde() + "</td>");
-                    out.print("<td>" + lt.get(i).getTypecompte().getNom() + "</td>");
-                    out.print("<td>" + lt.get(i).getTypecompte().getTaux() + "</td>");
-                    out.print("<td> <form action=\"validationcompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\"" + lt.get(i).getID_compte() + "\" > <input class=\"btn btn-success\" type=\"submit\" value=\"Valider\"></form></td>");
-                    out.print("</tr>");
-                }
-                out.print("</tbody>");
-                out.print("</table>");
-            }
+            <div class="container col-xs-6 col-xs-offset-3">
+                <div class="row">
+                    <menu type="context" id="popup-menu">
+                        <menuitem >
+                        <form action ="deconnexionconseiller.htm" method="GET">
+                            <input class="btn btn-success btn-sm" Type=submit VALUE="Déconnection" > 
+                        </form> 
+                        </menuitem> 
+                        <menuitem>
+                        <form action ="agios.htm" method="POST">
+                            <input class="btn btn-danger btn-sm" Type=submit VALUE="AGIOS" > 
+                        </form>
+                        </menuitem>
+                    </menu>
+                </div>
+                <div class="row">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h1>Comptes en attentes de validation</h1>
+                        </div>
+                        <div class="panel-body">
 
-        %>
-        <h1>Mes comptes</h1>
-        <%            if (request.getAttribute("listecompte") != null) {
-                List<Compte> l = (List<Compte>) request.getAttribute("listecompte");
-                out.print("<table class=\"table\">");
-                out.print("<thead>");
-                out.print("<th>Id compte</th>");
-                out.print("<th>Iban</th>");
-                out.print("<th>Solde</th>");
-                out.print("<th>Type compte</th>");
-                out.print("<th>Taux %</th>");
-                out.print("<th>Action</th>");
-                out.print("</thead>");
-                out.print("<tbody>");
-                for (int i = 0; i < l.size(); i++) {
-                    out.print("<tr>");
-                    out.print("<td>" + l.get(i).getID_compte() + "</td>");
-                    out.print("<td>" + l.get(i).getIban() + "</td>");
-                    out.print("<td>" + l.get(i).getSolde() + "</td>");
-                    out.print("<td>" + l.get(i).getTypecompte().getNom() + "</td>");
-                    out.print("<td>" + l.get(i).getTypecompte().getTaux() + "</td>");
-                    if (l.get(i).isValide()) {
-                        out.print("<td> <form action=\"cloturecompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\"" + l.get(i).getID_compte() + "\" > <input class=\"btn btn-danger\" type=\"submit\" value=\"Cloturer\"></form></td>");
-                    } else {
-                        out.print("<td> <form action=\"validationcompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\"" + l.get(i).getID_compte() + "\" > <input class=\"btn btn-success\" type=\"submit\" value=\"Valider\"></form></td>");
-                    }
-                    out.print("</tr>");
-                }
-                out.print("</tbody>");
-                out.print("</table>");
-            }
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <th>Id compte</th>
+                                <th>Iban</th>
+                                <th>Solde</th>
+                                <th>Type compte</th>
+                                <th>Taux %</th>
+                                <th>Validation</th>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        if (request.getAttribute("listecomptenonvalide") != null) {
+                                            List<Compte> lt = (List<Compte>) request.getAttribute("listecomptenonvalide");
 
-        %>
-        <h1>Tous les comptes</h1>
-        <%             if (request.getAttribute("toutcompte") != null) {
-                List<Compte> ltout = (List<Compte>) request.getAttribute("toutcompte");
-                out.print("<table class=\"table\">");
-                out.print("<thead>");
-                out.print("<th>Id compte</th>");
-                out.print("<th>Iban</th>");
-                out.print("<th>Solde</th>");
-                out.print("<th>Type compte</th>");
-                out.print("<th>Taux %</th>");
-                out.print("<th>Etat</th>");
-                out.print("</thead>");
-                out.print("<tbody>");
-                for (int i = 0; i < ltout.size(); i++) {
-                    out.print("<tr>");
-                    out.print("<td>" + ltout.get(i).getID_compte() + "</td>");
-                    out.print("<td>" + ltout.get(i).getIban() + "</td>");
-                    out.print("<td>" + ltout.get(i).getSolde() + "</td>");
-                    out.print("<td>" + ltout.get(i).getTypecompte().getNom() + "</td>");
-                    out.print("<td>" + ltout.get(i).getTypecompte().getTaux() + "</td>");
-                    out.print("<td>" + ltout.get(i).isValide() + "</td>");
-                    out.print("</tr>");
-                }
-                out.print("</tbody>");
-                out.print("</table>");
-            }
+                                            for (int i = 0; i < lt.size(); i++) {
+                                                out.print("<tr>");
+                                                out.print("<td>" + lt.get(i).getID_compte() + "</td>");
+                                                out.print("<td>" + lt.get(i).getIban() + "</td>");
+                                                out.print("<td>" + lt.get(i).getSolde() + "</td>");
+                                                out.print("<td>" + lt.get(i).getTypecompte().getNom() + "</td>");
+                                                out.print("<td>" + lt.get(i).getTypecompte().getTaux() + "</td>");
+                                                out.print("<td> <form action=\"validationcompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\"" + lt.get(i).getID_compte() + "\" > <input class=\"btn btn-success\" type=\"submit\" value=\"Valider\"></form></td>");
+                                                out.print("</tr>");
+                                            }
 
-        %>
+                                        }
+
+                                    %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h1>Mes comptes</h1>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <th>Id compte</th>
+                                <th>Iban</th>
+                                <th>Solde</th>
+                                <th>Type compte</th>
+                                <th>Taux %</th>
+                                <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    <%            if (request.getAttribute("listecompte") != null) {
+                                            List<Compte> l = (List<Compte>) request.getAttribute("listecompte");
+
+                                            for (int i = 0; i < l.size(); i++) {
+                                                out.print("<tr>");
+                                                out.print("<td>" + l.get(i).getID_compte() + "</td>");
+                                                out.print("<td>" + l.get(i).getIban() + "</td>");
+                                                out.print("<td>" + l.get(i).getSolde() + "</td>");
+                                                out.print("<td>" + l.get(i).getTypecompte().getNom() + "</td>");
+                                                out.print("<td>" + l.get(i).getTypecompte().getTaux() + "</td>");
+                                                if (l.get(i).isValide()) {
+                                                    out.print("<td> <form action=\"cloturecompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\"" + l.get(i).getID_compte() + "\" > <input class=\"btn btn-danger\" type=\"submit\" value=\"Cloturer\"></form></td>");
+                                                } else {
+                                                    out.print("<td> <form action=\"validationcompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\"" + l.get(i).getID_compte() + "\" > <input class=\"btn btn-success\" type=\"submit\" value=\"Valider\"></form></td>");
+                                                }
+                                                out.print("</tr>");
+                                            }
+
+                                        }
+
+                                    %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h1>Tous les comptes</h1>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <th>Id compte</th>
+                                <th>Iban</th>
+                                <th>Solde</th>
+                                <th>Type compte</th>
+                                <th>Taux %</th>
+                                <th>Etat</th>
+                                </thead>
+                                <tbody>
+                                    <%             if (request.getAttribute("toutcompte") != null) {
+                                            List<Compte> ltout = (List<Compte>) request.getAttribute("toutcompte");
+
+                                            for (int i = 0; i < ltout.size(); i++) {
+                                                out.print("<tr>");
+                                                out.print("<td>" + ltout.get(i).getID_compte() + "</td>");
+                                                out.print("<td>" + ltout.get(i).getIban() + "</td>");
+                                                out.print("<td>" + ltout.get(i).getSolde() + "</td>");
+                                                out.print("<td>" + ltout.get(i).getTypecompte().getNom() + "</td>");
+                                                out.print("<td>" + ltout.get(i).getTypecompte().getTaux() + "</td>");
+                                                out.print("<td>" + ltout.get(i).isValide() + "</td>");
+                                                out.print("</tr>");
+                                            }
+
+                                        }
+
+                                    %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </body>
 </html>
