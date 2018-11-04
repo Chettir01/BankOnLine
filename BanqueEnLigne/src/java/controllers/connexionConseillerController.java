@@ -52,6 +52,7 @@ public class connexionConseillerController {
                 mv = new ModelAndView("accueilconseiller");
                 mv.addObject("listecompte", c.getListecompte());
                 mv.addObject("listecomptenonvalide", cps.findNonvalide());
+                mv.addObject("toutcompte", cps.findAll());
             } else {
                 mv = new ModelAndView("connexionconseiller");
             }
@@ -67,12 +68,33 @@ public class connexionConseillerController {
         if (session != null) {
             Compte c = cps.findById(Integer.parseInt(request.getParameter("id")));
             c.setValide(true);
-            Conseiller cl=(Conseiller)session.getAttribute("conseiller");
+            Conseiller cl = (Conseiller) session.getAttribute("conseiller");
             c.setConseillercompte(cl);
             cps.update(c);
             mv = new ModelAndView("accueilconseiller");
             mv.addObject("listecompte", cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
             mv.addObject("listecomptenonvalide", cps.findNonvalide());
+            mv.addObject("toutcompte", cps.findAll());
+        } else {
+            mv = new ModelAndView("connexionconseiller");
+        }
+
+        return mv;
+    }
+    
+     @RequestMapping(value = "cloturecompte", method = RequestMethod.POST)
+    public ModelAndView cloturecompte(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ModelAndView mv;
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            Compte c = cps.findById(Integer.parseInt(request.getParameter("id")));
+            c.setValide(false);
+            cps.update(c);
+            mv = new ModelAndView("accueilconseiller");
+            mv.addObject("listecompte", cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
+            mv.addObject("listecomptenonvalide", cps.findNonvalide());
+            mv.addObject("toutcompte", cps.findAll());
         } else {
             mv = new ModelAndView("connexionconseiller");
         }

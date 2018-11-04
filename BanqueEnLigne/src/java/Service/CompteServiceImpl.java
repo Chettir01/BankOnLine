@@ -65,6 +65,16 @@ public class CompteServiceImpl implements CompteService {
         return DAO.findNonvalide();
                 
     }
+
+    @Override
+    public List<Compte> findAll() {
+        return DAO.findAll();
+    }
+
+    @Override
+    public List<Compte> findByClientvalide() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
      
     

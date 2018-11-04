@@ -54,6 +54,7 @@ public class detailsCompteController {
             mv.addObject("listevirement", v.findByCompte(compte));
             mv.addObject("listeaction", o.findByCompte(compte));
             session.setAttribute("compte", compte);
+            mv.addObject("compte",compte );
             //
             //Cherche liste compte
 

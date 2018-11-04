@@ -45,7 +45,12 @@
                         out.print("<td>" + l.get(i).getIban() + "</td>");
                         out.print("<td>" + l.get(i).getSolde() + "</td>");
                         out.print("<td>" + l.get(i).getType().getNom() + "</td>");
-                        out.print("<td>" + "<form action=\"detailscompte.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-success\" Type=\"submit\" VALUE=\"Details\"/>" + "</form>" + "</td>");
+                        if (l.get(i).isValide()) {
+                            out.print("<td>" + "<form action=\"detailscompte.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-success\" Type=\"submit\" VALUE=\"Details\"/>" + "</form>" + "</td>");
+                        } else {
+                            out.print("<td>" + "<form action=\"detailscompte.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-success\" Type=\"submit\" VALUE=\"Details\"  disabled/>" + "</form>" + "</td>");
+
+                        }
                         out.print("<td>" + "<form action=\"ajoutcompteclient.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-info\" Type=\"submit\" VALUE=\"Partager\"/>" + "</form>" + "</td>");
                         out.print("</tr>");
                     }

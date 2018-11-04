@@ -31,5 +31,7 @@ public interface CompteService {
     public List<Compte> findByConseiller(Conseiller c);
 
     public List<Compte> findNonvalide();
+    public List<Compte> findByClientvalide();
+    public List<Compte> findAll();
 
 }

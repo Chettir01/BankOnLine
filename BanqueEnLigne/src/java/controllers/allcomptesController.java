@@ -42,7 +42,7 @@ public class allcomptesController {
         } else {
             mv = new ModelAndView("allcomptes");
            // mv.addObject("listecompte", c.findByClient((Client) session.getAttribute("client")));
-            mv.addObject("listecompte",((Client) session.getAttribute("client")).getListecompte());
+            mv.addObject("listecompte",c.findByClient((Client) session.getAttribute("client")));
             mv.addObject("listetypecompte",ts.findAll());
             //
             //Cherche liste compte

@@ -23,7 +23,6 @@
         <div >
             <img class="d-block w-100" src="http://www.wexinc.com/wex-corporate/wp-content/uploads/sites/4/2017/04/WEX-Corporate-Bank-to-Bank-Large.jpg" alt="First slide" width="100%" height="300" >
         </div>
-        <h1>${client.IDClient}</h1>
         <div>
             <menu type="context" id="popup-menu">
                 <menuitem >
@@ -59,8 +58,8 @@
                     out.print("<tr>");
                     out.print("<td>" + lt.get(i).getID_compte() + "</td>");
                     out.print("<td>" + lt.get(i).getIban() + "</td>");
-                    out.print("<td>" + lt.get(i).getSolde()  + "</td>");
-                    out.print("<td> <form action=\"validationcompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\""+lt.get(i).getID_compte()+"\" > <input class=\"btn btn-success\" type=\"submit\" value=\"Valider\"></form></td>");
+                    out.print("<td>" + lt.get(i).getSolde() + "</td>");
+                    out.print("<td> <form action=\"validationcompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\"" + lt.get(i).getID_compte() + "\" > <input class=\"btn btn-success\" type=\"submit\" value=\"Valider\"></form></td>");
                     out.print("</tr>");
                 }
                 out.print("</tbody>");
@@ -69,14 +68,14 @@
 
         %>
         <h1>Mes comptes</h1>
-        <%
-            if (request.getAttribute("listecompte") != null) {
+        <%            if (request.getAttribute("listecompte") != null) {
                 List<Compte> l = (List<Compte>) request.getAttribute("listecompte");
                 out.print("<table class=\"table\">");
                 out.print("<thead>");
                 out.print("<th>Id compte</th>");
                 out.print("<th>Iban</th>");
                 out.print("<th>Solde</th>");
+                out.print("<th>Action</th>");
                 out.print("</thead>");
                 out.print("<tbody>");
                 for (int i = 0; i < l.size(); i++) {
@@ -84,6 +83,35 @@
                     out.print("<td>" + l.get(i).getID_compte() + "</td>");
                     out.print("<td>" + l.get(i).getIban() + "</td>");
                     out.print("<td>" + l.get(i).getSolde() + "</td>");
+                    if (l.get(i).isValide()) {
+                        out.print("<td> <form action=\"cloturecompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\"" + l.get(i).getID_compte() + "\" > <input class=\"btn btn-danger\" type=\"submit\" value=\"Cloturer\"></form></td>");
+                    } else {
+                        out.print("<td> <form action=\"validationcompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\"" + l.get(i).getID_compte() + "\" > <input class=\"btn btn-success\" type=\"submit\" value=\"Valider\"></form></td>");
+                    }
+                    out.print("</tr>");
+                }
+                out.print("</tbody>");
+                out.print("</table>");
+            }
+
+        %>
+        <h1>Tous les comptes</h1>
+        <%             if (request.getAttribute("toutcompte") != null) {
+                List<Compte> ltout = (List<Compte>) request.getAttribute("toutcompte");
+                out.print("<table class=\"table\">");
+                out.print("<thead>");
+                out.print("<th>Id compte</th>");
+                out.print("<th>Iban</th>");
+                out.print("<th>Solde</th>");
+                out.print("<th>Etat</th>");
+                out.print("</thead>");
+                out.print("<tbody>");
+                for (int i = 0; i < ltout.size(); i++) {
+                    out.print("<tr>");
+                    out.print("<td>" + ltout.get(i).getID_compte() + "</td>");
+                    out.print("<td>" + ltout.get(i).getIban() + "</td>");
+                    out.print("<td>" + ltout.get(i).getSolde() + "</td>");
+                    out.print("<td>" + ltout.get(i).isValide() + "</td>");
                     out.print("</tr>");
                 }
                 out.print("</tbody>");

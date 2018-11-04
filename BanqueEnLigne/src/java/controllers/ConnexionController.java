@@ -67,7 +67,7 @@ public class ConnexionController {
         if(session!=null){
             session.invalidate();
         }
-        mv = new ModelAndView("connexion");
+        mv = new ModelAndView("index");
 
         return mv;
     }

@@ -68,8 +68,9 @@ public class VirementDAOImpl implements VirementDAO {
     public List<Virement> findByCompte(Compte c) {
         Query q = em.createQuery("SELECT v"
                 + " FROM Virement v "
-                + "WHERE v.compte=?1");
+                + "WHERE v.compte=?1 or v.comptedestination=?2");
         q.setParameter(1, c);
+        q.setParameter(2, c);
         return q.getResultList();
     }
 

@@ -47,9 +47,15 @@ public class CompteDAOImpl implements CompteDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Compte> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Query q = em.createQuery("SELECT  c FROM Compte c ");
+        if (!q.getResultList().isEmpty()) {
+            return q.getResultList();
+        } else {
+            return null;
+        }
     }
 
     @Transactional
@@ -71,7 +77,7 @@ public class CompteDAOImpl implements CompteDAO {
     @Override
     public List<Compte> findNonvalide() {
         Query q = em.createQuery("SELECT  c FROM Compte c "
-                + "WHERE c.valide = ?1"
+                + "WHERE c.valide = ?1 AND c.conseillercompte IS NULL"
         );
         q.setParameter(1, false);
         if (!q.getResultList().isEmpty()) {
@@ -122,6 +128,11 @@ public class CompteDAOImpl implements CompteDAO {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<Compte> findByClientvalide(Client c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -49,7 +49,7 @@ public class virementController {
                     debiteur.setSolde(debiteur.getSolde() - montant);
                     c.update(debiteur);
                     c.update(encaisseur);
-                    v.add(request.getParameter("IBAN"), (Compte) session.getAttribute("compte"), Float.parseFloat(request.getParameter("Montant")));
+                    v.add(encaisseur, (Compte) session.getAttribute("compte"), Float.parseFloat(request.getParameter("Montant")));
                     mv = new ModelAndView("redirect:/detailscompte.htm");
                 } else {
                     mv = new ModelAndView("virement");

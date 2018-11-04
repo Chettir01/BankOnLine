@@ -4,6 +4,7 @@
     Author     : Julien
 --%>
 
+<%@page import="DAO.Compte"%>
 <%@page import="DAO.OrdreBourse"%>
 <%@page import="DAO.Virement"%>
 <%@page import="java.util.List"%>
@@ -31,12 +32,21 @@
             <%
                 List<Virement> l = (List<Virement>) request.getAttribute("listevirement");
                 if (l != null) {
+                    Compte c=(Compte)request.getAttribute("compte");
+                    if(c==null){
+                        out.print("null");
+                    }
                     for (int i = 0; i < l.size(); i++) {
                         out.print("<tr>");
                         out.print("<td>" + l.get(i).getCompte().getID_compte() + "</td>");
-                        out.print("<td>" + l.get(i).getIbandestination() + "</td>");
+                        out.print("<td>" + l.get(i).getIbandestination().getIban() + "</td>");
                         out.print("<td>" + l.get(i).getDatecreation().toString() + "</td>");
-                        out.print("<td>" + l.get(i).getSomme() + "</td>");
+                        if(c.getID_compte()==l.get(i).getIbandestination().getID_compte()){
+                            out.print("<td bgcolor=\"green\">"+"+ " + l.get(i).getSomme() + "</td>");
+                        }else{
+                            out.print("<td bgcolor=\"red\">"+"- " + l.get(i).getSomme() + "</td>");
+                        }
+                        
                         out.print("</tr>");
                     }
                 }

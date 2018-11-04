@@ -28,17 +28,20 @@ public class Virement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
-    private String ibandestination;
+
     @Column
     private Date datecreation;
 
+     @ManyToOne
+    @JoinColumn(name = "Comptedestination")
+    private Compte comptedestination;
+    
     @ManyToOne
     @JoinColumn(name = "Compte")
     private Compte compte;
 
-    public Virement(String ibandestination, Compte compte, float somme) {
-        this.ibandestination = ibandestination;
+    public Virement(Compte destination, Compte compte, float somme) {
+        this.comptedestination = destination;
         this.datecreation = new java.sql.Date(new java.util.Date().getTime());
         this.compte = compte;
         this.somme = somme;
@@ -59,12 +62,12 @@ public class Virement implements Serializable {
 
     }
 
-    public String getIbandestination() {
-        return ibandestination;
+    public Compte getIbandestination() {
+        return comptedestination;
     }
 
-    public void setIbandestination(String ibandestination) {
-        this.ibandestination = ibandestination;
+    public void setIbandestination(Compte ibandestination) {
+        this.comptedestination = ibandestination;
     }
 
     public Compte getCompte() {

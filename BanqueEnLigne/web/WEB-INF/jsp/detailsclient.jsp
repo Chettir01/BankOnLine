@@ -53,7 +53,7 @@
                             }
                             if (request.getAttribute("type").equals("PROFESSIONEL")) {
                                 out.print("<label>Nom de l'entreprise</label>");
-                                out.print("<input class=\"form-control\" type=\"text\" value=" + request.getAttribute("entreprise") + "  name=\"entreprise\">");
+                                out.print("<input class=\"form-control\" type=\"text\" value=\"" + request.getAttribute("entreprise") + "\"  name=\"entreprise\">");
                             }
                         }
                     %>

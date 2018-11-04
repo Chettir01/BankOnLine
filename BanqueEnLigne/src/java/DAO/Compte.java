@@ -127,6 +127,9 @@ public class Compte implements Serializable  {
 
     @OneToMany(mappedBy = "compte")
     List<Virement> listevirement = new ArrayList<Virement>();
+    
+    @OneToMany(mappedBy = "comptedestination")
+    List<Virement> listevirementdestination = new ArrayList<Virement>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

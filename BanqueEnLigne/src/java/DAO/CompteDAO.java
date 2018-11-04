@@ -32,4 +32,5 @@ public interface CompteDAO {
     public Compte findByIBAN(String IBAN);
 
     public List<Compte> findByConseiller(Conseiller c);
+    public List<Compte> findByClientvalide(Client c);
 }
