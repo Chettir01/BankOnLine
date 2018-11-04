@@ -13,9 +13,10 @@ import java.util.List;
  *
  * @author Julien
  */
-public interface VirementService {
+    public interface VirementService {
 
     public void add(Compte comptedestination,Compte compte,float somme);
+    public void add(Virement v);
     
     public void remove(String nom);
 

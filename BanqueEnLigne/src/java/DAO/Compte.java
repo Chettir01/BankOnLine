@@ -137,7 +137,7 @@ public class Compte implements Serializable  {
 
 
     @Column
-    private int solde;
+    private float solde;
 
     @Column(unique = true)
     private String iban;
@@ -153,18 +153,18 @@ public class Compte implements Serializable  {
     @Column
     private Date dateCreation;
 
-    public Compte( int solde, String iban, TypeCompte typeCompte) {
+    public Compte( float solde, String iban, TypeCompte typeCompte) {
         this.solde = solde;
         this.iban = iban;
         this.type=typeCompte;
         this.valide=false;
     }
 
-    public void setSolde(int solde) {
+    public void setSolde(float solde) {
         this.solde = solde;
     }
 
-    public int getSolde() {
+    public float getSolde() {
         return this.solde;
     }
 

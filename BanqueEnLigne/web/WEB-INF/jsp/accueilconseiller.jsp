@@ -40,6 +40,11 @@
                     <input class="btn btn-primary btn-sm" Type=submit VALUE="Mes informations" > 
                 </form>
                 </menuitem>
+                <menuitem>
+                <form action ="agios.htm" method="POST">
+                    <input class="btn btn-danger btn-sm" Type=submit VALUE="AGIOS" > 
+                </form>
+                </menuitem>
             </menu>
         </div>
         <h1>Comptes en attentes de validation</h1>
@@ -51,6 +56,8 @@
                 out.print("<th>Id compte</th>");
                 out.print("<th>Iban</th>");
                 out.print("<th>Solde</th>");
+                out.print("<th>Type compte</th>");
+                out.print("<th>Taux %</th>");
                 out.print("<th>Validation</th>");
                 out.print("</thead>");
                 out.print("<tbody>");
@@ -59,6 +66,8 @@
                     out.print("<td>" + lt.get(i).getID_compte() + "</td>");
                     out.print("<td>" + lt.get(i).getIban() + "</td>");
                     out.print("<td>" + lt.get(i).getSolde() + "</td>");
+                    out.print("<td>" + lt.get(i).getTypecompte().getNom() + "</td>");
+                    out.print("<td>" + lt.get(i).getTypecompte().getTaux() + "</td>");
                     out.print("<td> <form action=\"validationcompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\"" + lt.get(i).getID_compte() + "\" > <input class=\"btn btn-success\" type=\"submit\" value=\"Valider\"></form></td>");
                     out.print("</tr>");
                 }
@@ -75,6 +84,8 @@
                 out.print("<th>Id compte</th>");
                 out.print("<th>Iban</th>");
                 out.print("<th>Solde</th>");
+                out.print("<th>Type compte</th>");
+                out.print("<th>Taux %</th>");
                 out.print("<th>Action</th>");
                 out.print("</thead>");
                 out.print("<tbody>");
@@ -83,6 +94,8 @@
                     out.print("<td>" + l.get(i).getID_compte() + "</td>");
                     out.print("<td>" + l.get(i).getIban() + "</td>");
                     out.print("<td>" + l.get(i).getSolde() + "</td>");
+                    out.print("<td>" + l.get(i).getTypecompte().getNom() + "</td>");
+                    out.print("<td>" + l.get(i).getTypecompte().getTaux() + "</td>");
                     if (l.get(i).isValide()) {
                         out.print("<td> <form action=\"cloturecompte.htm\" method=\"POST\"> <input type=\"hidden\" id=\"id\" name=\"id\" value=\"" + l.get(i).getID_compte() + "\" > <input class=\"btn btn-danger\" type=\"submit\" value=\"Cloturer\"></form></td>");
                     } else {
@@ -103,6 +116,8 @@
                 out.print("<th>Id compte</th>");
                 out.print("<th>Iban</th>");
                 out.print("<th>Solde</th>");
+                out.print("<th>Type compte</th>");
+                out.print("<th>Taux %</th>");
                 out.print("<th>Etat</th>");
                 out.print("</thead>");
                 out.print("<tbody>");
@@ -111,6 +126,8 @@
                     out.print("<td>" + ltout.get(i).getID_compte() + "</td>");
                     out.print("<td>" + ltout.get(i).getIban() + "</td>");
                     out.print("<td>" + ltout.get(i).getSolde() + "</td>");
+                    out.print("<td>" + ltout.get(i).getTypecompte().getNom() + "</td>");
+                    out.print("<td>" + ltout.get(i).getTypecompte().getTaux() + "</td>");
                     out.print("<td>" + ltout.get(i).isValide() + "</td>");
                     out.print("</tr>");
                 }

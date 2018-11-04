@@ -19,7 +19,6 @@
         <div >
             <img class="d-block w-100" src="http://www.wexinc.com/wex-corporate/wp-content/uploads/sites/4/2017/04/WEX-Corporate-Bank-to-Bank-Large.jpg" alt="First slide" width="100%" height="300" >
         </div>
-        <h1>${client.IDClient}</h1>
         <div>
             <menu type="context" id="popup-menu">
                 <menuitem >

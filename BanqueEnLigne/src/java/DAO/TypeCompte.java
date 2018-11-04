@@ -28,6 +28,15 @@ public class TypeCompte implements Serializable {
         return id;
     }
 
+    public TypeCompte() {
+    }
+
+    public TypeCompte(String nom, int taux,boolean transaction) {
+        this.nom = nom;
+        this.taux = taux;
+        this.trans=transaction;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -37,6 +46,17 @@ public class TypeCompte implements Serializable {
     
     @Column
     private int taux;
+    
+    @Column
+    private boolean trans;
+
+    public boolean isTransaction() {
+        return trans;
+    }
+
+    public void setTransaction(boolean transaction) {
+        this.trans = transaction;
+    }
 
     public String getNom() {
         return nom;

@@ -8,8 +8,12 @@ package controllers;
 import DAO.Client;
 import DAO.Compte;
 import DAO.Conseiller;
+import DAO.TypeCompte;
+import DAO.Virement;
 import Service.CompteService;
 import Service.ConseillerService;
+import Service.VirementService;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,6 +34,8 @@ public class connexionConseillerController {
     ConseillerService cs;
     @Autowired
     CompteService cps;
+    @Autowired
+    VirementService vs;
 
     @RequestMapping(value = "connexionconseiller", method = RequestMethod.GET)
     public String init() {
@@ -81,8 +87,56 @@ public class connexionConseillerController {
 
         return mv;
     }
-    
-     @RequestMapping(value = "cloturecompte", method = RequestMethod.POST)
+
+    @RequestMapping(value = "agios", method = RequestMethod.POST)
+    public ModelAndView agios(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ModelAndView mv;
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            Compte c = cps.findByIBAN("AGIOSBANQUE");
+            if (c == null) {
+                cps.add(new Compte(1000000, "AGIOSBANQUE", new TypeCompte("Banque gestion", 0,false)));
+                c = cps.findByIBAN("AGIOSBANQUE");
+            }
+            List<Compte> listecompte = cps.findAll();
+            for (int i = 0; i < listecompte.size(); i++) {
+                if (listecompte.get(i).getID_compte() != c.getID_compte()) {
+                    if (listecompte.get(i).isValide()) {
+                        Virement v;
+                        float somme;
+                        if (listecompte.get(i).getType().getTaux() > 0.0 && listecompte.get(i).getType().isTransaction()==false) {
+                            somme = (float) (listecompte.get(i).getSolde() * ((float)listecompte.get(i).getType().getTaux() / 100));
+                            v = new Virement(listecompte.get(i), c, somme);
+                            listecompte.get(i).setSolde(listecompte.get(i).getSolde() + somme);
+                            c.setSolde(c.getSolde() - somme);
+
+                        } else {
+                            somme = (float) (listecompte.get(i).getSolde() * 0.02);
+                            v = new Virement(c, listecompte.get(i), somme);
+                            listecompte.get(i).setSolde(listecompte.get(i).getSolde() - somme);
+                            c.setSolde(c.getSolde() + somme);
+                        }
+                        cps.update(c);
+                        cps.update(listecompte.get(i));
+                        vs.add(v);
+                    }
+
+                }
+            }
+
+            mv = new ModelAndView("accueilconseiller");
+            mv.addObject("listecompte", cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
+            mv.addObject("listecomptenonvalide", cps.findNonvalide());
+            mv.addObject("toutcompte", cps.findAll());
+        } else {
+            mv = new ModelAndView("index");
+        }
+
+        return mv;
+    }
+
+    @RequestMapping(value = "cloturecompte", method = RequestMethod.POST)
     public ModelAndView cloturecompte(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
 

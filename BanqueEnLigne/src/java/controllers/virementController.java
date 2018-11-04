@@ -41,9 +41,9 @@ public class virementController {
         HttpSession session = request.getSession(false);
         if (!request.getParameter("IBAN").isEmpty() && !request.getParameter("Montant").isEmpty() && session != null) {
             Compte encaisseur = c.findByIBAN(request.getParameter("IBAN"));
-            int montant = Integer.parseInt(request.getParameter("Montant"));
+            float montant = Float.parseFloat(request.getParameter("Montant"));
             Compte debiteur = (Compte) session.getAttribute("compte");
-            if (encaisseur != null && montant > 0) {
+            if (encaisseur != null && montant > 0.0) {
                 if (debiteur.getSolde() >= montant) {
                     encaisseur.setSolde(encaisseur.getSolde() + montant);
                     debiteur.setSolde(debiteur.getSolde() - montant);

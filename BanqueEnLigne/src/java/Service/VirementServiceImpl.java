@@ -48,4 +48,9 @@ public class VirementServiceImpl implements VirementService {
         return DAO.findByCompte(c);
     }
 
+    @Override
+    public void add(Virement v) {
+        this.DAO.save(v);
+    }
+
 }
