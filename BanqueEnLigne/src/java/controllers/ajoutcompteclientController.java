@@ -62,7 +62,9 @@ public class ajoutcompteclientController {
             mv = new ModelAndView("index");
         } else {
             if (!request.getParameter("login").equals("")) {
+                //On cherche un particulier dans la base en fonction du login
                 Particulier p = par.findBylogin(request.getParameter("login"));
+                //On charche le compte
                 Compte cpt = cpts.findById(Integer.parseInt(request.getParameter("compte")));
                 if (p != null) {
                     cpt.getListeclientcompte().add(p);
@@ -71,6 +73,7 @@ public class ajoutcompteclientController {
                     cpts.update(cpt);
                     mv = new ModelAndView("accueil");
                 } else {
+                    //Si nous n'avons pas trouvé de particulier correspondant dans la base de données alors on cherche dans les professionel
                     Professionel pro = pfs.findByLogin(request.getParameter("login"));
                     if (pro != null) {
                         System.err.println("ok pro");
@@ -85,6 +88,7 @@ public class ajoutcompteclientController {
                     }
                 }
             } else {
+                //Sinon on réffiche le formulaire avec les champs vides.
                 mv = new ModelAndView("ajoutcompteclient");
                 mv.addObject("compte", request.getParameter("compte"));
             }

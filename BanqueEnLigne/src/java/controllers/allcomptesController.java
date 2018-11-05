@@ -41,7 +41,7 @@ public class allcomptesController {
             mv = new ModelAndView("index");
         } else {
             mv = new ModelAndView("allcomptes");
-           // mv.addObject("listecompte", c.findByClient((Client) session.getAttribute("client")));
+           // On cherche la liste des comptes liés au client
             mv.addObject("listecompte",c.findByClient((Client) session.getAttribute("client")));
             mv.addObject("listetypecompte",ts.findAll());
             response.setHeader("Pragma", "No-cache");

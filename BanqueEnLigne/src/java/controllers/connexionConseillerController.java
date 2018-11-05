@@ -45,17 +45,20 @@ public class connexionConseillerController {
     @RequestMapping(value = "authconseiller", method = RequestMethod.GET)
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
-
+        //Je vérifie si le login et le mot de passe sont déjà renseigné et  si ce n'est pas le cas l'utilisateur est redirigé vers la page de connexion
         if (request.getParameter("identifient").equals("") && request.getParameter("password").equals("")) {
             mv = new ModelAndView("connexionconseiller");
         } else {
+            //On récupére le conseiller avec l'identifiant et le mot de passe correspondant
             Conseiller c = cs.auth(request.getParameter("identifient"), request.getParameter("password"));
             if (c != null) {
+                //Si le conseiller existe on crée une session et on stocke un objet conseiller dans la session
                 HttpSession session = request.getSession(true);
                 session.setMaxInactiveInterval(60 * 30);
                 c.setListecompte(cps.findByConseiller(c));
                 session.setAttribute("conseiller", c);
                 mv = new ModelAndView("accueilconseiller");
+                //On charge les différentes liste de compte nécessaire 
                 mv.addObject("listecompte", c.getListecompte());
                 mv.addObject("listecomptenonvalide", cps.findNonvalide());
                 mv.addObject("toutcompte", cps.findAll());
@@ -72,10 +75,13 @@ public class connexionConseillerController {
 
         HttpSession session = request.getSession(false);
         if (session != null) {
+            //On charge le compte correspondant à l'id et on modifie la valeur du booléen
             Compte c = cps.findById(Integer.parseInt(request.getParameter("id")));
             c.setValide(true);
+            //On attribue le compte au conseiller d'une maniére définitive
             Conseiller cl = (Conseiller) session.getAttribute("conseiller");
             c.setConseillercompte(cl);
+            //On update le compte
             cps.update(c);
             mv = new ModelAndView("accueilconseiller");
             mv.addObject("listecompte", cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
@@ -94,23 +100,29 @@ public class connexionConseillerController {
 
         HttpSession session = request.getSession(false);
         if (session != null) {
+            //On vérifie si le compte qui permet de gérer les frais banquaire de la banque existe déjà
             Compte c = cps.findByIBAN("AGIOSBANQUE");
             if (c == null) {
-                cps.add(new Compte(1000000, "AGIOSBANQUE", new TypeCompte("Banque gestion", 0,false)));
+                //Si le compte pour gérer les frais banquaire n'existe pas dans la base de données alors on le crée
+                cps.add(new Compte(1000000, "AGIOSBANQUE", new TypeCompte("Banque gestion", 0, false)));
                 c = cps.findByIBAN("AGIOSBANQUE");
             }
+            //On parcoure tous les comptes de la banque pour prélever ou ajouter des sommes d'argent sur ces comptes
             List<Compte> listecompte = cps.findAll();
             for (int i = 0; i < listecompte.size(); i++) {
+                //On n'applique pas les prélévement au compte de gestion
                 if (listecompte.get(i).getID_compte() != c.getID_compte()) {
+                    //Le compte doit être valide (non cloturé) pour qu'un prélévement puisse être effectué
                     if (listecompte.get(i).isValide()) {
                         Virement v;
                         float somme;
-                        if (listecompte.get(i).getType().getTaux() > 0.0 && listecompte.get(i).getType().isTransaction()==false) {
-                            somme = (float) (listecompte.get(i).getSolde() * ((float)listecompte.get(i).getType().getTaux() / 100));
+                        //Si le compte n'a pas de taux d'intêret et donne la possibilité d'effectuer des transactions banquaire (chéquier, carte de crédit) on préléve 2%
+                        if (listecompte.get(i).getType().getTaux() > 0.0 && listecompte.get(i).getType().isTransaction() == false) {
+                            somme = (float) (listecompte.get(i).getSolde() * ((float) listecompte.get(i).getType().getTaux() / 100));
                             v = new Virement(listecompte.get(i), c, somme);
                             listecompte.get(i).setSolde(listecompte.get(i).getSolde() + somme);
                             c.setSolde(c.getSolde() - somme);
-
+                        //Si le compte posséde un taux d'intêret on augmente la solde du compte proportionnellement au taux d'intérets
                         } else {
                             somme = (float) (listecompte.get(i).getSolde() * 0.02);
                             v = new Virement(c, listecompte.get(i), somme);
@@ -124,7 +136,7 @@ public class connexionConseillerController {
 
                 }
             }
-
+           //On met à jour les différentes liste de compte affichés sur la page
             mv = new ModelAndView("accueilconseiller");
             mv.addObject("listecompte", cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
             mv.addObject("listecomptenonvalide", cps.findNonvalide());
@@ -142,6 +154,7 @@ public class connexionConseillerController {
 
         HttpSession session = request.getSession(false);
         if (session != null) {
+            //On cherche le compte dans la base de données à partir de son id et on modifie la valeur du booléen "valide"
             Compte c = cps.findById(Integer.parseInt(request.getParameter("id")));
             c.setValide(false);
             cps.update(c);

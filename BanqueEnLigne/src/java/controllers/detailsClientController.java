@@ -40,8 +40,10 @@ public class detailsClientController {
         ModelAndView mv;
         if (session != null) {
             mv = new ModelAndView("detailsclient");
+            //On récupére l'id du client à partir de l'objet client stocké dans la session
             long id = ((Client) session.getAttribute("client")).getIDClient();
             Particulier p = ps.findById(id);
+            //Si c'est un particulier on envoie toute les données concernant un particulier à la vue.
             if (p != null) {
                 mv.addObject("login", p.getLogin());
                 mv.addObject("mdp", p.getMdp());
@@ -52,7 +54,7 @@ public class detailsClientController {
                 mv.addObject("nom", p.getNom());
                 mv.addObject("civilite", p.getCivilite());
                 mv.addObject("type", "PARTICULIER");
-
+            //Si c'est un professionel on envoie toute les données concernant un professionel à la vue.
             } else {
                 Professionel pfs = pf.find(id);
                 mv.addObject("login", pfs.getLogin());
@@ -74,7 +76,9 @@ public class detailsClientController {
         ModelAndView mv = new ModelAndView("accueil");
         HttpSession session = request.getSession();
         Client c = (Client) session.getAttribute("client");
+        //On vérifie si les champs minimaux sont renseignés
         if (!request.getParameter("login").equals("") && !request.getParameter("mdp").equals("")) {
+            //On vérifie le type du client car cela définie l'affichage  du formulaire
             if (request.getParameter("type").equals("PARTICULIER")) {
 
                 SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");

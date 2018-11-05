@@ -54,8 +54,11 @@ public class creationClientController {
     @RequestMapping(value = "creationclient", method = RequestMethod.POST)
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
+        //Je vérifie si les champs minimaux sont renseigné
         if (!request.getParameter("login").equals("") && !request.getParameter("mdp").equals("")) {
+            //Je vérifie si le login n'est pas déjà utilisé par un autre utilisateur
             if (!cs.findByLogin(request.getParameter("login"))) {
+                //On vérifie le type que désire le client
                 if (request.getParameter("type").equals("PARTICULIER")) {
                     SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
                     java.util.Date date = formatter2.parse(request.getParameter("date"));

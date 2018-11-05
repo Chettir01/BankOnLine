@@ -52,16 +52,21 @@ public class creationOrdreBourseController {
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
         HttpSession session = request.getSession(false);
+        //Je vérifie que les champs requis sont renseignés
         if (!request.getParameter("bourse").isEmpty() && !request.getParameter("type").isEmpty() && !request.getParameter("quantite").isEmpty() && session != null) {
-
+            //Je récupére le compte passé en paramétre de la session
             Compte compte = c.findById(((Compte) session.getAttribute("compte")).getID_compte());
             if (compte != null) {
+                //Je cherche la bourse choisi par l'utilisateur
                 Bourse bo = b.findById(Integer.parseInt(request.getParameter("bourse")));
+                //Je calcule la somme en fonction de la quantité et du prix de l'action
                 float somme = bo.getPrix() * Integer.parseInt(request.getParameter("quantite"));
-                System.out.println("Somme : "+somme);
+                //Si la somme est supérieur au solde du compte on continue
                 if (compte.getSolde() >= somme) {
+                    //On enregistre le nouvel ordre de bourse dans la base de données
                     this.o.add(new OrdreBourse(Integer.parseInt(request.getParameter("quantite")), bo.getDatelimite(), bo.getPrix(), (Compte) session.getAttribute("compte"), bo, t.findById(Long.parseLong(request.getParameter("type"))
                     )));
+                    //On update le solde du compte
                     compte.setSolde(compte.getSolde() - somme);
                     c.update(compte);
                     mv = new ModelAndView("redirect:/detailscompte.htm");
