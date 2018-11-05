@@ -45,26 +45,32 @@
                         </tr>
 
                         <%
+                            if (request.getAttribute("listecompte") != null && request.getAttribute("listetypecompte") != null) {
 
-                            List<Compte> l = (List<Compte>) request.getAttribute("listecompte");
-                            List<TypeCompte> lt = (List<TypeCompte>) request.getAttribute("listetypecompte");
-                            if (l != null && lt != null) {
-                                System.out.println(l.size());
-                                for (int i = 0; i < l.size(); i++) {
-                                    out.print("<tr>");
-                                    out.print("<td>" + l.get(i).getID_compte() + "</td>");
-                                    out.print("<td>" + l.get(i).getDateCreation() + "</td>");
-                                    out.print("<td>" + l.get(i).getIban() + "</td>");
-                                    out.print("<td>" + l.get(i).getSolde() + "</td>");
-                                    out.print("<td>" + l.get(i).getType().getNom() + "</td>");
-                                    if (l.get(i).isValide()) {
-                                        out.print("<td>" + "<form action=\"detailscompte.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-success\" Type=\"submit\" VALUE=\"Details\"/>" + "</form>" + "</td>");
-                                    } else {
-                                        out.print("<td>" + "<form action=\"detailscompte.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-success\" Type=\"submit\" VALUE=\"Details\"  disabled/>" + "</form>" + "</td>");
+                                List<Compte> l = (List<Compte>) request.getAttribute("listecompte");
+                                List<TypeCompte> lt = (List<TypeCompte>) request.getAttribute("listetypecompte");
+                                if (l != null && lt != null && l.size() > 0 && lt.size() > 0) {
+                                    System.out.println("taille liste compte" + l.size());
+                                    System.out.println("taille liste type compte " + lt.size());
+                                    for (int i = 0; i < l.size(); i++) {
+                                        if (l.get(i) != null) {
 
+                                            out.print("<tr>");
+                                            out.print("<td>" + l.get(i).getID_compte() + "</td>");
+                                            out.print("<td>" + l.get(i).getDateCreation() + "</td>");
+                                            out.print("<td>" + l.get(i).getIban() + "</td>");
+                                            out.print("<td>" + l.get(i).getSolde() + "</td>");
+                                            out.print("<td>" + l.get(i).getType().getNom() + "</td>");
+                                            if (l.get(i).isValide()) {
+                                                out.print("<td>" + "<form action=\"detailscompte.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-success\" Type=\"submit\" VALUE=\"Details\"/>" + "</form>" + "</td>");
+                                            } else {
+                                                out.print("<td>" + "<form action=\"detailscompte.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-success\" Type=\"submit\" VALUE=\"Details\"  disabled/>" + "</form>" + "</td>");
+
+                                            }
+                                            out.print("<td>" + "<form action=\"ajoutcompteclient.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-info\" Type=\"submit\" VALUE=\"Partager\"/>" + "</form>" + "</td>");
+                                            out.print("</tr>");
+                                        }
                                     }
-                                    out.print("<td>" + "<form action=\"ajoutcompteclient.htm\" method=\"get\">" + "<input type=\"hidden\" id=\"compte\" name=\"compte\" value=" + l.get(i).getID_compte() + " />" + "<input class=\"form-control btn-info\" Type=\"submit\" VALUE=\"Partager\"/>" + "</form>" + "</td>");
-                                    out.print("</tr>");
                                 }
                             }
                         %>

@@ -6,6 +6,7 @@
 package controllers;
 
 import DAO.Bourse;
+import DAO.Client;
 import DAO.Compte;
 import DAO.OrdreBourse;
 import Service.BourseService;
@@ -36,6 +37,8 @@ public class creationOrdreBourseController {
     TypeOrdreService t;
     @Autowired
     BourseService b;
+    @Autowired
+    CompteService c;
 
     @RequestMapping(value = "ordrebourse", method = RequestMethod.GET)
     public ModelAndView init() {
@@ -49,11 +52,26 @@ public class creationOrdreBourseController {
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
         HttpSession session = request.getSession(false);
-        if (!request.getParameter("bourse").isEmpty() && !request.getParameter("type").isEmpty() && !request.getParameter("quantite").isEmpty() && session!=null ){
-            Bourse bo = b.findById(Integer.parseInt(request.getParameter("bourse")));
-            this.o.add(new OrdreBourse(Integer.parseInt(request.getParameter("quantite")), bo.getDatelimite(), bo.getPrix(), (Compte) session.getAttribute("compte"), bo, t.findById(Long.parseLong(request.getParameter("type"))
-            )));
-            mv = new ModelAndView("redirect:/detailscompte.htm");
+        if (!request.getParameter("bourse").isEmpty() && !request.getParameter("type").isEmpty() && !request.getParameter("quantite").isEmpty() && session != null) {
+
+            Compte compte = c.findById(((Compte) session.getAttribute("compte")).getID_compte());
+            if (compte != null) {
+                Bourse bo = b.findById(Integer.parseInt(request.getParameter("bourse")));
+                float somme = bo.getPrix() * Integer.parseInt(request.getParameter("quantite"));
+                System.out.println("Somme : "+somme);
+                if (compte.getSolde() >= somme) {
+                    this.o.add(new OrdreBourse(Integer.parseInt(request.getParameter("quantite")), bo.getDatelimite(), bo.getPrix(), (Compte) session.getAttribute("compte"), bo, t.findById(Long.parseLong(request.getParameter("type"))
+                    )));
+                    compte.setSolde(compte.getSolde() - somme);
+                    c.update(compte);
+                    mv = new ModelAndView("redirect:/detailscompte.htm");
+                } else {
+                    mv = new ModelAndView("redirect:/ordrebourse.htm");
+                }
+            } else {
+                mv = new ModelAndView("redirect:/ordrebourse.htm");
+            }
+
         } else {
             mv = new ModelAndView("redirect:/ordrebourse.htm");
         }

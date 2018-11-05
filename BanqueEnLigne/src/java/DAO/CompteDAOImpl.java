@@ -95,7 +95,12 @@ public class CompteDAOImpl implements CompteDAO {
                 + "WHERE c.ID_compte =?1 "
         );
         q.setParameter(1, id);
-        return (Compte) q.getResultList().get(0);
+        if(!q.getResultList().isEmpty()){
+            return (Compte) q.getResultList().get(0);
+        }else{
+            return null;
+        }
+        
     }
 
     @Transactional(readOnly = true)

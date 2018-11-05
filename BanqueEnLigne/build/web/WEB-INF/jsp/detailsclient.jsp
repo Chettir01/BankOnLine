@@ -49,10 +49,10 @@
                         if (request.getAttribute("type") != null) {
                             if (request.getAttribute("type").equals("PARTICULIER")) {
                                 out.print("<label>Date de naissance</label>");
-                                out.print("<input class=\"form-control\" type=\"date\" value=" + request.getAttribute("date") + "  name=\"date\">");
-                                out.print("<label >prenom</label><input class=\"form-control\" type=\"text\" value=" + request.getAttribute("prenom") + "  name=\"prenom\"> ");
-                                out.print("<label >Nom</label><input class=\"form-control\" type=\"text\" value=" + request.getAttribute("nom") + "  name=\"nom\"> ");
-                                out.print("<label >Civilite</label><input class=\"form-control\" type=\"text\" value=" + request.getAttribute("civilite") + "  name=\"civilite\"> ");
+                                out.print("<input class=\"form-control\" type=\"date\" value=\"" + request.getAttribute("date") + "\"  name=\"date\">");
+                                out.print("<label >prenom</label><input class=\"form-control\" type=\"text\" value=\"" + request.getAttribute("prenom") + "\"  name=\"prenom\"> ");
+                                out.print("<label >Nom</label><input class=\"form-control\" type=\"text\" value=\"" + request.getAttribute("nom") + "\"  name=\"nom\"> ");
+                                out.print("<label >Civilite</label><input class=\"form-control\" type=\"text\" value=\"" + request.getAttribute("civilite") + "\"  name=\"civilite\"> ");
                             }
                             if (request.getAttribute("type").equals("PROFESSIONEL")) {
                                 out.print("<label>Nom de l'entreprise</label>");

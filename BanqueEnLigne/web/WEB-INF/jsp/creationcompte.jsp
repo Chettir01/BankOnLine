@@ -30,7 +30,9 @@
                     List<TypeCompte> lt = (List<TypeCompte>) request.getAttribute("listetypecompte");
                     if (lt != null) {
                         for (int i = 0; i < lt.size(); i++) {
+                            if(!lt.get(i).getNom().equals("Banque gestion")){
                             out.print("<option value=\""+lt.get(i).getId()+"\">"+ lt.get(i).getNom()+" | "+ lt.get(i).getTaux()+"</option>");
+                            }
                         }
                     }
                 %>
