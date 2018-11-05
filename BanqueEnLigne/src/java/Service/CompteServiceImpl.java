@@ -75,7 +75,12 @@ public class CompteServiceImpl implements CompteService {
     public List<Compte> findByClientvalide() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public boolean alreadyexist(Client c) {
+        return DAO.alreadyexist(c);
+    }
+
      
     
         

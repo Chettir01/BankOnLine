@@ -39,7 +39,7 @@
             </div>
         
             <label for="Montant">Montant : </label>
-            <input class="form-control" type="number" min="0" value="0" id="Montant" name="Montant"> 
+            <input class="form-control" type="number" min="0" value="0" step="0.01" id="Montant" name="Montant"> 
             <br/>
             <label for="IBAN">IBAN : </label><input class="form-control"  type="text" id="IBAN" name ="IBAN"> <br/>
             <div class="row">

@@ -67,21 +67,32 @@ public class ajoutcompteclientController {
                 //On charche le compte
                 Compte cpt = cpts.findById(Integer.parseInt(request.getParameter("compte")));
                 if (p != null) {
-                    cpt.getListeclientcompte().add(p);
-                    p.getListecompte().add(cpt);
-                    par.update(p);
-                    cpts.update(cpt);
-                    mv = new ModelAndView("accueil");
+                    if (!cpts.alreadyexist(p)) {
+                        cpt.getListeclientcompte().add(p);
+                        p.getListecompte().add(cpt);
+                        par.update(p);
+                        cpts.update(cpt);
+                        mv = new ModelAndView("accueil");
+                    } else {
+                        mv = new ModelAndView("ajoutcompteclient");
+                        mv.addObject("compte", request.getParameter("compte"));
+                    }
+
                 } else {
                     //Si nous n'avons pas trouvé de particulier correspondant dans la base de données alors on cherche dans les professionel
                     Professionel pro = pfs.findByLogin(request.getParameter("login"));
                     if (pro != null) {
-                        System.err.println("ok pro");
-                        cpt.getListeclientcompte().add(pro);
-                        pro.getListecompte().add(cpt);
-                        pfs.update(pro);
-                        cpts.update(cpt);
-                        mv = new ModelAndView("accueil");
+                        if (!cpts.alreadyexist(pro)) {
+                            System.err.println("ok pro");
+                            cpt.getListeclientcompte().add(pro);
+                            pro.getListecompte().add(cpt);
+                            pfs.update(pro);
+                            cpts.update(cpt);
+                            mv = new ModelAndView("accueil");
+                        } else {
+                            mv = new ModelAndView("ajoutcompteclient");
+                            mv.addObject("compte", request.getParameter("compte"));
+                        }
                     } else {
                         mv = new ModelAndView("ajoutcompteclient");
                         mv.addObject("compte", request.getParameter("compte"));

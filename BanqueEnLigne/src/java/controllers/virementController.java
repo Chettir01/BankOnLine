@@ -39,29 +39,37 @@ public class virementController {
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
         HttpSession session = request.getSession(false);
-        //Je vérifie que les champs de saisie nécessaire ne sont pas vides
-        if (!request.getParameter("IBAN").isEmpty() && !request.getParameter("Montant").isEmpty() && session != null) {
-            //On cherche le compte avec l'iban qui a été renseigné
-            Compte encaisseur = c.findByIBAN(request.getParameter("IBAN"));
-            float montant = Float.parseFloat(request.getParameter("Montant"));
-            Compte debiteur = (Compte) session.getAttribute("compte");
-            //On vérifie si l'iban correspond à un compte existant et si le montant n'est pas nul
-            if (encaisseur != null && montant > 0.0) {
-                //Les découverts ne sont pas autorisé dans la baqnue donc on vérifie si le solde du compte est supérieur au montant
-                if (debiteur.getSolde() >= montant) {
-                    encaisseur.setSolde(encaisseur.getSolde() + montant);
-                    debiteur.setSolde(debiteur.getSolde() - montant);
-                    c.update(debiteur);
-                    c.update(encaisseur);
-                    v.add(encaisseur, (Compte) session.getAttribute("compte"), Float.parseFloat(request.getParameter("Montant")));
-                    mv = new ModelAndView("redirect:/detailscompte.htm");
+        if (session != null) {
+            //Je vérifie que les champs de saisie nécessaire ne sont pas vides
+            if (!request.getParameter("IBAN").isEmpty() && !request.getParameter("Montant").isEmpty()) {
+                //On cherche le compte avec l'iban qui a été renseigné
+                Compte encaisseur = c.findByIBAN(request.getParameter("IBAN"));
+                float montant = Float.parseFloat(request.getParameter("Montant"));
+                Compte debiteur = (Compte) session.getAttribute("compte");
+                //On vérifie si l'iban correspond à un compte existant et si le montant n'est pas nul
+                if (encaisseur != null && montant > 0.0) {
+                    //Les découverts ne sont pas autorisé dans la baqnue donc on vérifie si le solde du compte est supérieur au montant
+                    if (debiteur.getSolde() >= montant) {
+                        if (encaisseur.getID_compte() != debiteur.getID_compte()) {
+                            encaisseur.setSolde(encaisseur.getSolde() + montant);
+                            debiteur.setSolde(debiteur.getSolde() - montant);
+                            c.update(debiteur);
+                            c.update(encaisseur);
+                            v.add(encaisseur, (Compte) session.getAttribute("compte"), Float.parseFloat(request.getParameter("Montant")));
+                            mv = new ModelAndView("redirect:/detailscompte.htm");
+                        } else {
+                            mv = new ModelAndView("virement");
+                        }
+                    } else {
+                        mv = new ModelAndView("virement");
+                    }
                 } else {
                     mv = new ModelAndView("virement");
                 }
+
             } else {
                 mv = new ModelAndView("virement");
             }
-
         } else {
             mv = new ModelAndView("connexion");
         }

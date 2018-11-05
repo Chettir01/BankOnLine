@@ -140,4 +140,17 @@ public class CompteDAOImpl implements CompteDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    
+    @Transactional(readOnly = true)
+    @Override
+    public boolean alreadyexist(Client c) {
+         Query q = em.createQuery("  SELECT c  FROM Compte c INNER JOIN c.listeclientcompte t where t=?1      ");
+        q.setParameter(1, c);
+        if (!q.getResultList().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

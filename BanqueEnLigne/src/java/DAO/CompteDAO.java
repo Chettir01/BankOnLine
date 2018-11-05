@@ -33,4 +33,5 @@ public interface CompteDAO {
 
     public List<Compte> findByConseiller(Conseiller c);
     public List<Compte> findByClientvalide(Client c);
+    public boolean alreadyexist(Client c);
 }

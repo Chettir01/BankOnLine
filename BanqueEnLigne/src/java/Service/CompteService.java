@@ -33,5 +33,6 @@ public interface CompteService {
     public List<Compte> findNonvalide();
     public List<Compte> findByClientvalide();
     public List<Compte> findAll();
+    public boolean alreadyexist(Client c);
 
 }
