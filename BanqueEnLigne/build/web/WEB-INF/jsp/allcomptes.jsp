@@ -50,8 +50,6 @@
                                 List<Compte> l = (List<Compte>) request.getAttribute("listecompte");
                                 List<TypeCompte> lt = (List<TypeCompte>) request.getAttribute("listetypecompte");
                                 if (l != null && lt != null && l.size() > 0 && lt.size() > 0) {
-                                    System.out.println("taille liste compte" + l.size());
-                                    System.out.println("taille liste type compte " + lt.size());
                                     for (int i = 0; i < l.size(); i++) {
                                         if (l.get(i) != null) {
 
