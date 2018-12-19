@@ -10,6 +10,7 @@ import Service.ClientService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,16 +50,21 @@ public class ConnexionController {
                 mv = new ModelAndView("connexion");
             }
         }
-
+        
         /*if(session!=null){
                 if (identifient!=null && identifient.length()>0)
                     page ="accueilClient";
                 else
-                    page = "index";
+                    page = "index";-
             }*/
         return mv;
     }
 
+            @RequestMapping(value = "ok", method = RequestMethod.GET,headers="Accept=*/*",produces = "application/json")
+     public JSONObject ok(HttpServletRequest request, HttpServletResponse response)throws Exception {
+                System.out.println("controllers.ConnexionController.ok()");
+       return new JSONObject().put("mot", "ok");
+        }
     @RequestMapping(value = "deconnexion", method = RequestMethod.GET)
     public ModelAndView deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv;
