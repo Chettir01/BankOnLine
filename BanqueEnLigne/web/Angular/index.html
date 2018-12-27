@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Banque</title>
+    </head>
+    <body ng-app="Banque">
+        <script>var chemin = window.location.href</script>
+        <div ng-view></div>
+
+        <script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+        <script>
+            var app = angular.module('Banque', ['ngRoute']);
+            app.config(function ($routeProvider) {
+                $routeProvider
+                        .when('/connexion', {templateUrl: 'localhost:8084/BanqueEnLigne/Angular/connexion.html'})
+                        .when('/accueil', {templateUrl: 'localhost:8084/BanqueEnLigne/Angular/accueil.html'})
+                        .when('/comments', {templateUrl: 'localhost/AngularJS-tuto/partials/comments.html'})
+                        .otherwise({redirectTo: 'localhost:8084/BanqueEnLigne/Angular/connexion.html'});
+            });
+            app.controller('CommentsCtrl', function ($scope) {
+                $scope.comments = [
+
+                ];
+            })
+        </script>
+    </body>
+</html>
