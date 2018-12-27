@@ -42,6 +42,10 @@
                             <form action ="creationcompte.htm" method="GET">
                                 <input class="btn btn-primary btn-sm" Type=submit VALUE="Créer un nouveau compte" > 
                             </form>
+<<<<<<< HEAD
+=======
+                
+>>>>>>> ab4652e7cc6df262c09dab5937c6bb862575c040
                         </li>
                     </ul>
                 </div>

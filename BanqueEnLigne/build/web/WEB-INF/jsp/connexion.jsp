@@ -13,15 +13,44 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <title>Connexion client</title>
+<<<<<<< HEAD
     </head>
     <body>
         <div >
+=======
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/
+        1.6.9/angular.min.js"></script>
+    </head>
+    <body>
+        <div  ng-app="BanqueEnLigne">
+>>>>>>> ab4652e7cc6df262c09dab5937c6bb862575c040
             <img class="d-block w-100" src="http://www.wexinc.com/wex-corporate/wp-content/uploads/sites/4/2017/04/WEX-Corporate-Bank-to-Bank-Large.jpg" alt="First slide" width="100%" height="300" >
         </div>
         <div class="col-xs-4">
         </div>
         <div class="form-group col-xs-4">
+<<<<<<< HEAD
 
+=======
+            <script>
+                        $http({url :'/BanqueEnLigne/ok.htm',
+                                mode: 'no-cors',
+                                method: 'GET',
+                                headers: {
+                                Accept: 'application/json',
+                                }
+                        }).then(function (response) {
+                console.log(response);
+                return response.json();
+                },
+                        function (myJson) {
+                        console.log(JSON.stringify(myJson));
+                        response = JSON.stringify(myJson);
+                        console.log(response);
+                        return response.toString();
+                        })
+            </script>
+>>>>>>> ab4652e7cc6df262c09dab5937c6bb862575c040
             <form action="connexion.htm" method ="POST">
                 <div class="row">
                     <div class="form-group col-xs-4">
