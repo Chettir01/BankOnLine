@@ -10,6 +10,7 @@
         var service = {};
  
         service.Login = Login;
+        
         service.SetCredentials = SetCredentials;
         service.ClearCredentials = ClearCredentials;
         service.session=null;
