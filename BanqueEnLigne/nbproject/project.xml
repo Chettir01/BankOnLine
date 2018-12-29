@@ -31,13 +31,9 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-<<<<<<< HEAD
-=======
-                    <file>${file.reference.jandex-2.0.0.Final.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
+                    <file>${&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD}</file>
                 </library>
                 <library dirs="200">
->>>>>>> ab4652e7cc6df262c09dab5937c6bb862575c040
                     <file>${file.reference.java-json.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -50,10 +46,7 @@
                 <root id="test.src.dir"/>
             </test-roots>
         </data>
-<<<<<<< HEAD
-=======
         <libraries xmlns="http://www.netbeans.org/ns/cdnjs-libraries/1"/>
->>>>>>> ab4652e7cc6df262c09dab5937c6bb862575c040
         <spring-data xmlns="http://www.netbeans.org/ns/spring-data/1">
             <config-files>
                 <config-file>web/WEB-INF/applicationContext.xml</config-file>
