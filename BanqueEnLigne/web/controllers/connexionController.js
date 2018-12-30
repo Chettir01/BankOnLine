@@ -1,5 +1,5 @@
 
-angular.module('Banque', ['connexionService'])
+angular.module('Banque', [])
         .controller('connexionController', ['$scope', '$location', '$window','connexionService', function ($scope, $location, $window,connexionService) {
         $scope.goClient = function () {
         $location.url('/connexion');
@@ -9,8 +9,8 @@ angular.module('Banque', ['connexionService'])
             connexionService.connexion($scope.identifiant, $scope.password).then(
                     function (user) {
                         if (user !== null) {
-                                vm.user = user;
-                                $location.path('/accueil');
+                      
+                            $location.path('/accueil');
                         }
                     }
         

@@ -7,6 +7,8 @@ package controllers;
 
 import DAO.Client;
 import Service.ClientService;
+import com.fasterxml.jackson.core.JsonGenerator;
+import java.util.ArrayList;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +35,8 @@ public class ConnexionController {
 
     @Autowired
     ClientService p;
-
+    
+ 
     @RequestMapping(value = "connexion", method = RequestMethod.GET)
     public String init() {
         return "connexion";
@@ -48,8 +51,8 @@ public class ConnexionController {
         if (c != null) {
             HttpSession session = request.getSession(true);
             session.setMaxInactiveInterval(60 * 30);
-            session.setAttribute("client", c);
-            return new ResponseEntity(c, HttpStatus.OK);
+            String str = ToJSON.toJson(c);
+            return new ResponseEntity(str, HttpStatus.OK);
         } else {
             return new ResponseEntity("[]", HttpStatus.OK);
         }

@@ -1,20 +1,13 @@
 
-var app=angular.module('Banque',[]);
+var app=angular.module('Banque');
  
- app.service('connexionService',function(){
+ app.service('connexionService',['$q','$http',function($q,$http){
      
       var service = {};
- 
-        service.Login = Login;
-        
-        service.SetCredentials = SetCredentials;
-        service.ClearCredentials = ClearCredentials;
+       
         service.session=null;
         service.currentUser=null;
- 
-        return service;
-     
-        function connexion(login,password) {
+        this.connexion=function  (login,password) {
             
             var deferred = $q.defer();
             $http({
@@ -27,6 +20,7 @@ var app=angular.module('Banque',[]);
             }).then(
                         function (response) {
                             var user = response.data;
+                            service.currentUser=user
                             deferred.resolve(user);
                         },
                         function (errResponse) {
@@ -35,4 +29,4 @@ var app=angular.module('Banque',[]);
                     );
                 return deferred.promise;
         };
- });
+ }]);
