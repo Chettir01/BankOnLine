@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+    <div class="col-xs-4">
+    </div>
+
+    <div class="form-group col-xs-4"  >
+
+        <form  ng-submit="connexion()" >
+            <div class="row">
+                <div class="form-group col-xs-4">
+                </div>
+                <div class="form-group col-xs-4">
+                    <h2>Connexion</h2> 
+                </div>
+            </div>
+
+            <label>Identifiant  : </label> <input class="form-control" ng-model="identifiant" type="text" name="identifient" > 
+            <br/>
+            <label>Mot de passe : </label><input class="form-control" type="password" ng-model="password" name ="password" > <br/>
+            <div class="row">
+                <div class=" form-group col-xs-4 ">
+                </div>
+                <div class=" form-group col-xs-4 ">
+                    <input class="form-control btn-success" Type="submit" value="Se connecter"/>
+                    <input   class="form-control btn-danger btn-block" Type="reset" VALUE="Annuler"/>
+                </div>
+            </div>
+        </form>
+        <div class=" col-xs-4 ">                
+        </div>
+        <div class=" form-group col-xs-4 ">
+            <form method="GET" action="choixclient.htm" >
+                <input class="form-control btn-link" Type="submit"  VALUE="Créer un compte">
+            </form>
+        </div>
+    </div>

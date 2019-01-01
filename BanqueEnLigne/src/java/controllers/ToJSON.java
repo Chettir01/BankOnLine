@@ -27,8 +27,8 @@ public class ToJSON {
             return MAPPER.writeValueAsString(o);
         } catch (IOException ex) {
             ex.printStackTrace();
-            return null;
         }
+        return null;
     }
-    
+
 }
