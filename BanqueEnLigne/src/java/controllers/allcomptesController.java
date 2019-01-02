@@ -10,12 +10,19 @@ import DAO.Compte;
 import Service.ClientService;
 import Service.CompteService;
 import Service.TypeCompteService;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,24 +41,35 @@ public class allcomptesController {
     TypeCompteService ts;
 
     @RequestMapping(value = "allcomptes", method = RequestMethod.GET)
-    public ModelAndView init(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mv;
+    public ResponseEntity<?> init(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         if (session == null) {
-            mv = new ModelAndView("index");
+            return new ResponseEntity("[]", HttpStatus.OK);
+
         } else {
-            mv = new ModelAndView("allcomptes");
-           // On cherche la liste des comptes liés au client
-            mv.addObject("listecompte",c.findByClient((Client) session.getAttribute("client")));
-            mv.addObject("listetypecompte",ts.findAll());
+            JSONObject jObj = null;
+
+            try {
+                try {
+                    jObj = Mapper.requestToJSONObj(request);
+                } catch (IOException ex) {
+                    Logger.getLogger(allcomptesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                String client = jObj.getString("identifient");
+            } catch (JSONException ex) {
+                Logger.getLogger(allcomptesController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            List<Object> liste = new ArrayList<Object>();
+            liste.add(c.findByClient((Client) session.getAttribute("client")));
+            liste.add(ts.findAll());
+            String str = ToJSON.toJson(liste);
+            /*
             response.setHeader("Pragma", "No-cache");
             response.setHeader("Cache-Control", "no-cache");
-            response.setDateHeader("Expires", 0);
-            //
-            //Cherche liste compte
-
+            response.setDateHeader("Expires", 0);*/
+            return new ResponseEntity(str, HttpStatus.OK);
         }
-        return mv;
     }
 
     @RequestMapping(value = "allcomptes", method = RequestMethod.POST)

@@ -20,7 +20,7 @@ var app=angular.module('Banque');
             }).then(
                         function (response) {
                             var user = response.data;
-                            service.currentUser=user
+                            service.currentUser=user;
                             deferred.resolve(user);
                         },
                         function (errResponse) {

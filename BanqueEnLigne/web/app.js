@@ -7,8 +7,16 @@ app.config(function ($routeProvider) {
                 controller: 'ConnexionController',
                 controllerAs: 'vm'
             })
+            .when('/comptes', {
+
+                templateUrl: 'allComptes.html',
+                controller: 'AllComptesController',
+                controllerAs: 'vm'
+            })
             .when('/accueil', {
-                templateUrl: 'accueil.html'
+                templateUrl: 'accueil.html',
+                controller: 'AccueilController',
+                controllerAs: 'vm'
             })
             .otherwise({redirectTo: '/connexion'});
 }); 

@@ -26,6 +26,7 @@ public class ToJSON {
         try {
             return MAPPER.writeValueAsString(o);
         } catch (IOException ex) {
+            System.err.println("Exception");
             ex.printStackTrace();
         }
         return null;

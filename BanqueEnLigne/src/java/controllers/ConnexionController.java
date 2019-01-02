@@ -49,7 +49,9 @@ public class ConnexionController {
         String password = jObj.getString("password");
         Client c = p.auth(identifient, password);
         if (c != null) {
+            System.out.println("Pas null");
             HttpSession session = request.getSession(true);
+           session.setAttribute("client", c);
             session.setMaxInactiveInterval(60 * 30);
             String str = ToJSON.toJson(c);
             return new ResponseEntity(str, HttpStatus.OK);

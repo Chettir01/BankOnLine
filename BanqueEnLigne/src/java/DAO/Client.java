@@ -24,6 +24,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -74,10 +75,10 @@ public class Client {
     @OneToMany(mappedBy = "clientnotification")
     private List<Notification> listenotifications = new ArrayList<Notification>();
 
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "listeclientcompte")
     private List<Compte> listecompte = new ArrayList<Compte>();
-
+    
     @OneToMany(mappedBy = "clientmessage")
     private List<Message> listemessage = new ArrayList<Message>();
 
