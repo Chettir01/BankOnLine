@@ -10,10 +10,19 @@ import DAO.Compte;
 import Service.CompteService;
 import Service.OrdreBourseService;
 import Service.VirementService;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,26 +45,36 @@ public class detailsCompteController {
     CompteService c;
 
     @RequestMapping(value = "detailscompte", method = RequestMethod.GET)
-    public ModelAndView init(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mv;
+    public ResponseEntity<?> init(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject jObj=null;
+        String str=null;
+        try {
+            jObj = Mapper.requestToJSONObj(request);
+        } catch (IOException ex) {
+            Logger.getLogger(detailsCompteController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
+            Logger.getLogger(detailsCompteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         HttpSession session = request.getSession(false);
         if (session == null) {
-            mv = new ModelAndView("connexion");
+            return new ResponseEntity("[]",HttpStatus.OK);
         } else {
-            mv = new ModelAndView("detailscompte");
+            
             long id;
-            Compte compte;
-            if (request.getParameter("compte") != null) {
-                id = Long.parseLong(request.getParameter("compte"));
-                compte = c.findById(id);
-            } else {
-                compte = (Compte) session.getAttribute("compte");
-            }
-
-            mv.addObject("listevirement", v.findByCompte(compte));
-            mv.addObject("listeaction", o.findByCompte(compte));
+            Compte compte=null;
+                try {
+                    id = Long.parseLong(jObj.getString("compte"));
+                    compte = c.findById(id);
+                } catch (JSONException ex) {
+                    Logger.getLogger(detailsCompteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            List<Object> liste=new ArrayList<Object>();
+            
+            liste.add(v.findByCompte(compte));
+            liste.add(o.findByCompte(compte));
+            liste.add(compte);
+            str=ToJSON.toJson(liste);
             session.setAttribute("compte", compte);
-            mv.addObject("compte", compte);
             response.setHeader("Pragma", "No-cache");
             response.setHeader("Cache-Control", "no-cache");
             response.setDateHeader("Expires", 0);
@@ -63,7 +82,7 @@ public class detailsCompteController {
             //Cherche liste compte
 
         }
-        return mv;
+        return new ResponseEntity(str,HttpStatus.OK);
     }
     /*
     @RequestMapping(value = "detailscompte", method = RequestMethod.POST)

@@ -1,0 +1,114 @@
+ <div class="col-xs-4 col-xs-offset-4 container">
+            <div class="row">
+                <div class="col-xs-3">
+                    <form action="allcomptes.htm" method="GET">
+                        <input class="form-control btn-info" Type=submit  VALUE="Retour"> 
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-warning ">
+                    <div class="panel-heading">
+                        <h1>Mes virements</h1>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>Compte</th>
+                                <th>Iban</th> 
+                                <th>Date</th>
+                                <th>Valeur</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <%
+                                List<Virement> l = (List<Virement>) request.getAttribute("listevirement");
+                                if (l != null) {
+                                    Compte c = (Compte) request.getAttribute("compte");
+                                    if (c == null) {
+                                        out.print("null");
+                                    }
+                                    for (int i = 0; i < l.size(); i++) {
+                                        out.print("<tr>");
+                                        out.print("<td>" + l.get(i).getCompte().getID_compte() + "</td>");
+                                        if (c.getID_compte() == l.get(i).getIbandestination().getID_compte()) {
+                                            out.print("<td >" + l.get(i).getCompte().getIban() + "</td>");
+                                        } else {
+                                            out.print("<td>" + l.get(i).getIbandestination().getIban() + "</td>");
+                                        }
+
+                                        out.print("<td>" + l.get(i).getDatecreation().toString() + "</td>");
+                                        if (c.getID_compte() == l.get(i).getIbandestination().getID_compte()) {
+                                            out.print("<td class=\"success\">" + "+ " + l.get(i).getSomme() + "</td>");
+                                        } else {
+                                            out.print("<td class=\"danger\">" + "- " + l.get(i).getSomme() + "</td>");
+                                        }
+
+                                        out.print("</tr>");
+                                    }
+                                }
+                            %>
+                            <tr>
+                                <td colspan="4">
+                                    <form method='get' action='virement.htm'>
+                                        <input class="form-control btn-success " Type="submit" VALUE="Nouveau virement">
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="panel panel-warning ">
+                    <div class="panel-heading">
+                        <h1>Mes actions</h1>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>Compte</th>
+                                <th>Date de création</th> 
+                                <th>Date limite</th>
+                                <th>Prix d'achat</th>
+                                <th>Quantité</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <%
+                                List<OrdreBourse> lo = (List<OrdreBourse>) request.getAttribute("listeaction");
+                                if (lo != null) {
+                                    for (int i = 0; i < lo.size(); i++) {
+                                        out.print("<tr>");
+                                        out.print("<td>" + lo.get(i).getCompte().getID_compte() + "</td>");
+                                        out.print("<td>" + lo.get(i).getDate_creation() + "</td>");
+                                        out.print("<td>" + lo.get(i).getDateLimite() + "</td>");
+                                        out.print("<td>" + lo.get(i).getPrixVente() + "</td>");
+                                        out.print("<td>" + lo.get(i).getQuantite() + "</td>");
+                                        out.print("</tr>");
+                                    }
+                                }
+                            %>
+                            <tr >
+                                <td colspan="5">
+                                    <form method='get' action='ordrebourse.htm'>
+                                        <input class="form-control btn-success" Type="submit" VALUE="Acheter une action">
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>

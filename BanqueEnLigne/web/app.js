@@ -18,5 +18,10 @@ app.config(function ($routeProvider) {
                 controller: 'AccueilController',
                 controllerAs: 'vm'
             })
+            .when('/detailsCompte/:numero', {
+                templateUrl: 'detailsCompte.html',
+                controller: 'DetailsCompteController',
+                controllerAs: 'vm'
+            })
             .otherwise({redirectTo: '/connexion'});
 }); 

@@ -6,7 +6,6 @@ var app=angular.module('Banque');
       var service = {};
        
         service.session=null;
-        service.currentUser=null;
         this.connexion=function  (login,password) {
             
             var deferred = $q.defer();
