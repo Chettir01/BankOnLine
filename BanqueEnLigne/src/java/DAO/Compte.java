@@ -20,6 +20,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -40,6 +41,7 @@ public class Compte implements Serializable  {
             joinColumns = @JoinColumn(name = "id_compte"),
             inverseJoinColumns = @JoinColumn(name = "id_client")
     )
+   
     @ManyToMany
     private List<Client> listeclientcompte = new ArrayList<Client>();
     
@@ -124,7 +126,7 @@ public class Compte implements Serializable  {
     public void setListevirement(List<Virement> listevirement) {
         this.listevirement = listevirement;
     }
-
+     @JsonIgnore
     @OneToMany(mappedBy = "compte")
     List<Virement> listevirement = new ArrayList<Virement>();
     

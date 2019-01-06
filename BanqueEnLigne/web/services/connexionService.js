@@ -12,7 +12,7 @@ var app=angular.module('Banque');
             $http({
             url : 'http://localhost:8084/BanqueEnLigne/connexion.htm',
             method : "POST",
-            data : {
+            params : {
                 'identifient' : login,
                 'password': password
             }

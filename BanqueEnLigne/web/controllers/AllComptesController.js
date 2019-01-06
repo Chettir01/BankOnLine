@@ -1,5 +1,5 @@
 var app = angular.module('Banque');
-app.controller('AllComptesController', ['$scope', '$location', '$window', 'compteService', function ($scope, $location, $window, compteService) {
+app.controller('AllComptesController', ['$scope', '$location', '$window','$routeParams', 'compteService', function ($scope, $location,$routeParams, $window, compteService) {
         $scope.comptesClient;
         $scope.init = function () {
             compteService.getComptes().then(
@@ -12,8 +12,8 @@ app.controller('AllComptesController', ['$scope', '$location', '$window', 'compt
             )
         };
         $scope.init();
-        $scope.GoDetailsCompte= function(numeroCompte){
-            $location.path('/detailsCompte/'+numeroCompte);
+        $scope.GoDetailsCompte= function(numero){
+            $location.path('/detailsCompte').search({compte:numero});
         }
         $scope.GoAccueil = function () {
             $location.path('/accueil');

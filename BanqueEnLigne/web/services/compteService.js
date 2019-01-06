@@ -10,9 +10,7 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
             var deferred = $q.defer();
             $http({
                 url: 'http://localhost:8084/BanqueEnLigne/allcomptes.htm',
-                method: "GET",
-                data: {
-                }
+                method: "GET"
             }).then(
                     function (response) {
                         var comptes = response.data;

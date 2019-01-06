@@ -10,7 +10,6 @@ import Service.ClientService;
 import com.fasterxml.jackson.core.JsonGenerator;
 import java.util.ArrayList;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
 /**
  *
  * @author Julien
@@ -35,8 +33,7 @@ public class ConnexionController {
 
     @Autowired
     ClientService p;
-    
- 
+
     @RequestMapping(value = "connexion", method = RequestMethod.GET)
     public String init() {
         return "connexion";
@@ -44,14 +41,14 @@ public class ConnexionController {
 
     @RequestMapping(value = "connexion", method = RequestMethod.POST)
     public ResponseEntity<?> handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        JSONObject jObj = Mapper.requestToJSONObj(request);
-        String identifient = jObj.getString("identifient");
-        String password = jObj.getString("password");
+            String identifient = request.getParameter("identifient");
+            String password = request.getParameter("password");
+            System.out.println(password + " - " + identifient);
+
         Client c = p.auth(identifient, password);
         if (c != null) {
-            System.out.println("Pas null");
             HttpSession session = request.getSession(true);
-           session.setAttribute("client", c);
+            session.setAttribute("client", c);
             session.setMaxInactiveInterval(60 * 30);
             String str = ToJSON.toJson(c);
             return new ResponseEntity(str, HttpStatus.OK);

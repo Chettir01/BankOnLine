@@ -18,7 +18,7 @@ app.config(function ($routeProvider) {
                 controller: 'AccueilController',
                 controllerAs: 'vm'
             })
-            .when('/detailsCompte/:numero', {
+            .when('/detailsCompte', {
                 templateUrl: 'detailsCompte.html',
                 controller: 'DetailsCompteController',
                 controllerAs: 'vm'

@@ -47,18 +47,7 @@ public class allcomptesController {
             return new ResponseEntity("[]", HttpStatus.OK);
 
         } else {
-            JSONObject jObj = null;
 
-            try {
-                try {
-                    jObj = Mapper.requestToJSONObj(request);
-                } catch (IOException ex) {
-                    Logger.getLogger(allcomptesController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                String client = jObj.getString("identifient");
-            } catch (JSONException ex) {
-                Logger.getLogger(allcomptesController.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
             List<Object> liste = new ArrayList<Object>();
             liste.add(c.findByClient((Client) session.getAttribute("client")));

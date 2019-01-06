@@ -46,34 +46,25 @@ public class detailsCompteController {
 
     @RequestMapping(value = "detailscompte", method = RequestMethod.GET)
     public ResponseEntity<?> init(HttpServletRequest request, HttpServletResponse response) {
-        JSONObject jObj=null;
-        String str=null;
-        try {
-            jObj = Mapper.requestToJSONObj(request);
-        } catch (IOException ex) {
-            Logger.getLogger(detailsCompteController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JSONException ex) {
-            Logger.getLogger(detailsCompteController.class.getName()).log(Level.SEVERE, null, ex);
-        }
         HttpSession session = request.getSession(false);
+           String str;
         if (session == null) {
-            return new ResponseEntity("[]",HttpStatus.OK);
+            return new ResponseEntity("[]", HttpStatus.OK);
         } else {
-            
+
             long id;
-            Compte compte=null;
-                try {
-                    id = Long.parseLong(jObj.getString("compte"));
-                    compte = c.findById(id);
-                } catch (JSONException ex) {
-                    Logger.getLogger(detailsCompteController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            List<Object> liste=new ArrayList<Object>();
-            
+            Compte compte = null;
+            System.err.println("Compte  : "+request.getParameter("compte"));
+            id = Long.parseLong(request.getParameter("compte"));
+            compte = c.findById(id);
+
+            List<Object> liste = new ArrayList<Object>();
+         
             liste.add(v.findByCompte(compte));
             liste.add(o.findByCompte(compte));
             liste.add(compte);
-            str=ToJSON.toJson(liste);
+            str = ToJSON.toJson(liste);
+            System.out.println(str);
             session.setAttribute("compte", compte);
             response.setHeader("Pragma", "No-cache");
             response.setHeader("Cache-Control", "no-cache");
@@ -82,7 +73,7 @@ public class detailsCompteController {
             //Cherche liste compte
 
         }
-        return new ResponseEntity(str,HttpStatus.OK);
+        return new ResponseEntity(str, HttpStatus.OK);
     }
     /*
     @RequestMapping(value = "detailscompte", method = RequestMethod.POST)
