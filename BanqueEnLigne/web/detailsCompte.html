@@ -30,9 +30,9 @@
                     </tr>
                     <tr>
                         <td colspan="5">
-                            <form method='get' action='virement.htm'>
-                                <input class="form-control btn-success " Type="submit" VALUE="Nouveau virement">
-                            </form>
+
+                            <button  class="form-control btn-success" ng-click="GoVirement()">Nouveau virement</button>
+
                         </td>
                     </tr>
                 </table>
@@ -54,37 +54,23 @@
                         <th>Prix d'achat</th>
                         <th>Quantité</th>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr ng-repeat="compte in comptesClient[1]">
+                        <td>{{compte.compte.id_compte}}</td>
+                        <td>{{compte.date_creation}}</td>
+                        <td>{{compte.dateLimite}}</td>
+                        <td>{{compte.prixVente}}</td>
+                        <td>{{compte.quantite}}</td>
                     </tr>
-                    <%
-                    List<OrdreBourse> lo = (List<OrdreBourse>) request.getAttribute("listeaction");
-                            if (lo != null) {
-                            for (int i = 0; i < lo.size(); i++) {
-                            out.print("<tr>");
-                                out.print("<td>" + lo.get(i).getCompte().getID_compte() + "</td>");
-                                out.print("<td>" + lo.get(i).getDate_creation() + "</td>");
-                                out.print("<td>" + lo.get(i).getDateLimite() + "</td>");
-                                out.print("<td>" + lo.get(i).getPrixVente() + "</td>");
-                                out.print("<td>" + lo.get(i).getQuantite() + "</td>");
-                                out.print("</tr>");
-                            }
-                            }
-                            %>
-                            <tr >
-                                <td colspan="5">
-                                    <form method='get' action='ordrebourse.htm'>
-                                        <input class="form-control btn-success" Type="submit" VALUE="Acheter une action">
-                                    </form>
-                                </td>
-                            </tr>
-                            </table>
+                    <tr >
+                        <td colspan="5">
+                            <form method='get' action='ordrebourse.htm'>
+                                <input class="form-control btn-success" Type="submit" VALUE="Acheter une action">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
 
-                            </div>
-                            </div>
-                            </div>
-                            </div>
+            </div>
+        </div>
+    </div>
+</div>

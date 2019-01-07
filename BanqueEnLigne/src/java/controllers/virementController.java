@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,8 +38,8 @@ public class virementController {
     }
 
     @RequestMapping(value = "virement", method = RequestMethod.POST)
-    public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv;
+    public ResponseEntity<?> handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ResponseEntity<?> rep;
         HttpSession session = request.getSession(false);
         if (session != null) {
             //Je vérifie que les champs de saisie nécessaire ne sont pas vides
@@ -45,7 +47,8 @@ public class virementController {
                 //On cherche le compte avec l'iban qui a été renseigné
                 Compte encaisseur = c.findByIBAN(request.getParameter("IBAN"));
                 float montant = Float.parseFloat(request.getParameter("Montant"));
-                Compte debiteur = (Compte) session.getAttribute("compte");
+                System.out.println("Compte : "+request.getParameter("compte"));
+                Compte debiteur = (Compte) c.findById(Long.parseLong(request.getParameter("compte")));
                 //On vérifie si l'iban correspond à un compte existant et si le montant n'est pas nul
                 if (encaisseur != null && montant > 0.0) {
                     //Les découverts ne sont pas autorisé dans la baqnue donc on vérifie si le solde du compte est supérieur au montant
@@ -56,26 +59,28 @@ public class virementController {
                             c.update(debiteur);
                             c.update(encaisseur);
                             v.add(encaisseur, (Compte) session.getAttribute("compte"), Float.parseFloat(request.getParameter("Montant")));
-                            mv = new ModelAndView("redirect:/detailscompte.htm");
+
+                            rep = new ResponseEntity("[ok]", HttpStatus.OK);
                         } else {
-                            mv = new ModelAndView("virement");
+                            rep = new ResponseEntity("[]", HttpStatus.OK);
                         }
                     } else {
-                        mv = new ModelAndView("virement");
+                        rep = new ResponseEntity("[]", HttpStatus.OK);
                     }
+
                 } else {
-                    mv = new ModelAndView("virement");
+                    rep = new ResponseEntity("[encaisseur pas ok]", HttpStatus.OK);
                 }
 
             } else {
-                mv = new ModelAndView("virement");
+                rep = new ResponseEntity("[]", HttpStatus.OK);
             }
         } else {
-            mv = new ModelAndView("connexion");
+            rep = new ResponseEntity("[SESSION OUT]", HttpStatus.OK);
         }
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache");
         response.setDateHeader("Expires", 0);
-        return mv;
+        return rep;
     }
 }

@@ -27,7 +27,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author Julien
  */
 @Entity
-public class Compte implements Serializable  {
+public class Compte implements Serializable {
 
     public Compte() {
 
@@ -41,10 +41,10 @@ public class Compte implements Serializable  {
             joinColumns = @JoinColumn(name = "id_compte"),
             inverseJoinColumns = @JoinColumn(name = "id_client")
     )
-   
+
     @ManyToMany
     private List<Client> listeclientcompte = new ArrayList<Client>();
-    
+
     @Column
     boolean valide;
 
@@ -60,6 +60,7 @@ public class Compte implements Serializable  {
     @JoinColumn(name = "conseillercompte")
     private Conseiller conseillercompte;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "compte")
     private List<OrdreBourse> listeordre = new ArrayList<OrdreBourse>();
 
@@ -126,17 +127,16 @@ public class Compte implements Serializable  {
     public void setListevirement(List<Virement> listevirement) {
         this.listevirement = listevirement;
     }
-     @JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "compte")
     List<Virement> listevirement = new ArrayList<Virement>();
-    
+
     @OneToMany(mappedBy = "comptedestination")
     List<Virement> listevirementdestination = new ArrayList<Virement>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long ID_compte;
-
 
     @Column
     private float solde;
@@ -155,11 +155,11 @@ public class Compte implements Serializable  {
     @Column
     private Date dateCreation;
 
-    public Compte( float solde, String iban, TypeCompte typeCompte) {
+    public Compte(float solde, String iban, TypeCompte typeCompte) {
         this.solde = solde;
         this.iban = iban;
-        this.type=typeCompte;
-        this.valide=false;
+        this.type = typeCompte;
+        this.valide = false;
     }
 
     public void setSolde(float solde) {

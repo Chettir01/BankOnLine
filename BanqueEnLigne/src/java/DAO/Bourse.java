@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -65,7 +66,7 @@ public class Bourse implements Serializable {
     public void setPrix(int prix) {
         this.prix = prix;
     }
-
+    @JsonIgnore
     @OneToMany(mappedBy = "bourse")
     private List<OrdreBourse> listebourse = new ArrayList<OrdreBourse>();
 

@@ -1,6 +1,8 @@
 var app = angular.module('Banque');
 app.controller('AccueilController', ['$scope', '$location', '$window', 'connexionService', function ($scope, $location, $window, connexionService) {
         $scope.GoCompte = function () {
+            console.log("$location");
+            console.log($location);
             $location.path('/comptes');
         };
         $scope.Deconnexion = function () {

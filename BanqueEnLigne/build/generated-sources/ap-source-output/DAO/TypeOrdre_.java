@@ -6,7 +6,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-01-06T18:45:17")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-01-08T00:36:45")
 @StaticMetamodel(TypeOrdre.class)
 public class TypeOrdre_ { 
 

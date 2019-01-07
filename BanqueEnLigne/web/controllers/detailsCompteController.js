@@ -1,7 +1,14 @@
 var app = angular.module('Banque');
-app.controller('DetailsCompteController', ['$scope', '$location', '$window','$routeParams', 'transactionService', function ($scope, $routeParams, $location, $window, transactionService) {
+app.controller('DetailsCompteController', ['$scope', '$location', '$routeParams', 'transactionService', function ($scope, $routeParams, $location, transactionService) {
+
+        $scope.GoVirement = function () {
+            console.log("$location : ");
+            console.log($location);
+            console.log("$routeParams : ");
+            console.log($routeParams);
+            $routeParams.path("/virement");
+        };
         $scope.numero = $routeParams.search()['compte'];
-        $scope.comptesClient;
         $scope.init = function () {
             console.log("Numero de compte : " + $routeParams.search().compte);
             transactionService.GetTransactions($scope.numero).then(
@@ -15,5 +22,6 @@ app.controller('DetailsCompteController', ['$scope', '$location', '$window','$ro
             )
         };
         $scope.init();
+
     }
 ]);
