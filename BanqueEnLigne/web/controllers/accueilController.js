@@ -6,6 +6,15 @@ app.controller('AccueilController', ['$scope', '$location', '$window', 'connexio
             $location.path('/comptes');
         };
         $scope.Deconnexion = function () {
+            connexionService.deconnexion().then(
+                    function (result) {
+                        if (result !== null) {
+                            console.log(result);
+                            $location.path('/accueil');
+                        }
+                    }
+
+            )
             $location.path('/connexion');
         };
         $scope.GoInformation = function () {

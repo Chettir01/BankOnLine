@@ -5,14 +5,24 @@ app.factory('informationService', ['$q', '$http', function informationFactory($q
 
         return {
 
-            Changerinformation: function (numeroClient) {
+            Changerinformation: function (client, type) {
 
                 var deferred = $q.defer();
                 $http({
                     url: 'http://localhost:8084/BanqueEnLigne/detailsclient.htm',
                     method: "POST",
                     params: {
-                        Montant: numeroClient
+                        login: client.login,
+                        mdp: client.mdp,
+                        adresse: client.adresse,
+                        tel: client.tel,
+                        date: client.datenaissance,
+                        prenom: client.prenom,
+                        nom: client.nom,
+                        civilite: client.civilite,
+                        entreprise: client.nomentreprise,
+                        type: type
+
                     }
                 }).then(
                         function (response) {

@@ -41,9 +41,9 @@ public class ConnexionController {
 
     @RequestMapping(value = "connexion", method = RequestMethod.POST)
     public ResponseEntity<?> handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-            String identifient = request.getParameter("identifient");
-            String password = request.getParameter("password");
-            System.out.println(password + " - " + identifient);
+        String identifient = request.getParameter("identifient");
+        String password = request.getParameter("password");
+        System.out.println(password + " - " + identifient);
 
         Client c = p.auth(identifient, password);
         if (c != null) {
@@ -63,16 +63,18 @@ public class ConnexionController {
         return new JSONObject().put("mot", "ok");
     }
 
-    @RequestMapping(value = "deconnexion", method = RequestMethod.GET)
-    public ModelAndView deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv;
+    @RequestMapping(value = "deconnexion", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         HttpSession session = request.getSession(false);
         if (session != null) {
-            session.invalidate();
+            try {
+                session.invalidate();
+                return new ResponseEntity("ok", HttpStatus.OK);
+            } catch (Exception e) {
+                return new ResponseEntity("erreur", HttpStatus.OK);
+            }
         }
-        mv = new ModelAndView("index");
-
-        return mv;
+        return new ResponseEntity("ok", HttpStatus.OK);
     }
 }

@@ -7,11 +7,21 @@ app.controller('InformationController', ['$scope', '$location', 'informationServ
                     function (result) {
                         if (result !== null) {
                             console.log(result);
-                            if(result.nomentreprise === undefined){
-                               $scope.type="PARTICULIER";  
-                            }else{
-                                $scope.type="PROFESSIONEL";
+                            if (result.nomentreprise === undefined) {
+                                $scope.type = "PARTICULIER";
+                            } else {
+                                $scope.type = "PROFESSIONEL";
                             }
+                            $scope.information = result;
+                        }
+                    }
+            )
+        };
+        $scope.ModifierInformation = function () {
+            informationService.Changerinformation($scope.information,$scope.type).then(
+                    function (result) {
+                        if (result !== null) {
+                            console.log(result);
                             $scope.information = result;
                         }
                     }
