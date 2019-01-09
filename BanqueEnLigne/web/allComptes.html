@@ -23,10 +23,10 @@
                     <td> {{compte.dateCreation}}</td>
                     <td> {{compte.iban}}</td>
                     <td> {{compte.solde}}</td>
-                    <td> {{compte.typecompte}}</td>
+                    <td> {{compte.typecompte.nom}} - {{compte.typecompte.taux}} %</td>
                     <td ng-if="compte.valide === true"> <button ng-click="GoDetailsCompte(compte.id_compte)" class="btn btn-success">Détails</button> </td>
                     <td ng-if="compte.valide === false"> <button  class="btn btn-success" disabled>Détails</button> </td>
-                    <td><button class="btn btn-info">Partager</button>  </td>
+                    <td><button ng-click="GoPartager(compte.id_compte)" class="btn btn-info">Partager</button>  </td>
                 </tr>
 
             </table>

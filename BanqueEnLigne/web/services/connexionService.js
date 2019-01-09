@@ -33,7 +33,7 @@ app.service('connexionService', ['$q', '$http', function ($q, $http) {
 
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/connexion.htm',
+                url: 'http://localhost:8084/BanqueEnLigne/deconnexion.htm',
                 method: "DELETE"
             }).then(
                     function (response) {

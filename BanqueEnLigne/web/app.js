@@ -33,5 +33,15 @@ app.config(['$routeProvider', function ($routeProvider) {
                     controller: 'InformationController',
                     controllerAs: 'vm'
                 })
+                .when('/creationCompte', {
+                    templateUrl: 'creationCompte.html',
+                    controller: 'CreationCompteController',
+                    controllerAs: 'vm'
+                })
+                .when('/ajoutCompte', {
+                    templateUrl: 'ajoutCompteClient.html',
+                    controller: 'AjoutCompteClientController',
+                    controllerAs: 'vm'
+                })
                 .otherwise({redirectTo: '/connexion'});
     }]); 

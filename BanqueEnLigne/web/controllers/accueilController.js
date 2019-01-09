@@ -10,7 +10,7 @@ app.controller('AccueilController', ['$scope', '$location', '$window', 'connexio
                     function (result) {
                         if (result !== null) {
                             console.log(result);
-                            $location.path('/accueil');
+                            $location.path('/connexion');
                         }
                     }
 
@@ -21,7 +21,7 @@ app.controller('AccueilController', ['$scope', '$location', '$window', 'connexio
             $location.path('/information');
         };
         $scope.GoCreation = function () {
-            $location.path('/creation');
+            $location.path('/creationCompte');
         };
         
     }

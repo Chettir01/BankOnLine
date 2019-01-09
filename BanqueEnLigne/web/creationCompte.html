@@ -1,0 +1,14 @@
+  
+<form class="form-group col-xs-4 col-xs-offset-4" ng-submit="CreationCompte()">
+    <h1>Demande de création de compte</h1>
+    <br/>
+    <label for="type">Type de compte : </label>
+    <select class="form-control" id="type" ng-model="typeCompte">
+        <option value="">"Nom" | "Taux"</option>
+        <option ng-repeat="typeCompte in listeTypeCompte"  value="{{typeCompte.id}}">{{typeCompte.nom}} | {{typeCompte.taux}}</option>
+    </select>
+    <br/>
+    <div class="col-xs-4 col-xs-offset-4">
+        <input class="form-control btn-success" Type="submit" VALUE="Valider">
+    </div>
+</form>

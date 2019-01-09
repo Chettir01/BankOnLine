@@ -20,6 +20,11 @@ app.controller('AllComptesController', ['$scope', '$location', '$window', 'compt
         $scope.GoAccueil = function () {
             $location.path('/accueil');
         };
+        
+        $scope.GoPartager = function (numero) {
+            $location.path('/ajoutCompte').search({compte: numero});
+        };
+        
 
     }
 ]);

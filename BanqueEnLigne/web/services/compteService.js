@@ -22,4 +22,60 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
             );
             return deferred.promise;
         };
+
+        this.GetTypeCompte = function () {
+            var deferred = $q.defer();
+            $http({
+                url: 'http://localhost:8084/BanqueEnLigne/creationcompte.htm',
+                method: "GET"
+            }).then(
+                    function (response) {
+                        deferred.resolve(response.data);
+                    },
+                    function (errResponse) {
+                        deferred.reject(errResponse);
+                    }
+            );
+            return deferred.promise;
+        };
+        
+        this.CreateCompte = function(typeCompte){
+            var deferred = $q.defer();
+            $http({
+                url: 'http://localhost:8084/BanqueEnLigne/creationcompte.htm',
+                method: "POST",
+                params: {
+                    'type': typeCompte
+                }
+            }).then(
+                    function (response) {
+                        deferred.resolve(response.data);
+                    },
+                    function (errResponse) {
+                        deferred.reject(errResponse);
+                    }
+            );
+            return deferred.promise;
+        }
+        
+        this.PartagerCompte = function(compte,login){
+            var deferred = $q.defer();
+            $http({
+                url: 'http://localhost:8084/BanqueEnLigne/ajoutcompteclient.htm',
+                method: "POST",
+                params: {
+                    compte: compte,
+                    login:login
+                }
+            }).then(
+                    function (response) {
+                        deferred.resolve(response.data);
+                    },
+                    function (errResponse) {
+                        deferred.reject(errResponse);
+                    }
+            );
+            return deferred.promise;
+        }
+
     }]);
