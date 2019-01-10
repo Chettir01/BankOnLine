@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,11 +57,11 @@ public class ajoutcompteclientController {
     }
 
     @RequestMapping(value = "ajoutcompteclient", method = RequestMethod.POST)
-    public ModelAndView creation(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mv;
+    public ResponseEntity<?> creation(HttpServletRequest request, HttpServletResponse response) {
+        ResponseEntity<?> resp;
         HttpSession session = request.getSession(false);
         if (session == null) {
-            mv = new ModelAndView("index");
+            resp = new ResponseEntity(ResponseJSON.Session.toString(), HttpStatus.GATEWAY_TIMEOUT);
         } else {
             if (!request.getParameter("login").equals("")) {
                 //On cherche un particulier dans la base en fonction du login
@@ -72,10 +74,9 @@ public class ajoutcompteclientController {
                         p.getListecompte().add(cpt);
                         par.update(p);
                         cpts.update(cpt);
-                        mv = new ModelAndView("accueil");
+                        resp = new ResponseEntity(ResponseJSON.Success.toString(), HttpStatus.OK);
                     } else {
-                        mv = new ModelAndView("ajoutcompteclient");
-                        mv.addObject("compte", request.getParameter("compte"));
+                        resp = new ResponseEntity(ResponseJSON.NotFound.toString(), HttpStatus.NOT_FOUND);
                     }
 
                 } else {
@@ -88,23 +89,20 @@ public class ajoutcompteclientController {
                             pro.getListecompte().add(cpt);
                             pfs.update(pro);
                             cpts.update(cpt);
-                            mv = new ModelAndView("accueil");
+                            resp = new ResponseEntity(ResponseJSON.Success.toString(), HttpStatus.OK);
                         } else {
-                            mv = new ModelAndView("ajoutcompteclient");
-                            mv.addObject("compte", request.getParameter("compte"));
+                            resp = new ResponseEntity(ResponseJSON.NotFound.toString(), HttpStatus.NOT_FOUND);
                         }
                     } else {
-                        mv = new ModelAndView("ajoutcompteclient");
-                        mv.addObject("compte", request.getParameter("compte"));
+                        resp = new ResponseEntity(ResponseJSON.NotFound.toString(), HttpStatus.NOT_FOUND);
                     }
                 }
             } else {
                 //Sinon on réffiche le formulaire avec les champs vides.
-                mv = new ModelAndView("ajoutcompteclient");
-                mv.addObject("compte", request.getParameter("compte"));
+                resp = new ResponseEntity(ResponseJSON.InformationIncomplete.toString(), HttpStatus.NOT_ACCEPTABLE);
             }
 
         }
-        return mv;
+        return resp;
     }
 }

@@ -1,9 +1,12 @@
 var app = angular.module('Banque');
 app.controller('AccueilController', ['$scope', '$location', '$window', 'connexionService', function ($scope, $location, $window, connexionService) {
+        $scope.contenu;
+        $scope.init= function(){
+            $scope.contenu = "messageBienvenu.html";
+        }
+        $scope.init();
         $scope.GoCompte = function () {
-            console.log("$location");
-            console.log($location);
-            $location.path('/comptes');
+            $scope.contenu = "allComptes.html";
         };
         $scope.Deconnexion = function () {
             connexionService.deconnexion().then(
@@ -18,11 +21,11 @@ app.controller('AccueilController', ['$scope', '$location', '$window', 'connexio
             $location.path('/connexion');
         };
         $scope.GoInformation = function () {
-            $location.path('/information');
+            $scope.contenu = "information.html";
         };
         $scope.GoCreation = function () {
-            $location.path('/creationCompte');
+            $scope.contenu = "creationCompte.html";
         };
-        
+
     }
 ]);

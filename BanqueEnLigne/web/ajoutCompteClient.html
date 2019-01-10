@@ -1,9 +1,13 @@
 <div class="form-group col-xs-4 col-xs-offset-4">
+
     <form ng-submit="PartagerCompte()">
         <div class="row">
             <h3>Partager avec d'autres client de la banque</h3> 
         </div>
         <br/>
+        <div ng-show="introuvable" >
+            <label class="text-danger">Ce client est introuvable !</label>
+        </div>
         <label for="login">Login utilisateur : </label>
         <input class="form-control" type="text" id="login" ng-model="login">
         <br/>

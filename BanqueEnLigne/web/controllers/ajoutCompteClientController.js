@@ -1,6 +1,7 @@
 var app = angular.module('Banque');
 app.controller('AjoutCompteClientController', ['$scope', '$location', '$routeParams', '$window', 'compteService', function ($scope, $location, $window, $routeParams, compteService) {
         $scope.login;
+        $scope.introuvable = false;
         $scope.PartagerCompte = function () {
             console.log($routeParams);
             console.log($location);
@@ -14,6 +15,9 @@ app.controller('AjoutCompteClientController', ['$scope', '$location', '$routePar
                     }
 
             )
+                    .catch(
+                            $scope.introuvable = true
+                            )
         };
     }
 ]);

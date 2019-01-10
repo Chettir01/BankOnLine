@@ -22,6 +22,8 @@ app.controller('DetailsCompteController', ['$scope', '$location', '$routeParams'
             )
         };
         $scope.init();
-
+        $scope.GoAccueil = function () {
+            $routeParams.path("/accueil");
+        };
     }
 ]);

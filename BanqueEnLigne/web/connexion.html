@@ -5,37 +5,24 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
-    <div class="col-xs-4">
+
+<form  ng-submit="connexion()" class="form-group col-xs-6 col-xs-offset-3">
+    <div ng-show="visible" >
+        <p class="text-danger">Mot de passe ou login incorrects</p>
     </div>
-
-    <div class="form-group col-xs-4"  >
-
-        <form  ng-submit="connexion()" >
-            <div class="row">
-                <div class="form-group col-xs-4">
-                </div>
-                <div class="form-group col-xs-4">
-                    <h2>Connexion</h2> 
-                </div>
-            </div>
-
-            <label>Identifiant  : </label> <input class="form-control" ng-model="identifiant" type="text" name="identifient" > 
-            <br/>
-            <label>Mot de passe : </label><input class="form-control" type="password" ng-model="password" name ="password" > <br/>
-            <div class="row">
-                <div class=" form-group col-xs-4 ">
-                </div>
-                <div class=" form-group col-xs-4 ">
-                    <input class="form-control btn-success" Type="submit" value="Se connecter"/>
-                    <input   class="form-control btn-danger btn-block" Type="reset" VALUE="Annuler"/>
-                </div>
-            </div>
-        </form>
-        <div class=" col-xs-4 ">                
-        </div>
-        <div class=" form-group col-xs-4 ">
-            <form method="GET" action="choixclient.htm" >
-                <input class="form-control btn-link" Type="submit"  VALUE="Créer un compte">
-            </form>
-        </div>
+    <div class="row text-center">
+        <h2 class="form-group">Connexion</h2> 
     </div>
+    <label>Identifiant  : </label> <input class="form-control" ng-model="identifiant" type="text" name="identifient" > 
+    <br/>
+    <label>Mot de passe : </label><input class="form-control" type="password" ng-model="password" name ="password" > <br/>
+    <div class="row  form-group col-xs-4  col-xs-offset-4">
+        <input class="btn btn-success" Type="submit" value="Se connecter"/>
+    </div>
+    <div class="row  form-group col-xs-4  col-xs-offset-4">
+        <input   class=" btn btn-danger" Type="reset" VALUE="Annuler"/>
+    </div>
+    <div class="row form-group col-xs-4  col-xs-offset-4">
+        <input class="btn btn-link" Type="submit"  VALUE="Créer un compte">
+    </div>
+</form>

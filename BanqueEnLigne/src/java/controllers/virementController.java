@@ -62,21 +62,21 @@ public class virementController {
 
                             rep = new ResponseEntity("[ok]", HttpStatus.OK);
                         } else {
-                            rep = new ResponseEntity("[]", HttpStatus.OK);
+                            rep = new ResponseEntity("[]", HttpStatus.NOT_FOUND);
                         }
                     } else {
-                        rep = new ResponseEntity("[]", HttpStatus.OK);
+                        rep = new ResponseEntity("[]", HttpStatus.NOT_FOUND);
                     }
 
                 } else {
-                    rep = new ResponseEntity("[encaisseur pas ok]", HttpStatus.OK);
+                    rep = new ResponseEntity("[encaisseur pas ok]", HttpStatus.NOT_FOUND);
                 }
 
             } else {
-                rep = new ResponseEntity("[]", HttpStatus.OK);
+                rep = new ResponseEntity("[]", HttpStatus.NOT_FOUND);
             }
         } else {
-            rep = new ResponseEntity("[SESSION OUT]", HttpStatus.OK);
+            rep = new ResponseEntity("[SESSION OUT]", HttpStatus.GATEWAY_TIMEOUT);
         }
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache");

@@ -1,11 +1,6 @@
-<div>
-    <form action="accueil.htm" method="GET">
-        <input class="form-control btn-info" Type=submit  VALUE="Retour"> 
-    </form>
-    <div class=" form-group">
-        <div class="col-xs-4">
-        </div>
-        <div class="form-group col-xs-4">
+<div ng-controller="InformationController">
+    <div class=" form-group col-xs-8 col-xs-offset-2">
+
             <form method="post" ng-submit='ModifierInformation()'>
                 <h1>Mes informations</h1>
 
@@ -38,7 +33,5 @@
                 <input class="form-control btn-success" Type="submit" VALUE="Modifier">
 
             </form>
-
-        </div>
     </div>
 </div>

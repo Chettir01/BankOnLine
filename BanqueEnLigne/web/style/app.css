@@ -1,0 +1,13 @@
+.fondImage {
+    color:black;
+    background-color:white;
+    background-image:url(../images/bourse.jpg);
+}
+.principale{
+    background-color:#CFD6D8;
+}
+.adaptButton {
+    white-space: normal !important;
+    word-wrap: break-word;
+}
+
