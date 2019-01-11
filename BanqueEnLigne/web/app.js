@@ -43,5 +43,20 @@ app.config(['$routeProvider', function ($routeProvider) {
                     controller: 'AjoutCompteClientController',
                     controllerAs: 'vm'
                 })
-                .otherwise({redirectTo: '/connexion'});
+                .when('/choixTypeConnexion', {
+                    templateUrl: 'choixTypeConnexion.html',
+                    controller: 'choixTypeConnexionController',
+                    controllerAs: 'vm'
+                })
+                .when('/connexionConseiller', {
+                    templateUrl: 'connexion.html',
+                    controller: 'ConnexionConseillerController',
+                    controllerAs: 'vm'
+                })
+                .when('/accueilConseiller', {
+                    templateUrl: 'accueilConseiller.html',
+                    controller: 'AccueilConseillerController',
+                    controllerAs: 'vm'
+                })
+                .otherwise({redirectTo: '/choixTypeConnexion'});
     }]); 

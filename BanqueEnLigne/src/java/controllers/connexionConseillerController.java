@@ -13,11 +13,14 @@ import DAO.Virement;
 import Service.CompteService;
 import Service.ConseillerService;
 import Service.VirementService;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,11 +46,11 @@ public class connexionConseillerController {
     }
 
     @RequestMapping(value = "authconseiller", method = RequestMethod.GET)
-    public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv;
+    public ResponseEntity<?> handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ResponseEntity<?> resp;
         //Je vérifie si le login et le mot de passe sont déjà renseigné et  si ce n'est pas le cas l'utilisateur est redirigé vers la page de connexion
-        if (request.getParameter("identifient").equals("") && request.getParameter("password").equals("")) {
-            mv = new ModelAndView("connexionconseiller");
+        if (request.getParameter("identifient").equals("") || request.getParameter("password").equals("")) {
+            resp = new ResponseEntity("",HttpStatus.PARTIAL_CONTENT);
         } else {
             //On récupére le conseiller avec l'identifiant et le mot de passe correspondant
             Conseiller c = cs.auth(request.getParameter("identifient"), request.getParameter("password"));
@@ -57,16 +60,17 @@ public class connexionConseillerController {
                 session.setMaxInactiveInterval(60 * 30);
                 c.setListecompte(cps.findByConseiller(c));
                 session.setAttribute("conseiller", c);
-                mv = new ModelAndView("accueilconseiller");
+                 List<Object> liste=new ArrayList<Object>();
                 //On charge les différentes liste de compte nécessaire 
-                mv.addObject("listecompte", c.getListecompte());
-                mv.addObject("listecomptenonvalide", cps.findNonvalide());
-                mv.addObject("toutcompte", cps.findAll());
+                liste.add(c.getListecompte());
+                liste.add(cps.findNonvalide());
+                liste.add(cps.findAll());
+                resp =new ResponseEntity(ToJSON.toJson(liste),HttpStatus.OK);
             } else {
-                mv = new ModelAndView("connexionconseiller");
+                resp = new ResponseEntity("",HttpStatus.NOT_FOUND);
             }
         }
-        return mv;
+        return resp;
     }
 
     @RequestMapping(value = "validationcompte", method = RequestMethod.POST)

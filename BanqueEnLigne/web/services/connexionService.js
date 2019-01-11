@@ -45,4 +45,28 @@ app.service('connexionService', ['$q', '$http', function ($q, $http) {
             );
             return deferred.promise;
         };
+        
+        this.connexionConseiller = function (login, password) {
+
+            var deferred = $q.defer();
+            $http({
+                url: 'http://localhost:8084/BanqueEnLigne/authconseiller.htm',
+                method: "GET",
+                params: {
+                    'identifient': login,
+                    'password': password
+                }
+            }).then(
+                    function (response) {
+                        var user = response.data;
+                        service.currentUser = user;
+                        deferred.resolve(user);
+                    },
+                    function (errResponse) {
+                        deferred.reject(errResponse);
+                    }
+            );
+            return deferred.promise;
+        };
+        
     }]);

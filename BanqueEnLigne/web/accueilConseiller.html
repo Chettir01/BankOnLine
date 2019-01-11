@@ -1,0 +1,104 @@
+<div>
+    <div class="row">
+        <menu type="context" id="popup-menu">
+            <menuitem >
+            <button class="btn btn-success btn-sm" ng-click="deconnexion()">Déconnection</button>
+            </menuitem> 
+            <menuitem>
+                <button class="btn btn-danger btn-sm" ng-click="agios()">AGIOS</button>
+            </menuitem>
+        </menu>
+    </div>
+    <div class="row">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h1>Comptes en attentes de validation</h1>
+            </div>
+            <div class="panel-body">
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <th>Id compte</th>
+                    <th>Iban</th>
+                    <th>Solde</th>
+                    <th>Type compte</th>
+                    <th>Taux %</th>
+                    <th>Validation</th>
+                    </thead>
+                    <tbody>
+                        <tr  ng-repeat="compte in information[1]">
+                            <td>{{compte.id_compte}}</td>
+                            <td>{{compte.iban}}</td>
+                            <td>{{compte.solde}}</td>
+                            <td>{{compte.typecompte.nom}}</td>
+                            <td>{{compte.typecompte.taux}}</td>
+                            <td ><button class="btn btn-success" ng-click="valider(compte.id_compte)">Valider</button></td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h1>Mes comptes</h1>
+            </div>
+            <div class="panel-body">
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <th>Id compte</th>
+                    <th>Iban</th>
+                    <th>Solde</th>
+                    <th>Type compte</th>
+                    <th>Taux %</th>
+                    <th>Action</th>
+                    </thead>
+                    <tbody>
+
+                        <tr  ng-repeat="compte in information[0]">
+                            <td>{{compte.id_compte}}</td>
+                            <td>{{compte.iban}}</td>
+                            <td>{{compte.solde}}</td>
+                            <td>{{compte.typecompte.nom}}</td>
+                            <td>{{compte.typecompte.taux}}</td>
+                            <td ng-if="!compte.valide" ><button class="btn btn-success" ng-click="valider(compte.id_compte)">Valider</button></td>
+                            <td ng-if="compte.valide" ><button class="btn btn-danger" ng-click="invalider(compte.id_compte)">Invalider</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Tous les comptes</h1>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <th>Id compte</th>
+                    <th>Iban</th>
+                    <th>Solde</th>
+                    <th>Type compte</th>
+                    <th>Taux %</th>
+                    <th>Etat</th>
+                    </thead>
+                    <tbody>
+                        <tr  ng-repeat="compte in information[2]">
+                            <td>{{compte.id_compte}}</td>
+                            <td>{{compte.iban}}</td>
+                            <td>{{compte.solde}}</td>
+                            <td>{{compte.typecompte.nom}}</td>
+                            <td>{{compte.typecompte.taux}}</td>
+                            <td ng-if="compte.valide" class="success" >Valide</td>
+                            <td ng-if="!compte.valide" class="danger">Invalide</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
