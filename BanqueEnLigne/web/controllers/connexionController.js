@@ -6,6 +6,7 @@ app.controller('ConnexionController', ['$scope', '$location', '$window', 'connex
         };
         $scope.connexion = function () {
             console.log('controlleur connexion');
+            console.log(connexionService);
             connexionService.connexion($scope.identifiant, $scope.password).then(
                     function (user) {
                         if (user !== null) {

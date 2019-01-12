@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -53,7 +54,7 @@ public class Conseiller  {
     
     @OneToMany(mappedBy = "conseiller")
     private List<Message> listemessage=new ArrayList<Message>();
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "conseillercompte")
     private List<Compte> listecompte=new ArrayList<Compte>();
 

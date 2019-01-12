@@ -50,7 +50,7 @@ public class connexionConseillerController {
         ResponseEntity<?> resp;
         //Je vérifie si le login et le mot de passe sont déjà renseigné et  si ce n'est pas le cas l'utilisateur est redirigé vers la page de connexion
         if (request.getParameter("identifient").equals("") || request.getParameter("password").equals("")) {
-            resp = new ResponseEntity("",HttpStatus.PARTIAL_CONTENT);
+            resp = new ResponseEntity("", HttpStatus.PARTIAL_CONTENT);
         } else {
             //On récupére le conseiller avec l'identifiant et le mot de passe correspondant
             Conseiller c = cs.auth(request.getParameter("identifient"), request.getParameter("password"));
@@ -60,22 +60,22 @@ public class connexionConseillerController {
                 session.setMaxInactiveInterval(60 * 30);
                 c.setListecompte(cps.findByConseiller(c));
                 session.setAttribute("conseiller", c);
-                 List<Object> liste=new ArrayList<Object>();
+                List<Object> liste = new ArrayList<Object>();
                 //On charge les différentes liste de compte nécessaire 
                 liste.add(c.getListecompte());
                 liste.add(cps.findNonvalide());
                 liste.add(cps.findAll());
-                resp =new ResponseEntity(ToJSON.toJson(liste),HttpStatus.OK);
+                resp = new ResponseEntity(ToJSON.toJson(liste), HttpStatus.OK);
             } else {
-                resp = new ResponseEntity("",HttpStatus.NOT_FOUND);
+                resp = new ResponseEntity("", HttpStatus.NOT_FOUND);
             }
         }
         return resp;
     }
 
     @RequestMapping(value = "validationcompte", method = RequestMethod.POST)
-    public ModelAndView validationcompte(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv;
+    public ResponseEntity<?> validationcompte(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ResponseEntity<?> resp;
 
         HttpSession session = request.getSession(false);
         if (session != null) {
@@ -87,20 +87,21 @@ public class connexionConseillerController {
             c.setConseillercompte(cl);
             //On update le compte
             cps.update(c);
-            mv = new ModelAndView("accueilconseiller");
-            mv.addObject("listecompte", cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
-            mv.addObject("listecomptenonvalide", cps.findNonvalide());
-            mv.addObject("toutcompte", cps.findAll());
+            List<Object> liste = new ArrayList<Object>();
+            liste.add(cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
+            liste.add(cps.findNonvalide());
+            liste.add(cps.findAll());
+            resp = new ResponseEntity(ToJSON.toJson(liste), HttpStatus.OK);
         } else {
-            mv = new ModelAndView("connexionconseiller");
+            resp = new ResponseEntity("", HttpStatus.GATEWAY_TIMEOUT);
         }
 
-        return mv;
+        return resp;
     }
 
     @RequestMapping(value = "agios", method = RequestMethod.POST)
-    public ModelAndView agios(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv;
+    public ResponseEntity<?> agios(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ResponseEntity<?> resp;
 
         HttpSession session = request.getSession(false);
         if (session != null) {
@@ -126,7 +127,7 @@ public class connexionConseillerController {
                             v = new Virement(listecompte.get(i), c, somme);
                             listecompte.get(i).setSolde(listecompte.get(i).getSolde() + somme);
                             c.setSolde(c.getSolde() - somme);
-                        //Si le compte posséde un taux d'intêret on augmente la solde du compte proportionnellement au taux d'intérets
+                            //Si le compte posséde un taux d'intêret on augmente la solde du compte proportionnellement au taux d'intérets
                         } else {
                             somme = (float) (listecompte.get(i).getSolde() * 0.02);
                             v = new Virement(c, listecompte.get(i), somme);
@@ -140,16 +141,17 @@ public class connexionConseillerController {
 
                 }
             }
-           //On met à jour les différentes liste de compte affichés sur la page
-            mv = new ModelAndView("accueilconseiller");
-            mv.addObject("listecompte", cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
-            mv.addObject("listecomptenonvalide", cps.findNonvalide());
-            mv.addObject("toutcompte", cps.findAll());
+            //On met à jour les différentes liste de compte affichés sur la page
+            List<Object> liste = new ArrayList<Object>();
+            liste.add(cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
+            liste.add(cps.findNonvalide());
+            liste.add(cps.findAll());
+            resp = new ResponseEntity(ToJSON.toJson(liste), HttpStatus.OK);
         } else {
-            mv = new ModelAndView("index");
+            resp = new ResponseEntity("", HttpStatus.GATEWAY_TIMEOUT);
         }
 
-        return mv;
+        return resp;
     }
 
     @RequestMapping(value = "cloturecompte", method = RequestMethod.POST)
@@ -174,15 +176,24 @@ public class connexionConseillerController {
     }
 
     @RequestMapping(value = "deconnexionconseiller", method = RequestMethod.GET)
-    public ModelAndView deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv;
+    public ResponseEntity<?> deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ResponseEntity<?> resp;
 
         HttpSession session = request.getSession(false);
         if (session != null) {
-            session.invalidate();
+            try {
+                session.invalidate();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ResponseEntity("", HttpStatus.CONFLICT);
+            }
         }
-        mv = new ModelAndView("index");
+        if (session == null || !request.isRequestedSessionIdValid()) {
+            resp = new ResponseEntity("", HttpStatus.OK);
+        } else {
+            resp = new ResponseEntity("", HttpStatus.CONFLICT);
+        }
 
-        return mv;
+        return resp;
     }
 }

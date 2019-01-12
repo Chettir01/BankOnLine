@@ -38,8 +38,8 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
             );
             return deferred.promise;
         };
-        
-        this.CreateCompte = function(typeCompte){
+
+        this.CreateCompte = function (typeCompte) {
             var deferred = $q.defer();
             $http({
                 url: 'http://localhost:8084/BanqueEnLigne/creationcompte.htm',
@@ -56,16 +56,51 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
                     }
             );
             return deferred.promise;
-        }
-        
-        this.PartagerCompte = function(compte,login){
+        };
+
+        this.PartagerCompte = function (compte, login) {
             var deferred = $q.defer();
             $http({
                 url: 'http://localhost:8084/BanqueEnLigne/ajoutcompteclient.htm',
                 method: "POST",
                 params: {
                     compte: compte,
-                    login:login
+                    login: login
+                }
+            }).then(
+                    function (response) {
+                        deferred.resolve(response.data);
+                    },
+                    function (errResponse) {
+                        deferred.reject(errResponse);
+                    }
+            );
+            return deferred.promise;
+        };
+        
+        this.Agios = function () {
+            var deferred = $q.defer();
+            $http({
+                url: 'http://localhost:8084/BanqueEnLigne/agios.htm',
+                method: "POST"
+            }).then(
+                    function (response) {
+                        deferred.resolve(response.data);
+                    },
+                    function (errResponse) {
+                        deferred.reject(errResponse);
+                    }
+            );
+            return deferred.promise;
+        };
+
+        this.Valider=function(numero){
+            var deferred = $q.defer();
+            $http({
+                url: 'http://localhost:8084/BanqueEnLigne/validationcompte.htm',
+                method: "POST",
+                params: {
+                    id: numero
                 }
             }).then(
                     function (response) {
