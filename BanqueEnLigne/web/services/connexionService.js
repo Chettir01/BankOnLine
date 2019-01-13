@@ -11,7 +11,7 @@ app.service('connexionService', ['$q', '$http', function ($q, $http) {
             var deferred = $q.defer();
             $http({
                 url: 'http://localhost:8084/BanqueEnLigne/connexion.htm',
-                method: "POST",
+                method: "GET",
                 params: {
                     'identifient': login,
                     'password': password

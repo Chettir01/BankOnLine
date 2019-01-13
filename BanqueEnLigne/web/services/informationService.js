@@ -16,7 +16,7 @@ app.factory('informationService', ['$q', '$http', function informationFactory($q
                         mdp: client.mdp,
                         adresse: client.adresse,
                         tel: client.tel,
-                        date: client.datenaissance,
+                        date: client.dateNaissance,
                         prenom: client.prenom,
                         nom: client.nom,
                         civilite: client.civilite,
@@ -51,7 +51,39 @@ app.factory('informationService', ['$q', '$http', function informationFactory($q
                         }
                 );
                 return deferred.promise;
+            },
+            
+            /////////////////////////////////////////////////////////////
+            CreationClient: function (client, type) {
+
+                var deferred = $q.defer();
+                $http({
+                    url: 'http://localhost:8084/BanqueEnLigne/creationclient.htm',
+                    method: "POST",
+                    params: {
+                        login: client.login,
+                        mdp: client.mdp,
+                        adresse: client.adresse,
+                        tel: client.tel,
+                        date: client.datenaissance,
+                        prenom: client.prenom,
+                        nom: client.nom,
+                        civilite: client.civilite,
+                        entreprise: client.nomentreprise,
+                        type: type
+                    }
+                }).then(
+                        function (response) {
+                            deferred.resolve(response.data);
+                        },
+                        function (errResponse) {
+                            deferred.reject(errResponse);
+                        }
+                );
+                return deferred.promise;
             }
+            
+            
 
         }
     }]);

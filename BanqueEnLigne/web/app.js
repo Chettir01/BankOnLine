@@ -58,5 +58,15 @@ app.config(['$routeProvider', function ($routeProvider) {
                     controller: 'AccueilConseillerController',
                     controllerAs: 'vm'
                 })
+                .when('/choixClient', {
+                    templateUrl: 'choixClient.html',
+                    controller: 'ChoixClientController',
+                    controllerAs: 'vm'
+                })
+                .when('/creationClient', {
+                    templateUrl: 'creationClient.html',
+                    controller: 'CreationClientController',
+                    controllerAs: 'vm'
+                })
                 .otherwise({redirectTo: '/choixTypeConnexion'});
     }]); 

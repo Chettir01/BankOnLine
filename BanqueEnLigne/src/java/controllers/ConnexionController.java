@@ -33,18 +33,16 @@ public class ConnexionController {
 
     @Autowired
     ClientService p;
-
+/*
     @RequestMapping(value = "connexion", method = RequestMethod.GET)
     public String init() {
         return "connexion";
-    }
+    }*/
 
-    @RequestMapping(value = "connexion", method = RequestMethod.POST)
+    @RequestMapping(value = "connexion", method = RequestMethod.GET)
     public ResponseEntity<?> handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String identifient = request.getParameter("identifient");
         String password = request.getParameter("password");
-        System.out.println(password + " - " + identifient);
-
         Client c = p.auth(identifient, password);
         if (c != null) {
             HttpSession session = request.getSession(true);
@@ -53,7 +51,7 @@ public class ConnexionController {
             String str = ToJSON.toJson(c);
             return new ResponseEntity(str, HttpStatus.OK);
         } else {
-            return new ResponseEntity("[]", HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -70,11 +68,11 @@ public class ConnexionController {
         if (session != null) {
             try {
                 session.invalidate();
-                return new ResponseEntity("ok", HttpStatus.OK);
+                return new ResponseEntity(HttpStatus.OK);
             } catch (Exception e) {
-                return new ResponseEntity("erreur", HttpStatus.OK);
+                return new ResponseEntity(HttpStatus.CONFLICT);
             }
         }
-        return new ResponseEntity("ok", HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

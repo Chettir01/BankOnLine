@@ -56,7 +56,7 @@ public class detailsClientController {
                 resp = new ResponseEntity(str, HttpStatus.OK);
             }
         } else {
-            resp = new ResponseEntity("[Session]", HttpStatus.OK);
+            resp = new ResponseEntity(HttpStatus.GATEWAY_TIMEOUT);
         }
 
         return resp;
@@ -64,7 +64,7 @@ public class detailsClientController {
 
     @RequestMapping(value = "detailsclient", method = RequestMethod.POST)
     public ResponseEntity<?> handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String str="[]";
+        String str = "[]";
         HttpSession session = request.getSession();
         Client c = (Client) session.getAttribute("client");
         //On vérifie si les champs minimaux sont renseignés
@@ -73,6 +73,7 @@ public class detailsClientController {
             if (request.getParameter("type").equals("PARTICULIER")) {
 
                 SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
+                System.out.println("Nouvelle date : " + request.getParameter("date"));
                 java.util.Date date = formatter2.parse(request.getParameter("date"));
                 java.sql.Date datesql = new java.sql.Date(date.getTime());
                 ps.update(new Particulier(c.getIDClient(), request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("civilite"), datesql, request.getParameter("login"), request.getParameter("mdp"), request.getParameter("adresse"), request.getParameter("tel")));
@@ -81,7 +82,8 @@ public class detailsClientController {
                 pf.update(new Professionel(request.getParameter("entreprise"), c.getIDClient(), request.getParameter("login"), request.getParameter("mdp"), request.getParameter("adresse"), request.getParameter("tel")));
                 str = ToJSON.toJson(pf.find(c.getIDClient()));
             }
+            return new ResponseEntity(str, HttpStatus.OK);
         }
-        return new ResponseEntity(str,HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.PARTIAL_CONTENT);
     }
 }

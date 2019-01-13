@@ -60,23 +60,23 @@ public class virementController {
                             c.update(encaisseur);
                             v.add(encaisseur, (Compte) session.getAttribute("compte"), Float.parseFloat(request.getParameter("Montant")));
 
-                            rep = new ResponseEntity("[ok]", HttpStatus.OK);
+                            rep = new ResponseEntity(HttpStatus.OK);
                         } else {
-                            rep = new ResponseEntity("[]", HttpStatus.NOT_FOUND);
+                            rep = new ResponseEntity(HttpStatus.CONFLICT);
                         }
                     } else {
-                        rep = new ResponseEntity("[]", HttpStatus.NOT_FOUND);
+                        rep = new ResponseEntity(HttpStatus.CONFLICT);
                     }
 
                 } else {
-                    rep = new ResponseEntity("[encaisseur pas ok]", HttpStatus.NOT_FOUND);
+                    rep = new ResponseEntity(HttpStatus.CONFLICT);
                 }
 
             } else {
-                rep = new ResponseEntity("[]", HttpStatus.NOT_FOUND);
+                rep = new ResponseEntity(HttpStatus.PARTIAL_CONTENT);
             }
         } else {
-            rep = new ResponseEntity("[SESSION OUT]", HttpStatus.GATEWAY_TIMEOUT);
+            rep = new ResponseEntity(HttpStatus.GATEWAY_TIMEOUT);
         }
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache");

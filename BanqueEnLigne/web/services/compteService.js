@@ -112,5 +112,24 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
             );
             return deferred.promise;
         }
+        
+        this.Invalider=function(numero){
+            var deferred = $q.defer();
+            $http({
+                url: 'http://localhost:8084/BanqueEnLigne/cloturecompte.htm',
+                method: "POST",
+                params: {
+                    id: numero
+                }
+            }).then(
+                    function (response) {
+                        deferred.resolve(response.data);
+                    },
+                    function (errResponse) {
+                        deferred.reject(errResponse);
+                    }
+            );
+            return deferred.promise;
+        }
 
     }]);

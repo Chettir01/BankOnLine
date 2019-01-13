@@ -29,21 +29,27 @@ app.controller('AccueilConseillerController', ['$scope', '$location', '$window',
                     )*/
 
         };
+        $scope.invalider = function(numero){
+            compteService.Invalider(numero).then(
+                    function (result) {
+                        if (result !== null) {
+                            console.log(result);
+                            $scope.information = result;
+                        }
+                    }
+            )
+        }
         $scope.init = function () {
             console.log($location);
             $scope.information = $location.search().information;
         };
         $scope.init();
         $scope.deconnexionConseiller = function () {
-            console.log("Connexion service : ");
-            console.log(connexionService);
-            console.log("Compte service : ");
-            console.log(compteService);
             connexionService.deconnexionConseiller().then(
                     function (result) {
                         if (result !== null) {
                             console.log(result);
-                            $location.url('/connexionConseiller');
+                            $location.url('/choixTypeConnexion');
                         }
                     }
             )

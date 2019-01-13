@@ -89,7 +89,7 @@ public class ClientDAOImpl implements ClientDAO {
        q.setParameter(1, login);
         q.setParameter(2, mdp);
         if (!q.getResultList().isEmpty()) {
-           return (Professionel) q.getResultList().get(0);
+           return (Client)q.getResultList().get(0);
         } else {
             return null;
         }

@@ -49,7 +49,7 @@ public class detailsCompteController {
         HttpSession session = request.getSession(false);
            String str;
         if (session == null) {
-            return new ResponseEntity("[]", HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.GATEWAY_TIMEOUT);
         } else {
 
             long id;

@@ -1,37 +1,37 @@
 <div ng-controller="InformationController">
     <div class=" form-group col-xs-8 col-xs-offset-2">
 
-            <form method="post" ng-submit='ModifierInformation()'>
-                <h1>Mes informations</h1>
+        <form ng-submit='ModifierInformation()'>
+            <h1>Mes informations</h1>
 
-                <label for='login' >Login</label>
-                <input class="form-control" type="text" ng-model="information.login" id='login'  > 
+            <label for='login' >Login</label>
+            <input class="form-control" type="text" ng-model="information.login" id='login' required  /> 
 
 
-                <label for='mdp'>mot de passe</label>
-                <input class="form-control" type="text"  ng-model="information.mdp" id="mdp"> 
+            <label for='mdp'>mot de passe</label>
+            <input class="form-control" type="text"  ng-model="information.mdp" id="mdp" required> 
 
-                <label for='adresse' >Adresse</label>
-                <input class="form-control" type="text" ng-model="information.adresse" id="adresse"> 
+            <label for='adresse' >Adresse</label>
+            <input class="form-control" type="text" ng-model="information.adresse" id="adresse" required/> 
 
-                <label for='tel'>tel</label>
-                <input class="form-control" type="text" ng-model="information.tel" id="tel"> 
-                <label >Type de client</label>
-                <input class="form-control" type="text" value="{{type}}" disabled="disabled" id='type' > 
-                <div ng-if="type === 'PARTICULIER'">
-                    <label for='date'>Date de naissance</label>
-                    <input class="form-control" type="date" ng-model="information.datenaissance"  id="date"/>
-                    <label for='prenom'>prenom</label><input class="form-control" type="text" ng-model="information.prenom"   id="prenom"/>
-                    <label for='nom'>Nom</label><input class="form-control" type="text" ng-model="information.nom"   id="nom"/>
-                    <label for='civilite'>Civilite</label><input class="form-control" type="text" ng-model="information.civilite" id="civilite"/>
-                </div>
-                <div ng-if="type === 'PROFESSIONEL'">
-                    <label for='entreprise'>Nom de l'entreprise</label>
-                    <input class="form-control" type="text" ng-model='information.nomentreprise' id="entreprise"/>
-                </div>
-                <br/>                  
-                <input class="form-control btn-success" Type="submit" VALUE="Modifier">
+            <label for='tel'>tel</label>
+            <input class="form-control" type="text" ng-model="information.tel" id="tel"required/> 
+            <label >Type de client</label>
+            <input class="form-control" type="text" value="{{type}}" disabled="disabled" id='type' required/> 
+            <div ng-if="type === 'PARTICULIER'">
+                <label for='date'>Date de naissance</label>
+                <input class="form-control" type="date" ng-model="information.dateNaissance"  id="date" required/>
+                <label for='prenom'>prenom</label><input class="form-control" type="text" ng-model="information.prenom"   id="prenom" required/>
+                <label for='nom'>Nom</label><input class="form-control" type="text" ng-model="information.nom"   id="nom" required/>
+                <label for='civilite'>Civilite</label><input class="form-control" type="text" ng-model="information.civilite" id="civilite" required/>
+            </div>
+            <div ng-if="type === 'PROFESSIONEL'">
+                <label for='entreprise'>Nom de l'entreprise</label>
+                <input class="form-control" type="text" ng-model='information.nomentreprise' id="entreprise" required/>
+            </div>
+            <br/>                  
+            <input class="form-control btn-success" Type="submit" VALUE="Modifier">
 
-            </form>
+        </form>
     </div>
 </div>

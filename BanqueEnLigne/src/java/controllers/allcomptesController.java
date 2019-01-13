@@ -44,7 +44,7 @@ public class allcomptesController {
     public ResponseEntity<?> init(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         if (session == null) {
-            return new ResponseEntity("[]", HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.GATEWAY_TIMEOUT);
 
         } else {
 

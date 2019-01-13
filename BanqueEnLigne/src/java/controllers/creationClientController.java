@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,8 +54,7 @@ public class creationClientController {
     }
 
     @RequestMapping(value = "creationclient", method = RequestMethod.POST)
-    public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv;
+    public ResponseEntity<?> handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //Je vérifie si les champs minimaux sont renseigné
         if (!request.getParameter("login").equals("") && !request.getParameter("mdp").equals("")) {
             //Je vérifie si le login n'est pas déjà utilisé par un autre utilisateur
@@ -69,21 +70,16 @@ public class creationClientController {
                     Professionel pf = new Professionel(request.getParameter("entreprise"), request.getParameter("login"), request.getParameter("mdp"), request.getParameter("adresse"), request.getParameter("tel"));
                     pfs.add(pf);
                 }
-                mv = new ModelAndView("accueil");
+
                 HttpSession session = request.getSession(true);
                 session.setMaxInactiveInterval(60 * 30);
                 session.setAttribute("client", cs.auth(request.getParameter("login"), request.getParameter("mdp")));
 
-                return mv;
+                return new ResponseEntity(ToJSON.toJson(cs.find(request.getParameter("login"))), HttpStatus.OK);
             }
         }
-        mv = new ModelAndView("creationclient");
-        if (request.getParameter("type").equals("PARTICULIER")) {
-            mv.addObject("type", "PARTICULIER");
-        } else {
-            mv.addObject("type", "PROFESSIONEL");
-        }
-        return mv;
+
+        return new ResponseEntity(HttpStatus.PARTIAL_CONTENT);
 
     }
 }

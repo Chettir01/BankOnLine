@@ -13,12 +13,11 @@ app.controller('AccueilController', ['$scope', '$location', '$window', 'connexio
                     function (result) {
                         if (result !== null) {
                             console.log(result);
-                            $location.path('/connexion');
+                            $location.path('/choixTypeConnexion');
                         }
                     }
 
             )
-            $location.path('/connexion');
         };
         $scope.GoInformation = function () {
             $scope.contenu = "information.html";

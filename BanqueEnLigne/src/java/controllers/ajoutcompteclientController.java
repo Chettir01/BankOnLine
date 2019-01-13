@@ -61,7 +61,7 @@ public class ajoutcompteclientController {
         ResponseEntity<?> resp;
         HttpSession session = request.getSession(false);
         if (session == null) {
-            resp = new ResponseEntity(ResponseJSON.Session.toString(), HttpStatus.GATEWAY_TIMEOUT);
+            resp = new ResponseEntity(HttpStatus.GATEWAY_TIMEOUT);
         } else {
             if (!request.getParameter("login").equals("")) {
                 //On cherche un particulier dans la base en fonction du login
@@ -74,9 +74,9 @@ public class ajoutcompteclientController {
                         p.getListecompte().add(cpt);
                         par.update(p);
                         cpts.update(cpt);
-                        resp = new ResponseEntity(ResponseJSON.Success.toString(), HttpStatus.OK);
+                        resp = new ResponseEntity(HttpStatus.OK);
                     } else {
-                        resp = new ResponseEntity(ResponseJSON.NotFound.toString(), HttpStatus.NOT_FOUND);
+                        resp = new ResponseEntity(HttpStatus.NOT_FOUND);
                     }
 
                 } else {
@@ -89,17 +89,17 @@ public class ajoutcompteclientController {
                             pro.getListecompte().add(cpt);
                             pfs.update(pro);
                             cpts.update(cpt);
-                            resp = new ResponseEntity(ResponseJSON.Success.toString(), HttpStatus.OK);
+                            resp = new ResponseEntity(HttpStatus.OK);
                         } else {
-                            resp = new ResponseEntity(ResponseJSON.NotFound.toString(), HttpStatus.NOT_FOUND);
+                            resp = new ResponseEntity(HttpStatus.NOT_FOUND);
                         }
                     } else {
-                        resp = new ResponseEntity(ResponseJSON.NotFound.toString(), HttpStatus.NOT_FOUND);
+                        resp = new ResponseEntity(HttpStatus.NOT_FOUND);
                     }
                 }
             } else {
                 //Sinon on réffiche le formulaire avec les champs vides.
-                resp = new ResponseEntity(ResponseJSON.InformationIncomplete.toString(), HttpStatus.NOT_ACCEPTABLE);
+                resp = new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
             }
 
         }

@@ -85,12 +85,12 @@ public class creationcompteController {
 
                 //c.getListeclientcompte().add(ct);
                 //cs.add(c);
-                resp = new ResponseEntity(ResponseJSON.Success.toString(), HttpStatus.OK);
+                resp = new ResponseEntity(HttpStatus.OK);
             } else {
-                resp = new ResponseEntity(ResponseJSON.InformationIncomplete.toString(), HttpStatus.NO_CONTENT);
+                resp = new ResponseEntity(HttpStatus.NO_CONTENT);
             }
         } else {
-            resp = new ResponseEntity(ResponseJSON.Session.toString(), HttpStatus.TEMPORARY_REDIRECT);
+            resp = new ResponseEntity(HttpStatus.GATEWAY_TIMEOUT);
         }
 
         return resp;

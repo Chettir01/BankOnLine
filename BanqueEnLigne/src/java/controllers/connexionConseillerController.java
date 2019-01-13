@@ -50,7 +50,7 @@ public class connexionConseillerController {
         ResponseEntity<?> resp;
         //Je vérifie si le login et le mot de passe sont déjà renseigné et  si ce n'est pas le cas l'utilisateur est redirigé vers la page de connexion
         if (request.getParameter("identifient").equals("") || request.getParameter("password").equals("")) {
-            resp = new ResponseEntity("", HttpStatus.PARTIAL_CONTENT);
+            resp = new ResponseEntity(HttpStatus.PARTIAL_CONTENT);
         } else {
             //On récupére le conseiller avec l'identifiant et le mot de passe correspondant
             Conseiller c = cs.auth(request.getParameter("identifient"), request.getParameter("password"));
@@ -67,7 +67,7 @@ public class connexionConseillerController {
                 liste.add(cps.findAll());
                 resp = new ResponseEntity(ToJSON.toJson(liste), HttpStatus.OK);
             } else {
-                resp = new ResponseEntity("", HttpStatus.NOT_FOUND);
+                resp = new ResponseEntity(HttpStatus.NOT_FOUND);
             }
         }
         return resp;
@@ -93,7 +93,7 @@ public class connexionConseillerController {
             liste.add(cps.findAll());
             resp = new ResponseEntity(ToJSON.toJson(liste), HttpStatus.OK);
         } else {
-            resp = new ResponseEntity("", HttpStatus.GATEWAY_TIMEOUT);
+            resp = new ResponseEntity(HttpStatus.GATEWAY_TIMEOUT);
         }
 
         return resp;
@@ -148,15 +148,15 @@ public class connexionConseillerController {
             liste.add(cps.findAll());
             resp = new ResponseEntity(ToJSON.toJson(liste), HttpStatus.OK);
         } else {
-            resp = new ResponseEntity("", HttpStatus.GATEWAY_TIMEOUT);
+            resp = new ResponseEntity(HttpStatus.GATEWAY_TIMEOUT);
         }
 
         return resp;
     }
 
     @RequestMapping(value = "cloturecompte", method = RequestMethod.POST)
-    public ModelAndView cloturecompte(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv;
+    public ResponseEntity<?> cloturecompte(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ResponseEntity<?> resp;
 
         HttpSession session = request.getSession(false);
         if (session != null) {
@@ -164,15 +164,16 @@ public class connexionConseillerController {
             Compte c = cps.findById(Integer.parseInt(request.getParameter("id")));
             c.setValide(false);
             cps.update(c);
-            mv = new ModelAndView("accueilconseiller");
-            mv.addObject("listecompte", cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
-            mv.addObject("listecomptenonvalide", cps.findNonvalide());
-            mv.addObject("toutcompte", cps.findAll());
+            List<Object> liste = new ArrayList<Object>();
+            liste.add(cps.findByConseiller((Conseiller) session.getAttribute("conseiller")));
+            liste.add(cps.findNonvalide());
+            liste.add(cps.findAll());
+            resp = new ResponseEntity(ToJSON.toJson(liste), HttpStatus.OK);
         } else {
-            mv = new ModelAndView("connexionconseiller");
+            resp = new ResponseEntity(HttpStatus.GATEWAY_TIMEOUT);
         }
 
-        return mv;
+        return resp;
     }
 
     @RequestMapping(value = "deconnexionconseiller", method = RequestMethod.GET)
@@ -185,13 +186,13 @@ public class connexionConseillerController {
                 session.invalidate();
             } catch (Exception e) {
                 e.printStackTrace();
-                return new ResponseEntity("", HttpStatus.CONFLICT);
+                return new ResponseEntity(HttpStatus.CONFLICT);
             }
         }
         if (session == null || !request.isRequestedSessionIdValid()) {
-            resp = new ResponseEntity("", HttpStatus.OK);
+            resp = new ResponseEntity(HttpStatus.OK);
         } else {
-            resp = new ResponseEntity("", HttpStatus.CONFLICT);
+            resp = new ResponseEntity(HttpStatus.CONFLICT);
         }
 
         return resp;
