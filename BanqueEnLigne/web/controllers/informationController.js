@@ -44,9 +44,15 @@ app.controller('InformationController', ['$filter', '$scope', '$location', 'info
                         if (result !== null) {
                             console.log(result);
                             $location.path("/accueil");
+                            alert('Modification effectué.')
                         }
                     }
-            )
+            ).catch(
+                        function (result) {
+                           alert('Un probléme est survenue lors de la sauvegarde des modification')
+                        }
+
+                );
         };
 
         $scope.GoDetailsCompte = function (numero) {

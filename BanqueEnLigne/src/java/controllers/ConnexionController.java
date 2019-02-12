@@ -49,7 +49,7 @@ public class ConnexionController {
             session.setAttribute("client", c);
             session.setMaxInactiveInterval(60 * 30);
             String str = ToJSON.toJson(c);
-            return new ResponseEntity(str, HttpStatus.OK);
+            return new ResponseEntity(str, HttpStatus.OK);  
         } else {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }

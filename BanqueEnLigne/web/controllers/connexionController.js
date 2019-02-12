@@ -1,6 +1,6 @@
 var app = angular.module('Banque');
 app.controller('ConnexionController', ['$scope', '$location', '$window', 'connexionService', 'compteService', function ($scope, $location, $window, connexionService, compteService) {
-        $scope.visible = false;
+        $scope.erreur;
         $scope.goChoixClient = function () {
             $location.url('/choixClient');
         };
@@ -11,12 +11,12 @@ app.controller('ConnexionController', ['$scope', '$location', '$window', 'connex
                     function (user) {
                         if (user !== null) {
                             console.log(user);
-                            $location.path('/accueil').search({compte: numero});
+                            $location.path('/accueil');
                         }
                     }
 
             ).catch(
-                    $scope.visible = true
+                    $scope.erreur = true
                     )
         };
         $scope.creationCompte = function () {

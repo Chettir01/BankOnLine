@@ -12,12 +12,24 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/Client.java</file>
-            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/services/compteService.js</file>
-            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/controllers/connexionConseillerController.java</file>
-            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/src/java/DAO/Conseiller.java</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/app.js</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/controllers/connexionConseillerController.js</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/connexion.html</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/controllers/creationClientController.js</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/accueil.html</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/controllers/choixConnexionController.js</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/index.html</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/controllers/accueilController.js</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/controllers/ajoutCompteClientController.js</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/controllers/AllComptesController.js</file>
             <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/controllers/accueilConseillerController.js</file>
-            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/accueilConseiller.html</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/controllers/choixTypeConnexionController.js</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/controllers/connexionController.js</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/allComptes.html</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/choixConnexion.html</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/controllers/creationCompteController.js</file>
+            <file>file:/C:/Users/Julien/Desktop/Travail%20julien/M2/AAW/GIT/BankOnLine/BanqueEnLigne/web/controllers/choixClientController.js</file>
         </group>
     </open-files>
 </project-private>

@@ -7,7 +7,7 @@ and open the template in the editor.
 
 
 <form  ng-submit="connexion()" class="form-group col-xs-6 col-xs-offset-3">
-    <div ng-show="visible" >
+    <div ng-show="erreur" class="alert alert-danger" >
         <p class="text-danger">Mot de passe ou login incorrects</p>
     </div>
     <div class="row text-center">

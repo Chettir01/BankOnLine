@@ -10,6 +10,7 @@ app.controller('DetailsCompteController', ['$scope', '$location', '$routeParams'
         };
         $scope.numero = $routeParams.search()['compte'];
         $scope.init = function () {
+            console.log($routeParams);
             console.log("Numero de compte : " + $routeParams.search().compte);
             transactionService.GetTransactions($scope.numero).then(
                     function (result) {

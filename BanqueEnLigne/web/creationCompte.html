@@ -3,9 +3,8 @@
     <h1>Demande de création de compte</h1>
     <br/>
     <label for="type">Type de compte : </label>
-    <select class="form-control" id="type" ng-model="typeCompte">
+    <select class="form-control" id="type" ng-model="typeCompte" required ng-options='liste.id as (liste.nom + " | " + liste.taux) for liste in listeTypeCompte'>
         <option value="">"Nom" | "Taux"</option>
-        <option ng-repeat="typeCompte in listeTypeCompte"  value="{{typeCompte.id}}">{{typeCompte.nom}} | {{typeCompte.taux}}</option>
     </select>
     <br/>
     <div class="col-xs-4 col-xs-offset-4">
