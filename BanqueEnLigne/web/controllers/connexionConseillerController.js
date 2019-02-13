@@ -1,6 +1,11 @@
 var app = angular.module('Banque');
 app.controller('ConnexionConseillerController', ['$scope', '$location', '$window', 'connexionService', function ($scope, $location, $window, connexionService) {
-  $scope.visible = false;
+        $scope.visible = false;
+        $scope.client;
+        $scope.init = function () {
+            $scope.client = false;
+        }
+        $scope.init();
         $scope.goClient = function () {
             $location.url('/connexion');
         };

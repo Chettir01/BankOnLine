@@ -3,9 +3,6 @@ app.controller('CreationCompteController', ['$scope', '$location', '$window', 'c
         $scope.listeTypeCompte;
         $scope.typeCompte;
         $scope.init = function () {
-            $scope.success = false;
-            $scope.erreur = false;
-            $scope.incomplet = false;
             compteService.GetTypeCompte().then(
                     function (result) {
                         console.log(result);

@@ -1,6 +1,12 @@
 var app = angular.module('Banque');
 app.controller('ConnexionController', ['$scope', '$location', '$window', 'connexionService', 'compteService', function ($scope, $location, $window, connexionService, compteService) {
         $scope.erreur;
+        $scope.client;
+        $scope.init = function () {
+            $scope.erreur = false;
+            $scope.client = true;
+        }
+        $scope.init();
         $scope.goChoixClient = function () {
             $location.url('/choixClient');
         };
@@ -16,8 +22,12 @@ app.controller('ConnexionController', ['$scope', '$location', '$window', 'connex
                     }
 
             ).catch(
-                    $scope.erreur = true
-                    )
+                    function (result) {
+                        $scope.erreur = true
+
+                    }
+
+            )
         };
         $scope.creationCompte = function () {
             compteService.CreateCompte().then(

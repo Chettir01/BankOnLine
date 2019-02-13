@@ -9,6 +9,7 @@ import DAO.Client;
 import DAO.Compte;
 import DAO.Particulier;
 import DAO.Professionel;
+import DAO.TypeCompte;
 import Service.ClientService;
 import Service.CompteService;
 import Service.ParticulierService;
@@ -17,6 +18,7 @@ import Service.TypeCompteService;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -49,7 +51,13 @@ public class creationcompteController {
     @RequestMapping(value = "creationcompte", method = RequestMethod.GET)
     public ResponseEntity<?> init() {
         ModelAndView mv = new ModelAndView("creationcompte");
-        return new ResponseEntity(ToJSON.toJson(ts.findAll()), HttpStatus.OK);
+        List<TypeCompte> liste =ts.findAll();
+        for(int i=0;i<liste.size();i++){
+            if(liste.get(i).getNom().equals("Banque gestion")){
+                liste.remove(i);
+            }
+        }
+        return new ResponseEntity(ToJSON.toJson(liste), HttpStatus.OK);
     }
 
     @RequestMapping(value = "creationcompte", method = RequestMethod.POST)
