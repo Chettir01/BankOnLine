@@ -1,7 +1,11 @@
 var app = angular.module('Banque');
 app.controller('AjoutCompteClientController', ['$scope', '$location', '$routeParams', '$window', 'compteService', function ($scope, $location, $window, $routeParams, compteService) {
         $scope.login;
-        $scope.introuvable = false;
+
+        $scope.init = function () {
+            $scope.introuvable = false;
+        }
+        $scope.init();
         $scope.PartagerCompte = function () {
             console.log($routeParams);
             console.log($location);
@@ -11,13 +15,17 @@ app.controller('AjoutCompteClientController', ['$scope', '$location', '$routePar
                         if (user !== null) {
                             console.log(user);
                             $location.path('/accueil');
+                            $scope.introuvable = false;
+                            alert('Le compte a été partagé avec le client ' + $scope.login)
                         }
                     }
 
             )
                     .catch(
-                            $scope.introuvable = true
-                            )
+                            function (result) {
+                                $scope.introuvable = true
+                            }
+                    )
         };
     }
 ]);

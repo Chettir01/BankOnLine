@@ -76,7 +76,7 @@ public class ajoutcompteclientController {
                         cpts.update(cpt);
                         resp = new ResponseEntity(HttpStatus.OK);
                     } else {
-                        resp = new ResponseEntity(HttpStatus.NOT_FOUND);
+                        resp = new ResponseEntity(HttpStatus.CONFLICT);
                     }
 
                 } else {
@@ -91,7 +91,7 @@ public class ajoutcompteclientController {
                             cpts.update(cpt);
                             resp = new ResponseEntity(HttpStatus.OK);
                         } else {
-                            resp = new ResponseEntity(HttpStatus.NOT_FOUND);
+                            resp = new ResponseEntity(HttpStatus.CONFLICT);
                         }
                     } else {
                         resp = new ResponseEntity(HttpStatus.NOT_FOUND);

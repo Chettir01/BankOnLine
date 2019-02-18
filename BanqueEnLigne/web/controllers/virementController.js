@@ -11,8 +11,10 @@ app.controller('VirementController', ['$scope', '$location', '$window', '$routeP
                     }
             )
                     .catch(
-                            alert('Le virement n\'a pas être effectué')
-                            )
+                            function (result) {
+                                alert('Le virement n\'a pas être effectué')
+                            }
+                    )
 
         }
         $scope.Deconnexion = function () {

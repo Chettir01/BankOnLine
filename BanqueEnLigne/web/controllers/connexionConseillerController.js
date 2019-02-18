@@ -1,8 +1,9 @@
 var app = angular.module('Banque');
 app.controller('ConnexionConseillerController', ['$scope', '$location', '$window', 'connexionService', function ($scope, $location, $window, connexionService) {
-        $scope.visible = false;
+        $scope.erreur;
         $scope.client;
         $scope.init = function () {
+            $scope.erreur = false;
             $scope.client = false;
         }
         $scope.init();
@@ -20,8 +21,10 @@ app.controller('ConnexionConseillerController', ['$scope', '$location', '$window
                     }
 
             ).catch(
-                    $scope.visible = true
-                    )
+                    function (result) {
+                        $scope.erreur = true
+                    }
+            )
         };
     }
 ]);
