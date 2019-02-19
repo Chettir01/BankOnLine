@@ -5,6 +5,7 @@
             <br/>
         </div>
     </div>
+    <br/>
     <div class="panel panel-primary ">
         <div class="panel-heading">
             <h1>Mes virements</h1>
@@ -21,7 +22,8 @@
                 <tr ng-repeat="compte in comptesClient[0]">
                     <td>{{compte.id}}</td>
                     <td>{{compte.compte.id_compte}}</td>
-                    <td>{{compte.ibandestination.iban}}</td>
+                    <td ng-if="numero == compte.ibandestination.id_compte">{{compte.compte.iban}}</td>
+                    <td ng-if="numero != compte.ibandestination.id_compte">{{compte.ibandestination.iban}}</td>
                     <td>{{compte.datecreation}}</td>
                     <td class="success" ng-if="numero == compte.ibandestination.id_compte">+ {{compte.somme}}</td>
                     <td class="danger" ng-if="numero != compte.ibandestination.id_compte">- {{compte.somme}}</td>
@@ -35,31 +37,5 @@
             <button  class="btn btn-success" ng-click="GoVirement()">Nouveau virement</button>
         </div>
 
-    </div>
-    <div class="panel panel-primary ">
-        <div class="panel-heading">
-            <h1>Mes actions</h1>
-        </div>
-        <div class="panel-body">
-            <table class="table table-bordered table-striped opacityMax">
-                <tr>
-                    <th>Compte</th>
-                    <th>Date de création</th> 
-                    <th>Date limite</th>
-                    <th>Prix d'achat</th>
-                    <th>Quantité</th>
-                </tr>
-                <tr ng-repeat="compte in comptesClient[1]">
-                    <td>{{compte.compte.id_compte}}</td>
-                    <td>{{compte.date_creation}}</td>
-                    <td>{{compte.dateLimite}}</td>
-                    <td>{{compte.prixVente}}</td>
-                    <td>{{compte.quantite}}</td>
-                </tr>
-            </table>
-            <div class="panel-footer">
-                <button  class="btn btn-success" ng-click="">Acheter une action</button>
-            </div>
-        </div>
     </div>
 </div>

@@ -8,11 +8,7 @@ app.controller('InformationController', ['$filter', '$scope', '$location', 'info
                             $scope.information = result;
                             if (result.nomentreprise === undefined) {
                                 $scope.type = "PARTICULIER";
-                                console.log("Avant : ");
-                                console.log($scope.information.dateNaissance);
                                 $scope.information.dateNaissance = new Date($scope.information.dateNaissance);
-                                console.log("Aprés : ");
-                                console.log($scope.information.dateNaissance);
                             } else {
                                 $scope.type = "PROFESSIONEL";
                             }

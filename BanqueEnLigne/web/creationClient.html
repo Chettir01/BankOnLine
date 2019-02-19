@@ -21,7 +21,9 @@
             <input class="form-control" type="date" ng-model="information.datenaissance"  id="date" required />
             <label for='prenom'>prenom</label><input class="form-control" type="text" ng-model="information.prenom"   id="prenom" required />
             <label for='nom'>Nom</label><input class="form-control" type="text" ng-model="information.nom"   id="nom" required />
-            <label for='civilite'>Civilite</label><input class="form-control" type="text" ng-model="information.civilite" id="civilite" required />
+            <label for='civilite'>Civilite</label><br/>
+            <input type="radio"  ng-model="information.civilite" required name="civilite" value="Monsieur"> Monsieur
+            <input type="radio" ng-model="information.civilite" required name="civilite" value="Madame"> Madame<br>
         </div>
         <div ng-if="type === 'PROFESSIONEL'">
             <label for='entreprise'>Nom de l'entreprise</label>

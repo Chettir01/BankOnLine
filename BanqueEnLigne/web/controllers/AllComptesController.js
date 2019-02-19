@@ -1,6 +1,5 @@
 var app = angular.module('Banque');
 app.controller('AllComptesController', ['$scope', '$location', '$window', 'compteService', function ($scope, $location, $window, compteService) {
-        $scope.comptesClient;
         $scope.init = function () {
           //  if ($scope.comptesClient === undefined) {
                 compteService.getComptes().then(
@@ -8,6 +7,9 @@ app.controller('AllComptesController', ['$scope', '$location', '$window', 'compt
                             if (result !== null) {
                                 console.log(result);
                                 $scope.comptesClient = result;
+                                if($scope.comptesClient[0][0]==null){
+                                    $scope.comptesClient=[];
+                                }
                             }
                         }
                 )

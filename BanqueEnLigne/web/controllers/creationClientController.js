@@ -6,6 +6,8 @@ app.controller('CreationClientController', ['$scope', '$location', 'informationS
             $scope.type = $location.search().type;
         };
         $scope.CreationClient = function () {
+           console.log($scope.information)
+           $scope.information.dateNaissance = new Date($scope.information.dateNaissance);
             informationService.CreationClient($scope.information, $scope.type).then(
                     function (result) {
                         if (result !== null) {
