@@ -10,7 +10,7 @@ app.service('virementService', ['$q', '$http', function ($q, $http) {
 
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/virement.htm',
+                url: '/BanqueEnLigne/virement.htm',
                 method: "POST",
                 params: {
                     Montant: montant,

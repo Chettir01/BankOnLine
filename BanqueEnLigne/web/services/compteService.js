@@ -9,7 +9,7 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
 
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/allcomptes.htm',
+                url: '/BanqueEnLigne/allcomptes.htm',
                 method: "GET"
             }).then(
                     function (response) {
@@ -26,7 +26,7 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
         this.GetTypeCompte = function () {
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/creationcompte.htm',
+                url: '/BanqueEnLigne/creationcompte.htm',
                 method: "GET"
             }).then(
                     function (response) {
@@ -42,7 +42,7 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
         this.CreateCompte = function (typeCompte) {
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/creationcompte.htm',
+                url: '/BanqueEnLigne/creationcompte.htm',
                 method: "POST",
                 params: {
                     'type': typeCompte
@@ -61,7 +61,7 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
         this.PartagerCompte = function (compte, login) {
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/ajoutcompteclient.htm',
+                url: '/BanqueEnLigne/ajoutcompteclient.htm',
                 method: "POST",
                 params: {
                     compte: compte,
@@ -81,7 +81,7 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
         this.Agios = function () {
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/agios.htm',
+                url: '/BanqueEnLigne/agios.htm',
                 method: "POST"
             }).then(
                     function (response) {
@@ -97,7 +97,7 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
         this.Valider=function(numero){
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/validationcompte.htm',
+                url: '/BanqueEnLigne/validationcompte.htm',
                 method: "POST",
                 params: {
                     id: numero
@@ -116,7 +116,7 @@ app.service('compteService', ['$q', '$http', function ($q, $http) {
         this.Invalider=function(numero){
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/cloturecompte.htm',
+                url: '/BanqueEnLigne/cloturecompte.htm',
                 method: "POST",
                 params: {
                     id: numero

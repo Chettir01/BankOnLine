@@ -9,7 +9,7 @@ app.factory('informationService', ['$q', '$http', function informationFactory($q
 
                 var deferred = $q.defer();
                 $http({
-                    url: 'http://localhost:8084/BanqueEnLigne/detailsclient.htm',
+                    url: '/BanqueEnLigne/detailsclient.htm',
                     method: "POST",
                     params: {
                         login: client.login,
@@ -40,7 +40,7 @@ app.factory('informationService', ['$q', '$http', function informationFactory($q
 
                 var deferred = $q.defer();
                 $http({
-                    url: 'http://localhost:8084/BanqueEnLigne/detailsclient.htm',
+                    url: '/BanqueEnLigne/detailsclient.htm',
                     method: "GET"
                 }).then(
                         function (response) {
@@ -58,7 +58,7 @@ app.factory('informationService', ['$q', '$http', function informationFactory($q
 
                 var deferred = $q.defer();
                 $http({
-                    url: 'http://localhost:8084/BanqueEnLigne/creationclient.htm',
+                    url: '/BanqueEnLigne/creationclient.htm',
                     method: "POST",
                     params: {
                         login: client.login,

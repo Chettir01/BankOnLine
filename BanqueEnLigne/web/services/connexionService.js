@@ -10,7 +10,7 @@ app.service('connexionService', ['$q', '$http', function ($q, $http) {
 
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/connexion.htm',
+                url: '/BanqueEnLigne/connexion.htm',
                 method: "GET",
                 params: {
                     'identifient': login,
@@ -32,7 +32,7 @@ app.service('connexionService', ['$q', '$http', function ($q, $http) {
 
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/deconnexion.htm',
+                url: '/BanqueEnLigne/deconnexion.htm',
                 method: "DELETE"
             }).then(
                     function (response) {
@@ -49,7 +49,7 @@ app.service('connexionService', ['$q', '$http', function ($q, $http) {
 
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/authconseiller.htm',
+                url: '/BanqueEnLigne/authconseiller.htm',
                 method: "GET",
                 params: {
                     'identifient': login,
@@ -72,7 +72,7 @@ app.service('connexionService', ['$q', '$http', function ($q, $http) {
 
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/deconnexionconseiller.htm',
+                url: '/BanqueEnLigne/deconnexionconseiller.htm',
                 method: "GET"
             }).then(
                     function (response) {

@@ -10,7 +10,7 @@ app.service('transactionService', ['$q', '$http', function ($q, $http) {
 
             var deferred = $q.defer();
             $http({
-                url: 'http://localhost:8084/BanqueEnLigne/detailscompte.htm',
+                url: '/BanqueEnLigne/detailscompte.htm',
                 method: "GET",
                 params: {
                     'compte': numeroCompte
